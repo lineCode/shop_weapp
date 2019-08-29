@@ -296,8 +296,9 @@ __webpack_require__.r(__webpack_exports__);
     //  高度自适应
     uni.getSystemInfo({
       success: function success(res) {
-        var calc = res.windowHeight;
-        that.winHeight = calc - 222;
+        console.log(res);
+        var calc = res.windowHeight - res.statusBarHeight - 44;
+        that.winHeight = calc;
       } });
 
   },

@@ -182,8 +182,9 @@
 			//  高度自适应
 			uni.getSystemInfo({
 				success: function(res) {
-					let calc = res.windowHeight;
-					that.winHeight = calc - 222;
+					console.log(res)
+					let calc = res.windowHeight - res.statusBarHeight - 44;
+					that.winHeight = calc;
 				}
 			});
 		},
