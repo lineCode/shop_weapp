@@ -1,16 +1,16 @@
 <template>
 	<view>
-		<view>
-			<uni-nav-bar :status-bar="true" :fixed="true" color="#333333" :shadow="false" background-color="#FFFFFF">
+		<view class="header-bar">
+			<uni-nav-bar :status-bar="true" :fixed="true" color="#333333" :shadow="false" background-color="#0177BF">
 				<block slot="left">
 					<view class="city">
-						<uni-icon type="location-filled" color="#0177BF" size="16" />
-						<view>{{ city }}</view>
+						<uni-icon type="location-filled" color="#ffffff" size="18" />
+						<view class="location-text">{{ city }}</view>
 					</view>
 				</block>
 				<view class="input-view">
 					<uni-icon type="search" size="22" color="#666666" />
-					<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
+					<input confirm-type="search" class="input" type="text" placeholder="搜索" @confirm="confirm">
 				</view>
 			</uni-nav-bar>
 		</view>
@@ -38,18 +38,29 @@
 									</view>
 								</view>
 							</view>
-							<view class="category-list">
-								<view class="category" v-for="(row, index) in categoryList" :key="index">
-									<view class="img">
-										<image :src="row.img"></image>
-									</view>
-									<view class="text">{{ row.name }}</view>
-								</view>
-							</view>
+
 							<view class="banner-container">
 								<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
 							</view>
-						</view>
+
+							<!-- 商品列表 -->
+							<view class="goods-list">
+								<view class="title">
+									<image src="/static/img/hua.png"></image>
+									猜你喜欢
+									<image src="/static/img/hua.png"></image>
+								</view>
+								<view class="product-list">
+									<view class="product" v-for="product in productList" :key="product.goods_id" @tap="toGoods(product)">
+										<image mode="widthFix" :src="product.img"></image>
+										<view class="name">{{ product.name }}</view>
+										<view class="info">
+											<view class="price">{{ product.price }}</view>
+											<view class="slogan">{{ product.slogan }}</view>
+										</view>
+									</view>
+								</view>
+							</view>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
@@ -68,6 +79,78 @@
 		},
 		data() {
 			return {
+				//猜你喜欢列表
+				productList: [{
+						goods_id: 0,
+						img: '/static/img/goods/p1.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 1,
+						img: '/static/img/goods/p2.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 2,
+						img: '/static/img/goods/p3.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 3,
+						img: '/static/img/goods/p4.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 4,
+						img: '/static/img/goods/p5.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 5,
+						img: '/static/img/goods/p6.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 6,
+						img: '/static/img/goods/p7.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 7,
+						img: '/static/img/goods/p8.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 8,
+						img: '/static/img/goods/p9.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					},
+					{
+						goods_id: 9,
+						img: '/static/img/goods/p10.jpg',
+						name: '商品名称商品名称商品名称商品名称商品名称',
+						price: '￥168',
+						slogan: '1235人付款'
+					}
+				],
 				title: 'Hello',
 				city: '常州',
 				currentSwiper: 0,
@@ -140,6 +223,7 @@
 					that.winHeight = calc;
 				}
 			});
+
 		},
 		methods: {
 			// 滚动切换标签样式
@@ -175,11 +259,119 @@
 </script>
 
 <style lang="scss">
+	.goods-list {
+
+		// background-color: #f4f4f4;
+		.title {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 80upx;
+			color: #f47825;
+			font-size: 30upx;
+			margin-top: 10upx;
+
+			image {
+				width: 30upx;
+				height: 30upx;
+			}
+		}
+
+		.loading-text {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 60upx;
+			color: #979797;
+			font-size: 24upx;
+		}
+
+		.product-list {
+			width: 92%;
+			padding: 0 4% 3vw 4%;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+
+			.product {
+				width: 48%;
+				border-radius: 20upx;
+				background-color: #fff;
+				margin: 0 0 15upx 0;
+				box-shadow: 0upx 5upx 25upx rgba(0, 0, 0, 0.1);
+
+				image {
+					width: 100%;
+					border-radius: 20upx 20upx 0 0;
+				}
+
+				.name {
+					width: 92%;
+					padding: 10upx 4%;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					text-align: justify;
+					overflow: hidden;
+					font-size: 30upx;
+				}
+
+				.info {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-end;
+					width: 92%;
+					padding: 10upx 4% 10upx 4%;
+
+					.price {
+						color: #e65339;
+						font-size: 30upx;
+						font-weight: 600;
+					}
+
+					.slogan {
+						color: #807c87;
+						font-size: 24upx;
+					}
+				}
+			}
+		}
+	}
+
+	.title-devider {
+		height: 40rpx;
+		width: 94%;
+		margin: auto;
+		margin-top: 16rpx;
+
+		text {
+			font-size: 32rpx;
+			font-weight: 600;
+		}
+	}
+
+	.product-container {
+		width: 94%;
+		margin: auto;
+	}
+
+	.location-text {
+		color: #ffffff;
+		font-weight: 600;
+		font-size: 36rpx;
+	}
+
+	.header-bar {
+		background: #0177BF;
+	}
+
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #f5f5f9
 	}
 
 	view {
@@ -301,9 +493,10 @@
 		justify-content: center;
 
 		.swiper-box {
-			width: 100%;
+			width: 94%;
 			height: 35.7vw;
-			margin-top: 2rpx;
+			margin-top: 18rpx;
+			border-radius: 20rpx;
 			overflow: hidden;
 			box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2);
 			//兼容ios，微信小程序
@@ -383,11 +576,16 @@
 			}
 		}
 	}
-	
-	.banner-container{
-		image{
+
+	.banner-container {
+		width: 94%;
+		margin: auto;
+		margin-top: 20rpx;
+
+		image {
 			width: 100%;
-			height: 17vh;
+			height: 14vh;
+			border-radius: 20rpx;
 		}
 	}
 </style>
