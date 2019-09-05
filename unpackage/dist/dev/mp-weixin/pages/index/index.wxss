@@ -36,7 +36,7 @@ page {
           flex-direction: column;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #efeff4;
+  background-color: #fff;
 }
 view {
   font-size: 28rpx;
@@ -109,7 +109,7 @@ view {
 }
 .tab-view {
   width: 100%;
-  height: 100rpx;
+  height: 70rpx;
   overflow: hidden;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -122,29 +122,151 @@ view {
 }
 .tab-bar-item {
   padding: 0;
-  height: 100rpx;
-  min-width: 80rpx;
-  line-height: 100rpx;
-  margin: 0 28rpx;
+  height: 70rpx;
+  min-width: 70rpx;
+  line-height: 70rpx;
+  margin: 0 24rpx;
   display: inline-block;
   text-align: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 .tab-bar-title {
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 32rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
   color: #999;
   font-weight: 400;
 }
 .active {
-  border-bottom: 6rpx solid #5677fc;
+  border-bottom: 4rpx solid #e54d42;
 }
 .active .tab-bar-title {
-  color: #5677fc !important;
-  font-size: 36rpx;
-  font-weight: bold;
+  color: #e54d42 !important;
+  font-size: 30rpx;
 }
 /*tabbar end*/
+.scoll-y {
+  height: 100%;
+  padding-top: 70rpx;
+}
+.uni-navbar--shadow {
+  -webkit-box-shadow: 0 1px 2px #ccc;
+  box-shadow: 0 0.5px 2px #ccc;
+}
+.swiper {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.swiper .swiper-box {
+    width: 100%;
+    height: 35.7vw;
+    margin-top: 2rpx;
+    overflow: hidden;
+    -webkit-box-shadow: 0rpx 8rpx 25rpx rgba(0, 0, 0, 0.2);
+            box-shadow: 0rpx 8rpx 25rpx rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+.swiper .swiper-box swiper {
+      width: 100%;
+      height: 35.7vw;
+}
+.swiper .swiper-box swiper swiper-item image {
+        width: 100%;
+        height: 35.7vw;
+}
+.swiper .swiper-box .indicator {
+      position: absolute;
+      bottom: 20rpx;
+      left: 20rpx;
+      background-color: rgba(255, 255, 255, 0.4);
+      width: 150rpx;
+      height: 5rpx;
+      border-radius: 3rpx;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+}
+.swiper .swiper-box .indicator .dots {
+        width: 0rpx;
+        background-color: white;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+}
+.swiper .swiper-box .indicator .dots.on {
+          width: 33.33333%;
+}
+.category-list {
+  width: 92%;
+  margin: 0 4%;
+  padding: 0 0 30rpx 0;
+  border-bottom: solid 2rpx #f6f6f6;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.category-list .category {
+    width: 25%;
+    margin-top: 20rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.category-list .category .img {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+}
+.category-list .category .img image {
+        border-radius: 50%;
+        width: 14vw;
+        height: 14vw;
+}
+.category-list .category .text {
+      margin-top: 16rpx;
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      font-size: 24rpx;
+      color: #3c3c3c;
+}
+.banner-container image {
+  width: 100%;
+  height: 17vh;
+}
 

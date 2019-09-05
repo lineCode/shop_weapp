@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view>
-			<uni-nav-bar :status-bar="true" :fixed="true" color="#333333" background-color="#FFFFFF">
+			<uni-nav-bar :status-bar="true" :fixed="true" color="#333333" :shadow="false" background-color="#FFFFFF">
 				<block slot="left">
 					<view class="city">
-						<uni-icon type="location-filled" color="#f06c7a" size="16" />
+						<uni-icon type="location-filled" color="#0177BF" size="16" />
 						<view>{{ city }}</view>
 					</view>
 				</block>
@@ -25,132 +25,31 @@
 			<swiper class="tab-content" :current="currentTab" duration="300" @change="switchTab" :style="{height:winHeight+'px'}">
 				<swiper-item v-for="(item,index) in tabbar" :key="index">
 					<scroll-view scroll-y class="scoll-y">
-						<!--start 内容部分可直接删除-->
 						<view class="list-view">
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">温故知"心"习近平这些话要牢记</view>
-								<view class="img-container">
-									<view class="cell-img">
-										<image src='../../static/images/product/2.jpg' class="img"></image>
+							<view class="swiper">
+								<view class="swiper-box">
+									<swiper circular="true" autoplay="true" @change="swiperChange">
+										<swiper-item v-for="swiper in swiperList" :key="swiper.id">
+											<image :src="swiper.img" @tap="toSwiper(swiper)"></image>
+										</swiper-item>
+									</swiper>
+									<view class="indicator">
+										<view class="dots" v-for="(swiper, index) in swiperList" :class="[currentSwiper >= index ? 'on' : '']" :key="index"></view>
 									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/3.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/4.jpg' class="img"></image>
-									</view>
-								</view>
-								<view class="sub-title">
-									<text class="badge b-red">要闻</text>
-									<text class="sub-content">央视网新闻</text>
 								</view>
 							</view>
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">美国会表决通过新驻华大使 月底有望赴华</view>
-								<view class="sub-title">
-									<text class="badge b-blue">朋友都看过</text>
-									<text class="sub-content">百科故事大全</text>
+							<view class="category-list">
+								<view class="category" v-for="(row, index) in categoryList" :key="index">
+									<view class="img">
+										<image :src="row.img"></image>
+									</view>
+									<view class="text">{{ row.name }}</view>
 								</view>
 							</view>
-
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">哪些专业毕业后收入高?计算机、金融专业排前列金融专业排前列金融专业排前列金融专业排前列金融专业排前列</view>
-								<view class="img-container">
-									<view class="cell-img">
-										<image src='../../static/images/product/1.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/4.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/5.jpg' class="img"></image>
-									</view>
-								</view>
-								<view class="sub-title">
-									<text class="badge b-orange">本地资讯</text>
-									<text class="sub-content">粤港精英联盟</text>
-								</view>
+							<view class="banner-container">
+								<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
 							</view>
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">科创板交易系统准备就绪,不存在首批名单</view>
-								<view class="sub-title">
-									<!-- <text class="badge b-blue">朋友都看过</text> -->
-									<text class="sub-content">百科故事大全</text>
-								</view>
-							</view>
-
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">开户大战燎原！加急上线科创板预约开户</view>
-								<view class="img-container">
-									<view class="cell-img">
-										<image src='../../static/images/product/1.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/4.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/5.jpg' class="img"></image>
-									</view>
-								</view>
-								<view class="sub-title">
-									<!-- <text class="badge b-orange">本地资讯</text> -->
-									<text class="sub-content">粤港精英联盟</text>
-								</view>
-							</view>
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">3.07财经早报┃头条：推进改革开放创新增进民生福祉，促进经济社会持续健康发展促进经济社会持续健康发展</view>
-								<view class="sub-title">
-									<text class="badge b-green">互联网精英看过</text>
-									<text class="sub-content">百科故事大全</text>
-								</view>
-							</view>
-
-
-							<view class="list-cell list-item" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">哪些专业毕业后收入高?计算机、金融专业排前列金融专业排前列</view>
-								<view class="img-container">
-									<view class="cell-img">
-										<image src='../../static/images/product/2.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/4.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/3.jpg' class="img"></image>
-									</view>
-								</view>
-								<view class="sub-title">
-									<text class="badge b-orange">本地资讯</text>
-									<text class="sub-content">粤港精英联盟</text>
-								</view>
-							</view>
-
-							<view class="list-cell" hover-class="hover" :hover-stay-time="150" @tap="detail">
-								<view class="cell-title">触手直播“和平精英”星联赛Jstar夺冠 大热</view>
-								<view class="img-container">
-									<view class="cell-img">
-										<image src='../../static/images/product/4.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/1.jpg' class="img"></image>
-									</view>
-									<view class="cell-img">
-										<image src='../../static/images/product/2.jpg' class="img"></image>
-									</view>
-								</view>
-								<view class="sub-title">
-									<text class="badge b-red">要闻</text>
-									<text class="sub-content">粤港精英联盟</text>
-								</view>
-							</view>
-
 						</view>
-						<!--end 内容部分可直接删除-->
 					</scroll-view>
 				</swiper-item>
 			</swiper>
@@ -171,7 +70,62 @@
 			return {
 				title: 'Hello',
 				city: '常州',
-				tabbar: ["热门", "娱乐", "体育", "国内", "财经", "科技", "教育", "汽车"],
+				currentSwiper: 0,
+				// 轮播图片
+				swiperList: [{
+						id: 1,
+						src: 'url1',
+						img: '/static/img/1.jpg'
+					},
+					{
+						id: 2,
+						src: 'url2',
+						img: '/static/img/2.jpg'
+					},
+					{
+						id: 3,
+						src: 'url3',
+						img: '/static/img/3.jpg'
+					}
+				],
+				tabbar: [
+					'热门',
+					'休闲娱乐',
+					'丽人',
+					'美食',
+					'酒店住宿',
+					'服装',
+					'数码',
+					'箱包',
+					'鞋靴',
+					'美妆',
+					'车品',
+					'婚纱摄影',
+					'装修',
+					'五金'
+				],
+				// 分类菜单
+				categoryList: [{
+						id: 1,
+						name: '限时秒杀',
+						img: '/static/img/activity/1.png'
+					},
+					{
+						id: 2,
+						name: '拼团抢购',
+						img: '/static/img/activity/2.png'
+					},
+					{
+						id: 3,
+						name: '疯狂砍价',
+						img: '/static/img/activity/3.png'
+					},
+					{
+						id: 4,
+						name: '领券中心',
+						img: '/static/img/activity/4.png'
+					},
+				],
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
 				scrollLeft: 0 //tab标题的滚动条位置
@@ -182,7 +136,6 @@
 			//  高度自适应
 			uni.getSystemInfo({
 				success: function(res) {
-					console.log(res)
 					let calc = res.windowHeight - res.statusBarHeight - 44;
 					that.winHeight = calc;
 				}
@@ -213,6 +166,10 @@
 					this.scrollLeft = 0
 				}
 			},
+			//轮播图指示器
+			swiperChange(event) {
+				this.currentSwiper = event.detail.current;
+			}
 		},
 	}
 </script>
@@ -222,7 +179,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4
+		background-color: #fff
 	}
 
 	view {
@@ -284,7 +241,7 @@
 
 	.tab-view {
 		width: 100%;
-		height: 100upx;
+		height: 70rpx;
 		overflow: hidden;
 		box-sizing: border-box;
 		position: fixed;
@@ -300,32 +257,137 @@
 
 	.tab-bar-item {
 		padding: 0;
-		height: 100upx;
-		min-width: 80upx;
-		line-height: 100upx;
-		margin: 0 28upx;
+		height: 70rpx;
+		min-width: 70rpx;
+		line-height: 70rpx;
+		margin: 0 24rpx;
 		display: inline-block;
 		text-align: center;
 		box-sizing: border-box;
 	}
 
 	.tab-bar-title {
-		height: 100upx;
-		line-height: 100upx;
-		font-size: 32upx;
+		height: 70rpx;
+		line-height: 70rpx;
+		font-size: 30rpx;
 		color: #999;
 		font-weight: 400;
 	}
 
 	.active {
-		border-bottom: 6upx solid #5677fc;
+		border-bottom: 4upx solid #e54d42;
 	}
 
 	.active .tab-bar-title {
-		color: #5677fc !important;
-		font-size: 36upx;
-		font-weight: bold;
+		color: #e54d42 !important;
+		font-size: 30rpx;
 	}
 
 	/*tabbar end*/
+
+	.scoll-y {
+		height: 100%;
+		padding-top: 70rpx;
+	}
+
+	.uni-navbar--shadow {
+		-webkit-box-shadow: 0 1px 2px #ccc;
+		box-shadow: 0 0.5px 2px #ccc;
+	}
+
+	.swiper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		.swiper-box {
+			width: 100%;
+			height: 35.7vw;
+			margin-top: 2rpx;
+			overflow: hidden;
+			box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2);
+			//兼容ios，微信小程序
+			position: relative;
+			z-index: 1;
+
+			swiper {
+				width: 100%;
+				height: 35.7vw;
+
+				swiper-item {
+					image {
+						width: 100%;
+						height: 35.7vw;
+					}
+				}
+			}
+
+			.indicator {
+				position: absolute;
+				bottom: 20upx;
+				left: 20upx;
+				background-color: rgba(255, 255, 255, 0.4);
+				width: 150upx;
+				height: 5upx;
+				border-radius: 3upx;
+				overflow: hidden;
+				display: flex;
+
+				.dots {
+					width: 0upx;
+					background-color: rgba(255, 255, 255, 1);
+					transition: all 0.3s ease-out;
+
+					&.on {
+						width: (100%/3);
+					}
+				}
+			}
+		}
+	}
+
+	.category-list {
+		width: 92%;
+		margin: 0 4%;
+		padding: 0 0 30upx 0;
+		border-bottom: solid 2upx #f6f6f6;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+
+		.category {
+			width: 25%;
+			margin-top: 20rpx;
+			display: flex;
+			flex-wrap: wrap;
+
+			.img {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+
+				image {
+					border-radius: 50%;
+					width: 14vw;
+					height: 14vw;
+				}
+			}
+
+			.text {
+				margin-top: 16upx;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				font-size: 24upx;
+				color: #3c3c3c;
+			}
+		}
+	}
+	
+	.banner-container{
+		image{
+			width: 100%;
+			height: 17vh;
+		}
+	}
 </style>

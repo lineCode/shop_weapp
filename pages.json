@@ -14,25 +14,25 @@
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "本地生活馆"
 			}
 		},
 		{
 			"path": "pages/chat/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "消息"
 			}
 		},
 		{
 			"path": "pages/cart/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "购物车"
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
@@ -44,7 +44,7 @@
 	},
 	"tabBar": {
 		"color": "#333C4F",
-		"selectedColor": "#f06c7a",
+		"selectedColor": "#e8a701",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{

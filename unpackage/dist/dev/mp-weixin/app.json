@@ -15,7 +15,7 @@
   },
   "tabBar": {
     "color": "#333C4F",
-    "selectedColor": "#f06c7a",
+    "selectedColor": "#e8a701",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -52,5 +52,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap46.json"
+  "sitemapLocation": "sitemap77.json"
 }
