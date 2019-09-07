@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "购物车",
-  "usingComponents": {
-    "tui-icon": "/components/icon/icon"
-  }
+  "usingComponents": {}
 }

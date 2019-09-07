@@ -235,28 +235,6 @@
 					'装修',
 					'五金'
 				],
-				// 分类菜单
-				categoryList: [{
-						id: 1,
-						name: '限时秒杀',
-						img: '/static/img/activity/1.png'
-					},
-					{
-						id: 2,
-						name: '拼团抢购',
-						img: '/static/img/activity/2.png'
-					},
-					{
-						id: 3,
-						name: '疯狂砍价',
-						img: '/static/img/activity/3.png'
-					},
-					{
-						id: 4,
-						name: '领券中心',
-						img: '/static/img/activity/4.png'
-					},
-				],
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
 				scrollLeft: 0 //tab标题的滚动条位置

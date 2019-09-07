@@ -7590,7 +7590,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 25:
+/***/ 27:
 /*!******************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Findex"} ***!
   \******************************************************************/
@@ -7601,7 +7601,7 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/index.vue */ 26));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/index.vue */ 28));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -7638,7 +7638,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 33:
+/***/ 35:
 /*!*****************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Fchat"} ***!
   \*****************************************************************/
@@ -7649,7 +7649,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _chat = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat.vue */ 34));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _chat = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat.vue */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_chat.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -7667,7 +7667,7 @@ createPage(_chat.default);
 
 /***/ }),
 
-/***/ 41:
+/***/ 43:
 /*!******************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fcart%2Findex"} ***!
   \******************************************************************/
@@ -7678,13 +7678,13 @@ createPage(_chat.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/cart/index.vue */ 42));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/cart/index.vue */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 49:
+/***/ 51:
 /*!******************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Findex"} ***!
   \******************************************************************/
@@ -7695,7 +7695,7 @@ createPage(_index.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/user/index.vue */ 50));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/user/index.vue */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 

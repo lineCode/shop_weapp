@@ -15,7 +15,13 @@
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "本地生活馆"
+				"navigationBarTitleText": "本地生活馆",
+				"navigationBarTextStyle":"white",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
 			}
 		},
 		{

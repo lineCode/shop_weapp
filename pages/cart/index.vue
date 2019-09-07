@@ -1,12 +1,13 @@
 <template>
 	<view>
+
 		<!-- 商品列表 -->
 		<view class="goods-list">
 			<view class="tis" v-if="goodsList.length==0">购物车是空的哦~</view>
             <view class="row" v-for="(row,index) in goodsList" :key="index" >
 				<!-- 删除按钮 -->
 				<view class="menu" @tap.stop="deleteGoods(row.id)">
-					<tui-icon name="delete" size="26" color="white"></tui-icon>
+					<view class="icon shanchu"></view>
 				</view>
 				<!-- 商品 -->
 				<view class="carrier" :class="[theIndex==index?'open':oldIndex==index?'close':'']" @touchstart="touchStart(index,$event)" @touchmove="touchMove(index,$event)" @touchend="touchEnd(index,$event)">
@@ -28,15 +29,13 @@
 								<view class="price">￥{{row.price}}</view>
 								<view class="number">
 									<view class="sub" @tap.stop="sub(index)">
-										<!-- <view class="icon jian"></view> -->
-										<tui-icon name="delete" size="15" color="white"></tui-icon>
+										<view class="icon jian"></view>
 									</view>
 									<view class="input" @tap.stop="discard">
 										<input type="number" v-model="row.number" @input="sum($event,index)" />
 									</view>
 									<view class="add"  @tap.stop="add(index)">
-										<!-- <view class="icon jia"></view> -->
-										<tui-icon name="delete" size="15" color="white"></tui-icon>
+										<view class="icon jia"></view>
 									</view>
 								</view>
 							</view>
@@ -63,12 +62,8 @@
 </template>
 
 <script>
-	import tuiIcon from '@/components/icon/icon.vue'
-	
+
 	export default {
-		components:{
-			tuiIcon
-		},
 		data() {
 			return {
 				sumPrice:'0.00',
@@ -304,7 +299,7 @@
 	}
 </script>
 <style lang="scss">
-	page{position: relative;background-color: #f5f5f9;}
+	page{position: relative;background-color: #fff;}
 	.checkbox-box{
 		display: flex;
 		align-items: center;
@@ -328,7 +323,44 @@
 			margin-left: 10upx;
 		}
 	}
-	
+.status {
+		width: 100%;
+		height: 0;
+		position: fixed;
+		z-index: 10;
+		background-color: #fff;
+		top: 0;
+		/*  #ifdef  APP-PLUS  */
+		height: var(--status-bar-height);//覆盖样式
+		/*  #endif  */
+	}
+
+	.header{
+		width: 92%;
+		padding: 0 4%;
+		height: 100upx;
+		display: flex;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		z-index: 10;
+		background-color: #fff;
+		/*  #ifdef  APP-PLUS  */
+		top: var(--status-bar-height);
+		/*  #endif  */
+		.title{
+			font-size: 36upx;
+		}
+		
+	}
+	.place{
+		
+		background-color: #ffffff;
+		height: 100upx;
+		/*  #ifdef  APP-PLUS  */
+		margin-top: var(--status-bar-height);
+		/*  #endif  */
+	}
 	.goods-list{
 		width: 100%;
 		padding: 20upx 0 120upx 0;
@@ -345,7 +377,7 @@
 			height: calc(22vw + 40upx); 
 			margin: 20upx auto;
 			
-			border-radius: 15upx;
+			// border-radius: 15upx;
 			box-shadow: 0upx 5upx 20upx rgba(0,0,0,0.1);
 			display: flex;
 			align-items: center;
@@ -359,7 +391,6 @@
 					// font-size: 25upx;
 				}
 				position: absolute;
-				border-radius: 0rpx 20rpx 20rpx 0;
 				width: 30%;
 				height: 100%;
 				right: 0;
