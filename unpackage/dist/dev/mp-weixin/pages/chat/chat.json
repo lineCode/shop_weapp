@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "消息",
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-badge": "/components/badge/badge",
+    "tui-loadmore": "/components/loadmore/loadmore"
+  }
+}

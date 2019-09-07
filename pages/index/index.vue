@@ -22,48 +22,85 @@
 					<text class="tab-bar-title">{{item}}</text>
 				</view>
 			</scroll-view>
-			<swiper class="tab-content" :current="currentTab" duration="300" @change="switchTab" :style="{height:winHeight+'px'}">
-				<swiper-item v-for="(item,index) in tabbar" :key="index">
-					<scroll-view scroll-y class="scoll-y">
-						<view class="list-view">
-							<view class="swiper">
-								<view class="swiper-box">
-									<swiper circular="true" autoplay="true" @change="swiperChange">
-										<swiper-item v-for="swiper in swiperList" :key="swiper.id">
-											<image :src="swiper.img" @tap="toSwiper(swiper)"></image>
-										</swiper-item>
-									</swiper>
-									<view class="indicator">
-										<view class="dots" v-for="(swiper, index) in swiperList" :class="[currentSwiper >= index ? 'on' : '']" :key="index"></view>
+			<!-- <swiper class="tab-content" :current="currentTab" duration="0" @change="switchTab" :style="{height:winHeight+'px'}"> -->
+			<!-- <swiper-item v-for="(item,index) in tabbar" :key="index"> -->
+			<view v-if="currentTab == 0">
+				<scroll-view scroll-y class="scoll-y">
+					<view class="list-view">
+						<view class="swiper">
+							<view class="swiper-box">
+								<swiper circular="true" autoplay="true" @change="swiperChange">
+									<swiper-item v-for="swiper in swiperList" :key="swiper.id">
+										<image :src="swiper.img" @tap="toSwiper(swiper)"></image>
+									</swiper-item>
+								</swiper>
+								<view class="indicator">
+									<view class="dots" v-for="(swiper, index) in swiperList" :class="[currentSwiper >= index ? 'on' : '']" :key="index"></view>
+								</view>
+							</view>
+						</view>
+
+						<view class="banner-container">
+							<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
+						</view>
+
+						<!-- 商品列表 -->
+						<view class="goods-list">
+							<view class="title">
+								<image src="/static/img/hua.png"></image>
+								猜你喜欢
+								<image src="/static/img/hua.png"></image>
+							</view>
+							<view class="product-list">
+								<view class="product" v-for="product in productList" :key="product.goods_id" @tap="toGoods(product)">
+									<image mode="widthFix" :src="product.img"></image>
+									<view class="name">{{ product.name }}</view>
+									<view class="info">
+										<view class="price">{{ product.price }}</view>
+										<view class="slogan">{{ product.slogan }}</view>
 									</view>
 								</view>
 							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
 
-							<view class="banner-container">
-								<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
-							</view>
+			<view v-if="currentTab > 0">
+				<scroll-view scroll-y class="scoll-y">
+					<view class="list-view">
+						<view class="sub-category">
+							<uni-grid :column="5" :show-border="false" :square="false" @change="change" >
+								<uni-grid-item v-for="subItem in subCategory" :key="subItem">
+									<image class="sub-image" src="/static/logo.png" mode="aspectFill" />
+									<text class="sub-text">夹克</text>
+								</uni-grid-item>								
+							</uni-grid>
+						</view>
 
-							<!-- 商品列表 -->
-							<view class="goods-list">
-								<view class="title">
-									<image src="/static/img/hua.png"></image>
-									猜你喜欢
-									<image src="/static/img/hua.png"></image>
-								</view>
-								<view class="product-list">
-									<view class="product" v-for="product in productList" :key="product.goods_id" @tap="toGoods(product)">
-										<image mode="widthFix" :src="product.img"></image>
-										<view class="name">{{ product.name }}</view>
-										<view class="info">
-											<view class="price">{{ product.price }}</view>
-											<view class="slogan">{{ product.slogan }}</view>
-										</view>
+						<view class="banner-container">
+							<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
+						</view>
+						<view class="zhanwei"></view>
+						<!-- 商品列表 -->
+						<view class="goods-list">
+							<view class="product-list">
+								<view class="product" v-for="product in productList" :key="product.goods_id" @tap="toGoods(product)">
+									<image mode="widthFix" :src="product.img"></image>
+									<view class="name">{{ product.name }}</view>
+									<view class="info">
+										<view class="price">{{ product.price }}</view>
+										<view class="slogan">{{ product.slogan }}</view>
 									</view>
 								</view>
 							</view>
-					</scroll-view>
-				</swiper-item>
-			</swiper>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+
+			<!-- </swiper-item> -->
+			<!-- </swiper> -->
 		</view>
 	</view>
 
@@ -72,13 +109,24 @@
 <script>
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 	import uniIcon from '@/components/uni-icon/uni-icon.vue'
+	import uniGrid from '@/components/uni-grid/uni-grid.vue'
+	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
+	
 	export default {
 		components: {
 			uniNavBar,
-			uniIcon
+			uniIcon,
+			uniGrid,
+			uniGridItem
 		},
 		data() {
 			return {
+				subCategory: [
+					{
+						name: '夹克',
+						thumb: '/static/logo.png',
+					}
+				],
 				//猜你喜欢列表
 				productList: [{
 						goods_id: 0,
@@ -259,6 +307,11 @@
 </script>
 
 <style lang="scss">
+	
+	.zhanwei{
+		height: 30rpx;
+	}
+	
 	.goods-list {
 
 		// background-color: #f4f4f4;
@@ -467,11 +520,11 @@
 	}
 
 	.active {
-		border-bottom: 4upx solid #e54d42;
+		border-bottom: 4upx solid #F56C6C;
 	}
 
 	.active .tab-bar-title {
-		color: #e54d42 !important;
+		color: #F56C6C !important;
 		font-size: 30rpx;
 	}
 
@@ -587,5 +640,15 @@
 			height: 14vh;
 			border-radius: 20rpx;
 		}
+	}
+	
+	.sub-image{
+		width: 70upx;
+		height: 70upx;
+		border-radius: 50%;
+	}
+	
+	.sub-text{
+		font-size: 28rpx;
 	}
 </style>

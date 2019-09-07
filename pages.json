@@ -4,6 +4,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
+				"navigationBarTextStyle":"white",
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleNView": false,
@@ -24,6 +25,12 @@
 			}
 		},
 		{
+			"path": "pages/chat/chat",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
 			"path": "pages/cart/index",
 			"style": {
 				"navigationBarTitleText": "购物车"
@@ -32,7 +39,9 @@
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "乐众小店",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	],

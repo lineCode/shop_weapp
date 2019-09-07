@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/local/index",
     "pages/chat/index",
+    "pages/chat/chat",
     "pages/cart/index",
     "pages/user/index"
   ],

@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "我的",
+  "navigationBarTitleText": "乐众小店",
+  "navigationBarBackgroundColor": "#0177BF",
+  "navigationBarTextStyle": "white",
   "usingComponents": {}
 }
