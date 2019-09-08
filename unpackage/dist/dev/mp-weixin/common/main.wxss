@@ -164,4 +164,11 @@
 .icon.shixiao:before {
     content: '\E669';
 }
+page {
+  background-color: #fafafa;
+}
+view {
+  font-size: 28rpx;
+  line-height: inherit;
+}
 
