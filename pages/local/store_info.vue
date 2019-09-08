@@ -1,4 +1,5 @@
 <template>
+	<view>asd</view>
 </template>
 
 <script>

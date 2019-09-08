@@ -2,8 +2,9 @@
   "pages": [
     "pages/home/home",
     "pages/local/local",
-    "pages/goods/goods_list",
-    "pages/goods/goods_info",
+    "pages/local/store_info",
+    "pages/product/product_list",
+    "pages/product/product_info",
     "pages/chat/chat_info",
     "pages/chat/chat_list",
     "pages/cart/cart",
@@ -63,5 +64,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap51.json"
 }

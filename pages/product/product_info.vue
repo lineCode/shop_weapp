@@ -127,7 +127,7 @@
 		<view class="swiper-box">
 			<swiper circular="true" autoplay="true" @change="swiperChange">
 				<swiper-item v-for="swiper in swiperList" :key="swiper.id">
-					<image :src="swiper.img"></image>
+					<image :src="swiper.img" mode="aspectFill"></image>
 				</swiper-item>
 			</swiper>
 			<view class="indicator">{{currentSwiper+1}}/{{swiperList.length}}</view>
@@ -592,15 +592,15 @@ page {
 }
 .swiper-box {
 	position: relative;
-	width: 100%;
-	height: 100vw;
+	width: 750rpx;
+	height: 750rpx;
 	swiper {
-		width: 100%;
-		height: 100vw;
+		width: 750rpx;
+		height: 750rpx;
 		swiper-item {
 			image {
-				width: 100%;
-				height: 100vw;
+				width: 750rpx;
+				height: 750rpx;
 			}
 		}
 	}

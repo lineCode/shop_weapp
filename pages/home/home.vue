@@ -57,7 +57,7 @@
 
 					<view class="goods-list">
 						<view class="product-list">
-							<view class="product" v-for="(goods) in goodsList" :key="goods.goods_id" @tap="toGoods(goods)">
+							<view class="product" v-for="(goods) in goodsList" :key="goods.goods_id" @tap="toProduct(goods.goods_id)">
 								<image mode="widthFix" :src="goods.img"></image>
 								<view class="name">{{goods.name}}</view>
 								<view class="info">
@@ -70,15 +70,12 @@
 					</view>
 				</view>
 			</scroll-view>
-
 		</view>
 	</view>
-
 </template>
 
 <script>
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	import uniGrid from '@/components/uni-grid/uni-grid.vue'
 	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
 	import tuiIcon from '@/components/icon/icon.vue'
@@ -86,7 +83,6 @@
 	export default {
 		components: {
 			uniNavBar,
-			uniIcon,
 			tuiIcon,
 			uniGrid,
 			uniGridItem
@@ -201,6 +197,11 @@
 
 		},
 		methods: {
+			toProduct(id) {
+				uni.navigateTo({
+					url: "/pages/product/product_info?id="+id
+				})
+			},
 			// 滚动切换标签样式
 			switchTab: function(e) {
 				let that = this;
@@ -441,7 +442,7 @@
 
 		.product-list {
 			width: 700rpx;
-			padding: 0 4% 3vw 4%;
+			padding: 0 25rpx 25rpx 25rpx;
 			display: flex;
 			justify-content: space-between;
 			flex-wrap: wrap;

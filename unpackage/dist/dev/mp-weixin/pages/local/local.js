@@ -105,7 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 141));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 147));};var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon.vue */ 168));};var _default =
+
 
 
 
@@ -160,77 +161,64 @@ __webpack_require__.r(__webpack_exports__);
 
 {
   components: {
-    uniNavBar: uniNavBar },
+    uniNavBar: uniNavBar,
+    tuiIcon: tuiIcon },
 
   data: function data() {
     return {
       //猜你喜欢列表
-      productList: [{
-        goods_id: 0,
+      storeList: [{
+        id: 0,
         img: '/static/img/goods/p1.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 1,
+        id: 1,
         img: '/static/img/goods/p2.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 2,
+        id: 2,
         img: '/static/img/goods/p3.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 3,
+        id: 3,
         img: '/static/img/goods/p4.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 4,
+        id: 4,
         img: '/static/img/goods/p5.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 5,
+        id: 5,
         img: '/static/img/goods/p6.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 6,
+        id: 6,
         img: '/static/img/goods/p7.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' },
 
       {
-        goods_id: 7,
+        id: 7,
         img: '/static/img/goods/p8.jpg',
-        name: '商品名称商品名称商品名称商品名称商品名称',
-        price: '￥168',
-        slogan: '1235人付款' },
-
-      {
-        goods_id: 8,
-        img: '/static/img/goods/p9.jpg',
-        name: '商品名称商品名称商品名称商品名称商品名称',
-        price: '￥168',
-        slogan: '1235人付款' },
-
-      {
-        goods_id: 9,
-        img: '/static/img/goods/p10.jpg',
         name: '商品名称商品名称商品名称商品名称商品名称',
         price: '￥168',
         slogan: '1235人付款' }],
@@ -238,22 +226,14 @@ __webpack_require__.r(__webpack_exports__);
 
       city: '常州',
       currentSwiper: 0,
-
       tabbar: [
-      '热门',
+      '全部',
       '休闲娱乐',
       '丽人',
       '美食',
-      '酒店住宿',
-      '服装',
-      '数码',
-      '箱包',
-      '鞋靴',
-      '美妆',
-      '车品',
-      '婚纱摄影',
+      '酒店',
       '装修',
-      '五金'],
+      '超市'],
 
       winHeight: "", //窗口高度
       currentTab: 0, //预设当前项的值
@@ -299,6 +279,11 @@ __webpack_require__.r(__webpack_exports__);
     //轮播图指示器
     swiperChange: function swiperChange(event) {
       this.currentSwiper = event.detail.current;
+    },
+    toStore: function toStore(id) {
+      uni.navigateTo({
+        url: "/pages/local/store_info" });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

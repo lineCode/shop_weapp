@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "white",
   "navigationStyle": "custom",
   "usingComponents": {
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "tui-icon": "/components/icon/icon"
   }
 }

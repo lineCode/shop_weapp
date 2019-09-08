@@ -4,12 +4,12 @@
 			<uni-nav-bar :status-bar="true" :fixed="true" color="#333333" :shadow="false" background-color="#0177BF">
 				<block slot="left">
 					<view class="city">
-						<uni-icon type="location-filled" color="#ffffff" size="18" />
+						<tui-icon name="position" color="#ffffff" size="20"></tui-icon>
 						<view class="location-text">{{ city }}</view>
 					</view>
 				</block>
 				<view class="input-view">
-					<uni-icon type="search" size="22" color="#666666" />
+					<tui-icon name="search" color="#666666" size="20"></tui-icon>
 					<input confirm-type="search" class="input" type="text" placeholder="搜索" @confirm="confirm">
 				</view>
 			</uni-nav-bar>
@@ -30,12 +30,12 @@
 						<!-- 商品列表 -->
 						<view class="goods-list">
 							<view class="product-list">
-								<view class="product" v-for="product in productList" :key="product.goods_id" @tap="toGoods(product)">
-									<image mode="aspectFill" :src="product.img"></image>
-									<view class="name">{{ product.name }}</view>
+								<view class="product" v-for="store in storeList" :key="store.id" @tap="toStore(store.id)">
+									<image mode="aspectFill" :src="store.img"></image>
+									<view class="name">{{ store.name }}</view>
 									<view class="info">
-										<view class="price">{{ product.price }}</view>
-										<view class="slogan">{{ product.slogan }}</view>
+										<view class="price">{{ store.price }}</view>
+										<view class="slogan">{{ store.slogan }}</view>
 									</view>
 								</view>
 							</view>
@@ -50,80 +50,68 @@
 
 <script>
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
+	import tuiIcon from '@/components/icon/icon.vue'
 	
 	export default {
 		components: {
-			uniNavBar
+			uniNavBar,
+			tuiIcon
 		},
 		data() {
 			return {
 				//猜你喜欢列表
-				productList: [{
-						goods_id: 0,
+				storeList: [{
+						id: 0,
 						img: '/static/img/goods/p1.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 1,
+						id: 1,
 						img: '/static/img/goods/p2.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 2,
+						id: 2,
 						img: '/static/img/goods/p3.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 3,
+						id: 3,
 						img: '/static/img/goods/p4.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 4,
+						id: 4,
 						img: '/static/img/goods/p5.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 5,
+						id: 5,
 						img: '/static/img/goods/p6.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 6,
+						id: 6,
 						img: '/static/img/goods/p7.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
-						goods_id: 7,
+						id: 7,
 						img: '/static/img/goods/p8.jpg',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 8,
-						img: '/static/img/goods/p9.jpg',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 9,
-						img: '/static/img/goods/p10.jpg',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
@@ -131,22 +119,14 @@
 				],
 				city: '常州',
 				currentSwiper: 0,
-
 				tabbar: [
-					'热门',
+					'全部',
 					'休闲娱乐',
 					'丽人',
 					'美食',
-					'酒店住宿',
-					'服装',
-					'数码',
-					'箱包',
-					'鞋靴',
-					'美妆',
-					'车品',
-					'婚纱摄影',
+					'酒店',
 					'装修',
-					'五金'
+					'超市'
 				],
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
@@ -192,6 +172,11 @@
 			//轮播图指示器
 			swiperChange(event) {
 				this.currentSwiper = event.detail.current;
+			},
+			toStore(id) {
+				uni.navigateTo({
+					url: "/pages/local/store_info"
+				})
 			}
 		},
 	}
@@ -199,125 +184,29 @@
 
 <style lang="scss">
 
-	.goods-list {
-
-		// background-color: #f4f4f4;
-		.title {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 80upx;
-			color: #f47825;
-			font-size: 30upx;
-			margin-top: 10upx;
-
-			image {
-				width: 30upx;
-				height: 30upx;
-			}
-		}
-
-		.loading-text {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 60upx;
-			color: #979797;
-			font-size: 24upx;
-		}
-
-		.product-list {
-			width: 92%;
-			padding: 0 4% 3vw 4%;
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
-
-			.product {
-				width: 48%;
-				border-radius: 20upx;
-				background-color: #fff;
-				margin: 0 0 15upx 0;
-				box-shadow: 0upx 5upx 25upx rgba(0, 0, 0, 0.1);
-
-				image {
-					width: 100%;
-					height: 220rpx !important;
-					border-radius: 20upx 20upx 0 0;
-				}
-
-				.name {
-					width: 92%;
-					padding: 10upx 4%;
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 2;
-					text-align: justify;
-					overflow: hidden;
-					font-size: 30upx;
-				}
-
-				.info {
-					display: flex;
-					justify-content: space-between;
-					align-items: flex-end;
-					width: 92%;
-					padding: 10upx 4% 10upx 4%;
-
-					.price {
-						color: #e65339;
-						font-size: 30upx;
-						font-weight: 600;
-					}
-
-					.slogan {
-						color: #807c87;
-						font-size: 24upx;
-					}
-				}
-			}
-		}
-	}
-
-	.product-container {
-		width: 94%;
-		margin: auto;
-	}
-
-	.location-text {
-		color: #ffffff;
-		font-weight: 600;
-		font-size: 36rpx;
-	}
-
 	.header-bar {
 		background: #0177BF;
 	}
 
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #f5f5f9
-	}
-
-	view {
-		font-size: 28upx;
-		line-height: inherit
-	}
-
+	/* 顶部城市栏 */
 	.city {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		margin-left: 8px;
+		margin-left: 16rpx;
 		white-space: nowrap;
+	
+		.location-text {
+			color: #ffffff;
+			font-weight: 600;
+			font-size: 36rpx;
+			margin-right: 10rpx;
+		}
 	}
-
+	
+	/* 顶部搜索栏 */
 	.input-view {
 		width: 66%;
 		display: flex;
@@ -326,20 +215,16 @@
 		border-radius: 15px;
 		padding: 0 4%;
 		flex-wrap: nowrap;
-		margin: 7px 0;
+		margin: 7px 16rpx;
 		line-height: 30px;
 		background: #f5f5f5;
-	}
-
-	.input-view .uni-icon {
-		line-height: 30px !important;
-	}
-
-	.input-view .input {
-		height: 30px;
-		line-height: 30px;
-		width: 94%;
-		padding: 0 3%;
+	
+		.input {
+			height: 30px;
+			line-height: 30px;
+			width: 94%;
+			padding: 0 3%;
+		}
 	}
 
 	/*tabbar start*/
@@ -367,9 +252,6 @@
 		box-sizing: border-box;
 		position: fixed;
 		top: var(--status-bar-height)+44;
-		/* #ifdef H5 */
-		top: 44px;
-		/* #endif */
 		left: 0;
 		z-index: 99;
 		background: #fff;
@@ -415,60 +297,72 @@
 		-webkit-box-shadow: 0 1px 2px #ccc;
 		box-shadow: 0 0.5px 2px #ccc;
 	}
-
-	.swiper {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-
-		.swiper-box {
-			width: 94%;
-			height: 35.7vw;
-			margin-top: 18rpx;
-			border-radius: 20rpx;
-			overflow: hidden;
-			box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2);
-			//兼容ios，微信小程序
-			position: relative;
-			z-index: 1;
-
-			swiper {
-				width: 100%;
-				height: 35.7vw;
-
-				swiper-item {
-					image {
-						width: 100%;
-						height: 35.7vw;
-					}
+	
+	.zhanwei {
+		height: 30rpx;
+	}
+	
+	.goods-list {
+		.loading-text {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 60upx;
+			color: #979797;
+			font-size: 24upx;
+		}
+	
+		.product-list {
+			width: 700rpx;
+			padding: 0 25rpx 25rpx 25rpx;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+	
+			.product {
+				width: 340rpx;
+				border-radius: 20upx;
+				background-color: #fff;
+				margin: 0 0 15upx 0;
+				box-shadow: 0upx 2rpx 12rpx rgba(0, 0, 0, 0.1);
+	
+				image {
+					width: 340rpx;
+					height: 340rpx;
+					border-radius: 20upx 20upx 0 0;
 				}
-			}
-
-			.indicator {
-				position: absolute;
-				bottom: 20upx;
-				left: 20upx;
-				background-color: rgba(255, 255, 255, 0.4);
-				width: 150upx;
-				height: 5upx;
-				border-radius: 3upx;
-				overflow: hidden;
-				display: flex;
-
-				.dots {
-					width: 0upx;
-					background-color: rgba(255, 255, 255, 1);
-					transition: all 0.3s ease-out;
-
-					&.on {
-						width: (100%/3);
+	
+				.name {
+					width: 92%;
+					padding: 10upx 4%;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					text-align: justify;
+					overflow: hidden;
+					font-size: 30upx;
+				}
+	
+				.info {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-end;
+					width: 92%;
+					padding: 10upx 4% 10upx 4%;
+	
+					.price {
+						color: #e65339;
+						font-size: 30upx;
+						font-weight: 600;
+					}
+	
+					.slogan {
+						color: #807c87;
+						font-size: 24upx;
 					}
 				}
 			}
 		}
-	}
-	
-	.zhanwei {
-		height: 30rpx;
 	}
 </style>

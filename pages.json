@@ -25,13 +25,21 @@
 			}
 		},
 		{
-			"path": "pages/goods/goods_list",
+			"path": "pages/local/store_info",
+			"style": {
+				"navigationBarTitleText": "商家信息",
+				"navigationBarTextStyle":"white",
+				"navigationBarBackgroundColor":"#0177BF"
+			}
+		},
+		{
+			"path": "pages/product/product_list",
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
 		},
 		{
-			"path": "pages/goods/goods_info",
+			"path": "pages/product/product_info",
 			"style": {
 				"navigationBarTitleText": "商品详情"
 			}

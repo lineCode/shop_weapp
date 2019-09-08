@@ -272,16 +272,16 @@ page {
 }
 .swiper-box {
   position: relative;
-  width: 100%;
-  height: 100vw;
+  width: 750rpx;
+  height: 750rpx;
 }
 .swiper-box swiper {
-    width: 100%;
-    height: 100vw;
+    width: 750rpx;
+    height: 750rpx;
 }
 .swiper-box swiper swiper-item image {
-      width: 100%;
-      height: 100vw;
+      width: 750rpx;
+      height: 750rpx;
 }
 .swiper-box .indicator {
     display: -webkit-box;
