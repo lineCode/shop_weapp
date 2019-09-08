@@ -279,7 +279,7 @@
 
 		.box {
 			width: 98%;
-			padding: 30rpx 1%;
+			padding: 10rpx 1%;
 			background-color: #fefefe;
 			border-radius: 24upx;
 			box-shadow: 0 0 20upx rgba(0, 0, 0, 0.15);

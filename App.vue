@@ -23,6 +23,7 @@
 	
 	view {
 		font-size: 28upx;
-		line-height: inherit
+		font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+		line-height: inherit;
 	}
 </style>
