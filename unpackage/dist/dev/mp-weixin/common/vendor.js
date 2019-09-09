@@ -1607,10 +1607,10 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 103:
-/*!**************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fstore_collect"} ***!
-  \**************************************************************************/
+/***/ 105:
+/*!****************************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fproduct_collect"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1618,25 +1618,8 @@ function normalizeComponent (
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _store_collect = _interopRequireDefault(__webpack_require__(/*! ./pages/user/store_collect.vue */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_store_collect.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 109:
-/*!********************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fdeposit"} ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _deposit = _interopRequireDefault(__webpack_require__(/*! ./pages/user/deposit.vue */ 110));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_deposit.default);
+var _product_collect = _interopRequireDefault(__webpack_require__(/*! ./pages/user/product_collect.vue */ 106));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_product_collect.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
@@ -1658,7 +1641,41 @@ createPage(_home.default);
 
 /***/ }),
 
+/***/ 111:
+/*!**************************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fstore_collect"} ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _store_collect = _interopRequireDefault(__webpack_require__(/*! ./pages/user/store_collect.vue */ 112));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_store_collect.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
 /***/ 117:
+/*!********************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fdeposit"} ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _deposit = _interopRequireDefault(__webpack_require__(/*! ./pages/user/deposit.vue */ 118));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_deposit.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 125:
 /*!****************************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fdeposit_success"} ***!
   \****************************************************************************/
@@ -1669,13 +1686,13 @@ createPage(_home.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _deposit_success = _interopRequireDefault(__webpack_require__(/*! ./pages/user/deposit_success.vue */ 118));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _deposit_success = _interopRequireDefault(__webpack_require__(/*! ./pages/user/deposit_success.vue */ 126));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_deposit_success.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 125:
+/***/ 133:
 /*!*************************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fremain_money"} ***!
   \*************************************************************************/
@@ -1686,13 +1703,13 @@ createPage(_deposit_success.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _remain_money = _interopRequireDefault(__webpack_require__(/*! ./pages/user/remain_money.vue */ 126));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _remain_money = _interopRequireDefault(__webpack_require__(/*! ./pages/user/remain_money.vue */ 134));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_remain_money.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 131:
+/***/ 139:
 /*!**************************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Flocation_list"} ***!
   \**************************************************************************/
@@ -1703,13 +1720,13 @@ createPage(_remain_money.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _location_list = _interopRequireDefault(__webpack_require__(/*! ./pages/user/location_list.vue */ 132));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _location_list = _interopRequireDefault(__webpack_require__(/*! ./pages/user/location_list.vue */ 140));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_location_list.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 139:
+/***/ 147:
 /*!**************************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Flocation_edit"} ***!
   \**************************************************************************/
@@ -1720,13 +1737,30 @@ createPage(_location_list.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _location_edit = _interopRequireDefault(__webpack_require__(/*! ./pages/user/location_edit.vue */ 140));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _location_edit = _interopRequireDefault(__webpack_require__(/*! ./pages/user/location_edit.vue */ 148));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_location_edit.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 187:
+/***/ 19:
+/*!*******************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Flocal%2Flocal"} ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _local = _interopRequireDefault(__webpack_require__(/*! ./pages/local/local.vue */ 20));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_local.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 195:
 /*!****************************************************************************!*\
   !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/province.js ***!
   \****************************************************************************/
@@ -1876,7 +1910,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 188:
+/***/ 196:
 /*!************************************************************************!*\
   !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/city.js ***!
   \************************************************************************/
@@ -3390,7 +3424,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 189:
+/***/ 197:
 /*!************************************************************************!*\
   !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/area.js ***!
   \************************************************************************/
@@ -15943,23 +15977,6 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 19:
-/*!*******************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Flocal%2Flocal"} ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _local = _interopRequireDefault(__webpack_require__(/*! ./pages/local/local.vue */ 20));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_local.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -21910,9 +21927,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 27:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Flocal%2Fstore_info"} ***!
-  \************************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fstore%2Foffline_store"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21920,8 +21937,8 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _store_info = _interopRequireDefault(__webpack_require__(/*! ./pages/local/store_info.vue */ 28));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_store_info.default);
+var _offline_store = _interopRequireDefault(__webpack_require__(/*! ./pages/store/offline_store.vue */ 28));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_offline_store.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
@@ -22004,6 +22021,23 @@ createPage(_product_info.default);
 /***/ }),
 
 /***/ 49:
+/*!**************************************************************************!*\
+  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fstore%2Fonline_store"} ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _online_store = _interopRequireDefault(__webpack_require__(/*! ./pages/store/online_store.vue */ 50));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_online_store.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 57:
 /*!**********************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Fchat_info"} ***!
   \**********************************************************************/
@@ -22014,13 +22048,13 @@ createPage(_product_info.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _chat_info = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat_info.vue */ 50));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _chat_info = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat_info.vue */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_chat_info.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 57:
+/***/ 65:
 /*!**********************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Fchat_list"} ***!
   \**********************************************************************/
@@ -22031,13 +22065,13 @@ createPage(_chat_info.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _chat_list = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat_list.vue */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _chat_list = _interopRequireDefault(__webpack_require__(/*! ./pages/chat/chat_list.vue */ 66));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_chat_list.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 65:
+/***/ 73:
 /*!*****************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fcart%2Fcart"} ***!
   \*****************************************************************/
@@ -22048,13 +22082,13 @@ createPage(_chat_list.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _cart = _interopRequireDefault(__webpack_require__(/*! ./pages/cart/cart.vue */ 66));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _cart = _interopRequireDefault(__webpack_require__(/*! ./pages/cart/cart.vue */ 74));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_cart.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 73:
+/***/ 81:
 /*!*****************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fuser"} ***!
   \*****************************************************************/
@@ -22065,13 +22099,13 @@ createPage(_cart.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _user = _interopRequireDefault(__webpack_require__(/*! ./pages/user/user.vue */ 74));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _user = _interopRequireDefault(__webpack_require__(/*! ./pages/user/user.vue */ 82));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_user.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 81:
+/***/ 89:
 /*!************************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Forder%2Forder_list"} ***!
   \************************************************************************/
@@ -22082,13 +22116,13 @@ createPage(_user.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _order_list = _interopRequireDefault(__webpack_require__(/*! ./pages/order/order_list.vue */ 82));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _order_list = _interopRequireDefault(__webpack_require__(/*! ./pages/order/order_list.vue */ 90));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_order_list.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 89:
+/***/ 97:
 /*!*******************************************************************!*\
   !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fcoupon"} ***!
   \*******************************************************************/
@@ -22099,25 +22133,8 @@ createPage(_order_list.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _coupon = _interopRequireDefault(__webpack_require__(/*! ./pages/user/coupon.vue */ 90));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _coupon = _interopRequireDefault(__webpack_require__(/*! ./pages/user/coupon.vue */ 98));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_coupon.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 97:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fproduct_collect"} ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _product_collect = _interopRequireDefault(__webpack_require__(/*! ./pages/user/product_collect.vue */ 98));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_product_collect.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ })

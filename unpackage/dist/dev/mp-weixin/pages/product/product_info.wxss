@@ -24,8 +24,39 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page {
-  background-color: #f8f8f8;
+.go-store {
+  background: #ffffff;
+  height: 200rpx;
+}
+.go-store .left-part {
+    float: left;
+    width: 200rpx;
+}
+.go-store .left-part .store-image {
+      height: 160rpx;
+      width: 160rpx;
+      margin: 20rpx;
+}
+.go-store .right-part {
+    width: 550rpx;
+    float: right;
+    height: 160rpx;
+    padding: 20rpx 0;
+}
+.go-store .right-part .store-name {
+      font-weight: 600;
+      font-size: 32rpx;
+}
+.go-store .right-part .store-num {
+      margin-top: 80rpx;
+      font-size: 30rpx;
+      display: inline-block;
+}
+.go-store .right-part .go-store-btn {
+      float: right;
+      margin-top: 60rpx;
+      margin-right: 40rpx;
+      background: #409eff;
 }
 @-webkit-keyframes showPopup {
 0% {

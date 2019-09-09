@@ -175,7 +175,7 @@
 			},
 			toStore(id) {
 				uni.navigateTo({
-					url: "/pages/local/store_info"
+					url: "/pages/store/offline_store"
 				})
 			}
 		},
