@@ -14,7 +14,7 @@
 				</view>
 			</uni-nav-bar>
 		</view>
-
+		
 		<view>
 			<scroll-view scroll-x scroll-with-animation class="tab-view" :scroll-left="scrollLeft">
 				<view v-for="(item,index) in tabbar" :key="index" class="tab-bar-item" :class="[currentTab==index ? 'active' : '']"
@@ -194,9 +194,11 @@
 					that.winHeight = calc;
 				}
 			});
+			
 
 		},
 		methods: {
+
 			toProduct(id) {
 				uni.navigateTo({
 					url: "/pages/product/product_info?id="+id
