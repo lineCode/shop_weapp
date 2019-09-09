@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
 
 /***/ 0:
-/*!**********************************!*\
-  !*** C:/code/shop_weapp/main.js ***!
-  \**********************************/
+/*!*******************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -755,7 +755,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1608,9 +1608,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 103:
-/*!**************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fstore_collect"} ***!
-  \**************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fstore_collect"} ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1625,9 +1625,9 @@ createPage(_store_collect.default);
 /***/ }),
 
 /***/ 109:
-/*!********************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fdeposit"} ***!
-  \********************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fdeposit"} ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1642,9 +1642,9 @@ createPage(_deposit.default);
 /***/ }),
 
 /***/ 11:
-/*!*****************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fhome%2Fhome"} ***!
-  \*****************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fhome%2Fhome"} ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1659,9 +1659,9 @@ createPage(_home.default);
 /***/ }),
 
 /***/ 117:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fdeposit_success"} ***!
-  \****************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fdeposit_success"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1676,9 +1676,9 @@ createPage(_deposit_success.default);
 /***/ }),
 
 /***/ 125:
-/*!*************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fremain_money"} ***!
-  \*************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fremain_money"} ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1693,9 +1693,9 @@ createPage(_remain_money.default);
 /***/ }),
 
 /***/ 131:
-/*!**************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Flocation_list"} ***!
-  \**************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Flocation_list"} ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1710,9 +1710,9 @@ createPage(_location_list.default);
 /***/ }),
 
 /***/ 139:
-/*!**************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Flocation_edit"} ***!
-  \**************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Flocation_edit"} ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1727,9 +1727,9 @@ createPage(_location_edit.default);
 /***/ }),
 
 /***/ 187:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/province.js ***!
-  \****************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/components/mpvue-citypicker/city-data/province.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1877,9 +1877,9 @@ provinceData;exports.default = _default;
 /***/ }),
 
 /***/ 188:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/city.js ***!
-  \************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/components/mpvue-citypicker/city-data/city.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3391,9 +3391,9 @@ cityData;exports.default = _default;
 /***/ }),
 
 /***/ 189:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/components/mpvue-citypicker/city-data/area.js ***!
-  \************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/components/mpvue-citypicker/city-data/area.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15944,9 +15944,9 @@ areaData;exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!*******************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Flocal%2Flocal"} ***!
-  \*******************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Flocal%2Flocal"} ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21428,7 +21428,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -21449,14 +21449,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -21532,7 +21532,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -21910,9 +21910,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 27:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Flocal%2Fstore_info"} ***!
-  \************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Flocal%2Fstore_info"} ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21958,9 +21958,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 33:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fproduct%2Fproduct_list"} ***!
-  \****************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fproduct%2Fproduct_list"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21975,9 +21975,9 @@ createPage(_product_list.default);
 /***/ }),
 
 /***/ 4:
-/*!*************************************!*\
-  !*** C:/code/shop_weapp/pages.json ***!
-  \*************************************/
+/*!**********************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21987,9 +21987,9 @@ createPage(_product_list.default);
 /***/ }),
 
 /***/ 41:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fproduct%2Fproduct_info"} ***!
-  \****************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fproduct%2Fproduct_info"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22004,9 +22004,9 @@ createPage(_product_info.default);
 /***/ }),
 
 /***/ 49:
-/*!**********************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Fchat_info"} ***!
-  \**********************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fchat%2Fchat_info"} ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22021,9 +22021,9 @@ createPage(_chat_info.default);
 /***/ }),
 
 /***/ 57:
-/*!**********************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fchat%2Fchat_list"} ***!
-  \**********************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fchat%2Fchat_list"} ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22038,9 +22038,9 @@ createPage(_chat_list.default);
 /***/ }),
 
 /***/ 65:
-/*!*****************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fcart%2Fcart"} ***!
-  \*****************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fcart%2Fcart"} ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22055,9 +22055,9 @@ createPage(_cart.default);
 /***/ }),
 
 /***/ 73:
-/*!*****************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fuser"} ***!
-  \*****************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fuser"} ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22072,9 +22072,9 @@ createPage(_user.default);
 /***/ }),
 
 /***/ 81:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Forder%2Forder_list"} ***!
-  \************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Forder%2Forder_list"} ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22089,9 +22089,9 @@ createPage(_order_list.default);
 /***/ }),
 
 /***/ 89:
-/*!*******************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fcoupon"} ***!
-  \*******************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fcoupon"} ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22106,9 +22106,9 @@ createPage(_coupon.default);
 /***/ }),
 
 /***/ 97:
-/*!****************************************************************************!*\
-  !*** C:/code/shop_weapp/main.js?{"page":"pages%2Fuser%2Fproduct_collect"} ***!
-  \****************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/main.js?{"page":"pages%2Fuser%2Fproduct_collect"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
