@@ -2,9 +2,10 @@
   "pages": [
     "pages/home/home",
     "pages/local/local",
-    "pages/local/store_info",
+    "pages/store/offline_store",
     "pages/product/product_list",
     "pages/product/product_info",
+    "pages/store/online_store",
     "pages/chat/chat_info",
     "pages/chat/chat_list",
     "pages/cart/cart",
@@ -69,6 +70,5 @@
       "desc": "为您推荐本地服务"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap75.json"
+  "usingComponents": {}
 }

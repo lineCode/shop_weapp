@@ -294,6 +294,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -380,6 +395,11 @@ var _default =
     //轮播图指示器
     swiperChange: function swiperChange(event) {
       this.currentSwiper = event.detail.current;
+    },
+    goStore: function goStore() {
+      uni.navigateTo({
+        url: "/pages/store/online_store" });
+
     },
     //消息列表
     toMsg: function toMsg() {

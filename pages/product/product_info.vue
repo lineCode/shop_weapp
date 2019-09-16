@@ -179,6 +179,21 @@
 				</view>
 			</view>
 		</view>
+		
+		<!-- 进店逛逛 -->
+		<view class="go-store">
+			<view class="left-part">
+				<image class="store-image" src="../../static/logo.png" mode="aspectFill"></image>
+			</view>
+			<view class="right-part">
+				<view class="store-name">店铺名称</view>
+				<view class="store-num">
+					<text>商品数量：19</text>
+				</view>
+				<button class="go-store-btn" type="primary" size="mini" @tap="goStore">进店逛逛</button>
+			</view>
+		</view>
+		
 		<!-- 详情 -->
 		<view class="description">
 			<view class="title">———— 商品详情 ————</view>
@@ -273,6 +288,11 @@ export default {
 		//轮播图指示器
 		swiperChange(event) {
 			this.currentSwiper = event.detail.current;
+		},
+		goStore() {
+			uni.navigateTo({
+				url: "/pages/store/online_store"
+			})
 		},
 		//消息列表
 		toMsg(){
@@ -427,9 +447,42 @@ export default {
 </script>
 
 <style lang="scss">
-page {
-	background-color: #f8f8f8;
+
+.go-store {
+	background: #ffffff;
+	height: 200rpx;
+	.left-part{
+		float: left;
+		width: 200rpx;
+		.store-image{
+			height: 160rpx;
+			width: 160rpx;
+			margin: 20rpx;
+		}
+	}
+	.right-part{
+		width: 550rpx;
+		float: right;
+		height: 160rpx;
+		padding: 20rpx 0;
+		.store-name{
+			font-weight: 600;
+			font-size: 32rpx;
+		}
+		.store-num{
+			margin-top: 80rpx;
+			font-size: 30rpx;
+			display: inline-block;
+		}
+		.go-store-btn{
+			float: right;
+			margin-top: 60rpx;
+			margin-right: 40rpx;
+			background: #409eff;
+		}
+	}
 }
+
 @keyframes showPopup {
 		0% {
 			opacity: 0;
