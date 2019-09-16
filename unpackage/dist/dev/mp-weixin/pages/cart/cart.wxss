@@ -24,361 +24,189 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page {
-  position: relative;
-  background-color: #fff;
+.numInput {
+  overflow: hidden;
+  float: right;
 }
-.checkbox-box {
+.numInput text {
+    float: left;
+    color: #999;
+    font-size: 45rpx;
+    line-height: 50rpx;
+    display: inline-block;
+    width: 40rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    background-color: #F4F4F4;
+    border-radius: 50%;
+    margin-top: 8rpx;
+}
+.numInput input {
+    display: inline-block;
+    width: 80rpx;
+    float: left;
+    text-align: center;
+    color: #999;
+}
+.numInput .numbox-disabled {
+    color: #c0c0c0;
+}
+.shoppingcar {
+  background-color: #FAFAFA;
+  padding-bottom: 98rpx;
+}
+.shoppingcar .dianpu {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.shoppingcar .dianpu .dianpu-name {
+  height: 70rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20rpx 32rpx;
+  border-bottom: 1px solid #FAFAFA;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-top: 1rpx;
 }
-.checkbox-box .checkbox {
-    width: 35rpx;
-    height: 35rpx;
-    border-radius: 100%;
-    border: solid 2rpx #f06c7a;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+.shoppingcar .dianpu .select,
+.shoppingcar .dianpu .select-active {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
 }
-.checkbox-box .checkbox .on {
-      width: 25rpx;
-      height: 25rpx;
-      border-radius: 100%;
-      background-color: #f06c7a;
+.shoppingcar .dianpu .dianpu-name .iconfont {
+  font-size: 45rpx;
+  color: #FF6B94;
+  line-height: 32rpx;
+  margin-right: 8rpx;
 }
-.checkbox-box .text {
-    font-size: 28rpx;
-    margin-left: 10rpx;
+.shoppingcar .dianpu .dianpu-name .text {
+  font-size: 24rpx;
+  color: #333333;
+  line-height: 31rpx;
 }
-.status {
-  width: 100%;
-  height: 0;
-  position: fixed;
-  z-index: 10;
-  background-color: #fff;
-  top: 0;
-}
-.header {
-  width: 92%;
-  padding: 0 4%;
-  height: 100rpx;
+.shoppingcar .dianpu .shangpin {
+  width: 750rpx;
+  padding: 22rpx 32rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: fixed;
-  top: 0;
-  z-index: 10;
-  background-color: #fff;
+  border-bottom: 1px solid #FAFAFA;
 }
-.header .title {
-    font-size: 36rpx;
+.shoppingcar .dianpu .shangpin .select,
+.shoppingcar .dianpu .shangpin .select-active {
+  margin-top: 40rpx;
 }
-.place {
-  background-color: #ffffff;
-  height: 100rpx;
+.shoppingcar .dianpu .shangpin .shangpin-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
-.goods-list {
+.shoppingcar .dianpu .shangpin .shangpin-info .img {
+  width: 108rpx;
+  height: 108rpx;
+  margin-right: 10rpx;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+.shoppingcar .dianpu .shangpin .shangpin-info .img image {
+  display: block;
   width: 100%;
-  padding: 20rpx 0 120rpx 0;
+  height: 100%;
+  border-radius: 8rpx;
 }
-.goods-list .tis {
-    width: 100%;
-    height: 60rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-size: 32rpx;
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info {
+  width: 100%;
 }
-.goods-list .row {
-    width: calc(92%);
-    height: calc(22vw + 40rpx);
-    margin: 20rpx auto;
-    -webkit-box-shadow: 0rpx 5rpx 20rpx rgba(0, 0, 0, 0.1);
-            box-shadow: 0rpx 5rpx 20rpx rgba(0, 0, 0, 0.1);
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 4;
-    border: 0;
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text {
+  line-height: 34rpx;
 }
-.goods-list .row .menu {
-      position: absolute;
-      width: 30%;
-      height: 100%;
-      right: 0;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      background-color: red;
-      color: #fff;
-      z-index: 2;
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .biaoqian {
+  color: #FD395B;
+  font-size: 26rpx;
+  margin-right: 10rpx;
 }
-.goods-list .row .menu .icon {
-        color: #fff;
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .name {
+  color: #333;
+  font-size: 26rpx;
 }
-.goods-list .row .carrier {
-      background-color: #fff;
-      position: absolute;
-      width: 100%;
-      padding: 0 0;
-      height: 100%;
-      z-index: 3;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .bieming {
+  color: #333;
+  font-size: 20rpx;
+  margin: 0 6rpx;
 }
-@-webkit-keyframes showMenu {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .youhui {
+  color: #FD395B;
+  font-size: 24rpx;
+  float: right;
 }
-100% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .jiage {
+  font-size: 24rpx;
+  color: #999999;
+  display: inline-block;
+  font-weight: 600;
 }
+.shoppingcar .dianpu .shangpin .shangpin-info .text-info .jiage .danjia {
+  color: #FD395B;
+  margin-right: 10rpx;
 }
-@keyframes showMenu {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+.shoppingcar .dianpu .jiesuan {
+  padding: 30rpx 30rpx 30rpx;
+  color: #333333;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-100% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
+.shoppingcar .dianpu .jiesuan .yuefei,
+.shoppingcar .dianpu .jiesuan .zongji {
+  font-size: 22rpx;
+  lighting-color: 40rpx;
 }
+.shoppingcar .bottom-jiesuan {
+  width: 100%;
+  height: 98rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 0px 0px 4rpx 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 4rpx 0px rgba(0, 0, 0, 0.1);
 }
-@-webkit-keyframes closeMenu {
-0% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-@keyframes closeMenu {
-0% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-.goods-list .row .carrier.open {
-        -webkit-animation: showMenu 0.25s linear both;
-                animation: showMenu 0.25s linear both;
-}
-.goods-list .row .carrier.close {
-        -webkit-animation: closeMenu 0.15s linear both;
-                animation: closeMenu 0.15s linear both;
-}
-.goods-list .row .carrier .checkbox-box {
-        padding-left: 20rpx;
-        -webkit-flex-shrink: 0;
-            -ms-flex-negative: 0;
-                flex-shrink: 0;
-        height: 22vw;
-        margin-right: 20rpx;
-}
-.goods-list .row .carrier .goods-info {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        padding-right: 20rpx;
-}
-.goods-list .row .carrier .goods-info .img {
-          width: 22vw;
-          height: 22vw;
-          border-radius: 10rpx;
-          overflow: hidden;
-          -webkit-flex-shrink: 0;
-              -ms-flex-negative: 0;
-                  flex-shrink: 0;
-          margin-right: 10rpx;
-}
-.goods-list .row .carrier .goods-info .img image {
-            width: 22vw;
-            height: 22vw;
-}
-.goods-list .row .carrier .goods-info .info {
-          width: 100%;
-          height: 22vw;
-          overflow: hidden;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-flex-wrap: wrap;
-              -ms-flex-wrap: wrap;
-                  flex-wrap: wrap;
-          position: relative;
-}
-.goods-list .row .carrier .goods-info .info .title {
-            width: 100%;
-            font-size: 28rpx;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-}
-.goods-list .row .carrier .goods-info .info .spec {
-            font-size: 20rpx;
-            background-color: #f3f3f3;
-            color: #a7a7a7;
-            height: 30rpx;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-                -ms-flex-align: center;
-                    align-items: center;
-            padding: 0 10rpx;
-            border-radius: 15rpx;
-            margin-bottom: 20vw;
-}
-.goods-list .row .carrier .goods-info .info .price-number {
-            position: absolute;
-            width: 100%;
-            bottom: 0rpx;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-                -ms-flex-pack: justify;
-                    justify-content: space-between;
-            -webkit-box-align: end;
-            -webkit-align-items: flex-end;
-                -ms-flex-align: end;
-                    align-items: flex-end;
-            font-size: 28rpx;
-            height: 60rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number {
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: center;
-              -webkit-justify-content: center;
-                  -ms-flex-pack: center;
-                      justify-content: center;
-              -webkit-box-align: end;
-              -webkit-align-items: flex-end;
-                  -ms-flex-align: end;
-                      align-items: flex-end;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .input {
-                width: 60rpx;
-                height: 60rpx;
-                margin: 0 10rpx;
-                background-color: #f3f3f3;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .input input {
-                  width: 60rpx;
-                  height: 60rpx;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  display: flex;
-                  -webkit-box-pack: center;
-                  -webkit-justify-content: center;
-                      -ms-flex-pack: center;
-                          justify-content: center;
-                  -webkit-box-align: center;
-                  -webkit-align-items: center;
-                      -ms-flex-align: center;
-                          align-items: center;
-                  text-align: center;
-                  font-size: 26rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .sub, .goods-list .row .carrier .goods-info .info .price-number .number .add {
-                width: 45rpx;
-                height: 45rpx;
-                background-color: #f3f3f3;
-                border-radius: 5rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .sub .icon, .goods-list .row .carrier .goods-info .info .price-number .number .add .icon {
-                  font-size: 22rpx;
-                  width: 45rpx;
-                  height: 45rpx;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  display: flex;
-                  -webkit-box-pack: center;
-                  -webkit-justify-content: center;
-                      -ms-flex-pack: center;
-                          justify-content: center;
-                  -webkit-box-align: center;
-                  -webkit-align-items: center;
-                      -ms-flex-align: center;
-                          align-items: center;
-}
-.footer {
-  width: 92%;
-  padding: 0 4%;
-  background-color: #fbfbfb;
-  height: 100rpx;
+.shoppingcar .bottom-jiesuan .info {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 30rpx;
+  width: 510rpx;
+  font-size: 24rpx;
+  color: #333333;
+  background-color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -387,82 +215,82 @@ page {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+.shoppingcar .bottom-jiesuan .info view {
+  line-height: 105rpx;
+}
+.shoppingcar .bottom-jiesuan .info .select,
+.shoppingcar .bottom-jiesuan .info .select-active {
+  display: inline-block;
+  vertical-align: middle;
+}
+.shoppingcar .bottom-jiesuan .info text {
+  line-height: 98rpx;
+  color: #FD395B;
+}
+.shoppingcar .bottom-jiesuan .btn {
+  width: 240rpx;
+  line-height: 98rpx;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  text-align: center;
+  background-color: #FD395B;
+}
+/* 全选的文字 */
+.allSelectText {
+  float: left;
+  overflow: hidden;
+  width: 150rpx;
+}
+.allSelectText .allText {
+    float: left;
+}
+.allSelectText > view:first-child {
+  display: inline-block;
+  float: left;
+}
+.scrollView {
+  width: 750rpx;
+}
+.scrollView .viewbox {
+  width: 900rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: all .2s ease-in 0s;
+  -o-transition: all .2s ease-in 0s;
+  transition: all .2s ease-in 0s;
+}
+.scrollView .hong {
+  width: 150rpx;
+  background-color: #FD395B;
+  color: #FFFFFF;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 28rpx;
-  position: fixed;
-  bottom: 0rpx;
-  z-index: 5;
 }
-.footer .delBtn {
-    border: solid 1rpx #f06c7a;
-    color: #f06c7a;
-    padding: 0 30rpx;
-    height: 50rpx;
-    border-radius: 30rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+.shoppingcar .car-no-data {
+  width: 100%;
+  height: 700rpx;
+  text-align: center;
+  line-height: 700rpx;
+  color: #999;
+  font-size: 30rpx;
+  vertical-align: middle;
 }
-.footer .settlement {
-    width: 60%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-.footer .settlement .sum {
-      width: 50%;
-      font-size: 28rpx;
-      margin-right: 10rpx;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: end;
-      -webkit-justify-content: flex-end;
-          -ms-flex-pack: end;
-              justify-content: flex-end;
-}
-.footer .settlement .sum .money {
-        font-weight: 600;
-}
-.footer .settlement .btn {
-      padding: 0 30rpx;
-      height: 50rpx;
-      background-color: #f06c7a;
-      color: #fff;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      border-radius: 30rpx;
+.shoppingcar .car-no-data .iconfont {
+    font-size: 40rpx;
+    margin-right: 20rpx;
 }
 

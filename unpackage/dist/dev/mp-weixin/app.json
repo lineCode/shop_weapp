@@ -69,5 +69,6 @@
       "desc": "为您推荐本地服务"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap75.json"
 }

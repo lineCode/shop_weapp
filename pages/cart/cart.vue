@@ -1,577 +1,591 @@
 <template>
-	<view>
-
-		<!-- 商品列表 -->
-		<view class="goods-list">
-			<view class="tis" v-if="goodsList.length==0">购物车是空的哦~</view>
-            <view class="row" v-for="(row,index) in goodsList" :key="index" >
-				<!-- 删除按钮 -->
-				<view class="menu" @tap.stop="deleteGoods(row.id)">
-					<view class="icon shanchu"></view>
+	<view class="shoppingcar" :style="minHeight">
+		<view class="dianpu" v-for="(item,index) in shopData" :key="index">
+			<view class="dianpu-name" v-if="item.store_name">
+				<checkBox :isselected="item.checked" @change="shopActive(item)"></checkBox>
+				<view class="iconfont" style="width: 50upx;height: 50upx; margin-top: -14upx;">
+					<image src="../../static/hudong.png" mode="scaleToFill" style="vertical-align: middle;"></image>
 				</view>
-				<!-- 商品 -->
-				<view class="carrier" :class="[theIndex==index?'open':oldIndex==index?'close':'']" @touchstart="touchStart(index,$event)" @touchmove="touchMove(index,$event)" @touchend="touchEnd(index,$event)">
-					<!-- checkbox -->
-					<view class="checkbox-box" @tap="selected(index)">
-						<view class="checkbox">
-							<view :class="[row.selected?'on':'']"></view>
-						</view>
-					</view>
-					<!-- 商品信息 -->
-					<view class="goods-info" @tap="toGoods(row)">
-						<view class="img">
-							<image :src="row.img"></image>
-						</view>
-						<view class="info">
-							<view class="title">{{row.name}}</view>
-							<view class="spec">{{row.spec}}</view>
-							<view class="price-number">
-								<view class="price">￥{{row.price}}</view>
-								<view class="number">
-									<view class="sub" @tap.stop="sub(index)">
-										<view class="icon jian"></view>
-									</view>
-									<view class="input" @tap.stop="discard">
-										<input type="number" v-model="row.number" @input="sum($event,index)" />
-									</view>
-									<view class="add"  @tap.stop="add(index)">
-										<view class="icon jia"></view>
-									</view>
+				<view class="text">{{ item.store_name }}</view>
+			</view>
+			<scroll-view scroll-x="true" class="scrollView" 
+			v-for="(ite,ind) in item.data"
+			:key="ind"
+			:id="ite.cart_id"
+			:data-index="ind"
+			:scroll-left="ite.scrollLeft" 
+			@touchstart="touchS"
+			@touchend="touchE">
+				<view class="viewbox">
+					<view class="shangpin" >
+						<checkBox :isselected="ite.isChecked" @change="proActive(item,ite)"></checkBox>
+						<view class="shangpin-info">
+							<view class="img">
+								<image :src="ite.goods_image_url" mode="aspectFill"></image>
+							</view>
+							<view class="text-info">
+								<view class="title-text" @tap="toProDetail(ite.goods_id,ite.store_id)">
+									<!-- <text class="biaoqian">特价</text> -->
+									<text class="name">{{ ite.goods_name }}</text>
+									<!-- <text class="bieming">{{ ite.goods_name }} </text> -->
+									<!-- <text class="youhui">已降{{ ite.reduce_price }}</text> -->
+								</view>
+								<view class="jiage" @tap="toProDetail(ite.goods_id,ite.store_id)">
+									<text class="danjia">￥{{ ite.goods_price }}</text>
+									<!-- <text class="shuliang">x {{ ite.goods_num }}</text> -->
+								</view>
+								<view class="numInput">
+									<text class="reduce iconfont" @tap="changeCount(ite,-1,ite.cart_id)" :class="ite.goods_num == 0 ? 'numbox-disabled' : ''">-</text>
+									<input type="number" v-model="ite.goods_num" :id="ite.cart_id" @input="inputCarCount" />
+									<text class="plus iconfont" @tap="changeCount(ite,1,ite.cart_id)">+</text>
 								</view>
 							</view>
 						</view>
 					</view>
+					<view class="hong" @tap="deletePro(ite.cart_id,ite.store_id)">删除</view>
 				</view>
-			</view>
-        </view>
-		<!-- 脚部菜单 -->
-		<view class="footer" :style="{bottom:footerbottom}">
-			<view class="checkbox-box" @tap="allSelect">
-				<view class="checkbox">
-					<view :class="[isAllselected?'on':'']"></view>
-				</view>
-				<view class="text">全选</view>
-			</view>
-			<view class="delBtn" @tap="deleteList" v-if="selectedList.length>0">删除</view>
-			<view class="settlement">
-				<view class="sum">合计:<view class="money">￥{{sumPrice}}</view></view>
-				<view class="btn" @tap="toConfirmation">结算({{selectedList.length}})</view>
-			</view>
+			</scroll-view>
 		</view>
+		<!-- 底部结算 -->
+		<view class="bottom-jiesuan">
+			<view class="info">
+				<view class="allSelectText">
+					<checkBox :isselected="isCheckAll" @change="allCheck"></checkBox>
+					<view class="allText">全选</view>
+				</view>
+				<view>
+					总计：<text>￥{{ allPrice }}</text>
+				</view>
+			</view>
+			<view class="btn" @tap="jiesuan">结算</view>
+		</view>
+		
 	</view>
 </template>
 
 <script>
-
-	export default {
-		data() {
-			return {
-				sumPrice:'0.00',
-				headerPosition:"fixed",
-				headerTop:null,
-				statusTop:null,
-				showHeader:true,
-				selectedList:[],
-				isAllselected:false,
-				goodsList:[
-					{id:1,img:'/static/img/goods/p1.jpg',name:'商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题',spec:'规格:S码',price:127.5,number:1,selected:false},
-					{id:2,img:'/static/img/goods/p2.jpg',name:'商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题',spec:'规格:S码',price:127.5,number:1,selected:false},
-					{id:3,img:'/static/img/goods/p3.jpg',name:'商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题',spec:'规格:S码',price:127.5,number:1,selected:false},
-					{id:4,img:'/static/img/goods/p4.jpg',name:'商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题',spec:'规格:S码',price:127.5,number:1,selected:false},
-					{id:5,img:'/static/img/goods/p5.jpg',name:'商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题',spec:'规格:S码',price:127.5,number:1,selected:false}
+	import checkBox from '@/components/custom-checkbox.vue'
+	var startX=0;
+	var endX=0;
+export default {
+	data() {
+		return {
+			// 全选，返回
+			isCheckAll:false,
+			allPrice: 0, //所有价格
+			allShops: 0, //被选中的商店数量
+			allCount: 0, //被选中的产品数量
+			shopData:[
+					{
+						'store_name':'香奈儿专营店',
+						'checked':false,
+						'yunfei':10,
+						'price':300,
+						checkedCount:0,
+						'data':[
+							{
+								cart_id:1,
+								goods_name:' 香奈儿可可小姐淡香水 50ml',
+								goods_name2:' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+								reduce_price:16,
+								goods_price:100,
+								goods_num:1,
+								goods_image_url:'../../static/grid1.png',
+								isChecked:false,
+								// 滚动条
+								scrollLeft:0,
+							},
+							{
+								cart_id:2,
+								goods_name:' 香奈儿可可小姐淡香水 50ml',
+								goods_name2:' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+								reduce_price:16,
+								goods_price:100,
+								goods_num:1,
+								goods_image_url:'../../static/grid2.png',
+								isChecked:false,
+								// 滚动条
+								scrollLeft:0,
+							}
+						],
+					},
+					{
+						'store_name':'香奈儿专营店',
+						'checked':false,
+						'yunfei':12,
+						'price':500,
+						checkedCount:0,
+						'data':[
+							{
+								cart_id:3,
+								goods_name:' 香奈儿可可小姐淡香水 50ml',
+								goods_name2:' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+								reduce_price:16,
+								goods_price:100,
+								goods_num:1,
+								goods_image_url:'../../static/grid3.png',
+								isChecked:false,
+								// 滚动条
+								scrollLeft:0,
+							}
+						]
+					}
 				],
-				//控制滑动效果
-				theIndex:null,
-				oldIndex:null,
-				isStop:false
-			}
+			noData:false,
+			// 选中的商品信息
+			activePro:[],
+			// 记录商品是否是从店铺进入的
+			storeEnter:false
+		};
+	},
+	methods: {
+		touchS(e){
+			startX=e.mp.changedTouches[0].clientX;
 		},
-		onPageScroll(e){
-			//兼容iOS端下拉时顶部漂移
-			this.headerPosition = e.scrollTop>=0?"fixed":"absolute";
-			this.headerTop = e.scrollTop>=0?null:0;
-			this.statusTop = e.scrollTop>=0?null:-this.statusHeight+'px';
-		},
-		//下拉刷新，需要自己在page.json文件中配置开启页面下拉刷新 "enablePullDownRefresh": true
-		onPullDownRefresh() {
-		    setTimeout(function () {
-		        uni.stopPullDownRefresh();
-		    }, 1000);
-		},
-		onLoad() {
-			//兼容H5下结算条位置
-			// #ifdef H5
-				this.footerbottom = document.getElementsByTagName('uni-tabbar')[0].offsetHeight+'px';
-			// #endif
-			// #ifdef APP-PLUS
-			this.showHeader = false;
-			this.statusHeight = plus.navigator.getStatusbarHeight();
-			// #endif
-		},
-		methods: {
-			//加入商品 参数 goods:商品数据
-			joinGoods(goods){
-				/*
-				* 这里只是展示一种添加逻辑，模板并没有做从其他页面加入商品到购物车的具体动作，
-				* 在实际应用上，前端并不会直接插入记录到goodsList这一个动作，一般是更新列表和本地列表缓存。
-				* 一般商城购物车的增删改动作是由后端来完成的,
-				* 后端记录后返回前端更新前端缓存
-				*/
-				let len = this.goodsList.length;
-				let isFind = false;//是否找到ID一样的商品
-				for(let i=0;i<len;i++){
-					let row = this.goodsList[i];
-					if(row.id==goods.id )
-					{	//找到商品一样的商品
-						this.goodsList[i].number++;//数量自增
-						isFind = true;//找到一样的商品
-						break;//跳出循环
-					}
-				}
-				if(!isFind){
-					//没有找到一样的商品，新增一行到购物车商品列表头部
-					this.goodsList[i].unshift(goods);
-				}
-			},
-			//控制左滑删除效果-begin
-			touchStart(index,event){
-				//多点触控不触发
-				if(event.touches.length>1){
-					this.isStop = true;
-					return ;
-				}
-				this.oldIndex = this.theIndex;
-				this.theIndex = null;
-				//初始坐标
-				this.initXY = [event.touches[0].pageX,event.touches[0].pageY];
-			},
-			touchMove(index,event){
-				//多点触控不触发
-				if(event.touches.length>1){
-					this.isStop = true;
-					return ;
-				}
-				let moveX = event.touches[0].pageX - this.initXY[0];
-				let moveY = event.touches[0].pageY - this.initXY[1];
-				
-				if(this.isStop||Math.abs(moveX)<5){
-					return ;
-				}
-				if (Math.abs(moveY) > Math.abs(moveX)){
-					// 竖向滑动-不触发左滑效果
-					this.isStop = true;
-					return;
-				}
-				
-				if(moveX<0){
-					this.theIndex = index;
-					this.isStop = true;
-				}else if(moveX>0){
-					if(this.theIndex!=null&&this.oldIndex==this.theIndex){
-						this.oldIndex = index;
-						this.theIndex = null;
-						this.isStop = true;
-						setTimeout(()=>{
-							this.oldIndex = null;
-						},150)
-					}
-				}
-			},
-			touchEnd(index,$event){
-				//结束禁止触发效果
-				this.isStop = false;
-			},
-			//控制左滑删除效果-end
-			
-			
-			//商品跳转
-			toGoods(e){
-				uni.showToast({title: '商品'+e.id,icon:"none"});
-				uni.navigateTo({
-					url: '../../goods/goods' 
-				});
-			},
-			//跳转确认订单页面
-			toConfirmation(){
-				let tmpList=[];
-				let len = this.goodsList.length;
-				for(let i=0;i<len;i++){
-					if(this.goodsList[i].selected) {
-						tmpList.push(this.goodsList[i]);
-					}
-				}
-				if(tmpList.length<1){
-					uni.showToast({
-						title:'请选择商品结算',
-						icon:'none'
-					});
-					return ;
-				}
-				uni.setStorage({
-					key:'buylist',
-					data:tmpList,
-					success: () => {
-						uni.navigateTo({
-							url:'../../order/confirmation'
+		touchE(e){
+			endX=e.mp.changedTouches[0].clientX;
+			// 手指滑动了
+			if(Math.abs(endX-startX)>10){
+				// 手指往右滑
+				if(endX-startX>0){
+					this.shopData.forEach((item) => {
+						item.data.forEach((goods) => {
+							if(goods.cart_id==e.currentTarget.id){
+								goods.scrollLeft=0;
+							}
 						})
-					}
-				})
-			},
-			//删除商品
-			deleteGoods(id){
-				let len = this.goodsList.length;
-				for(let i=0;i<len;i++){
-					if(id==this.goodsList[i].id){
-						this.goodsList.splice(i, 1);
-						break;
-					}
+					})
+				}else{
+					// 手指往左滑
+					this.shopData.forEach((item) => {
+						item.data.forEach((goods) => {
+							if(goods.cart_id==e.currentTarget.id){
+								goods.scrollLeft=75;
+							}else{
+								goods.scrollLeft=0;
+							}
+						})
+					})
 				}
-				this.selectedList.splice(this.selectedList.indexOf(id), 1);
-				this.sum();
-				this.oldIndex = null;
-				this.theIndex = null;
-			},
-			// 删除商品s
-			deleteList(){
-				let len = this.selectedList.length;
-				while (this.selectedList.length>0)
-				{
-					this.deleteGoods(this.selectedList[0]);
-				}
-				this.selectedList = [];
-				this.isAllselected = this.selectedList.length == this.goodsList.length && this.goodsList.length>0;
-				this.sum();
-			},
-			// 选中商品
-			selected(index){
-				this.goodsList[index].selected = this.goodsList[index].selected?false:true;
-				let i = this.selectedList.indexOf(this.goodsList[index].id);
-				i>-1?this.selectedList.splice(i, 1):this.selectedList.push(this.goodsList[index].id);
-				this.isAllselected = this.selectedList.length == this.goodsList.length;
-				this.sum();
-			},
-			//全选
-			allSelect(){
-				let len = this.goodsList.length;
-				let arr = [];
-				for(let i=0;i<len;i++){
-					this.goodsList[i].selected = this.isAllselected? false : true;
-					arr.push(this.goodsList[i].id);
-				}
-				this.selectedList = this.isAllselected?[]:arr;
-				this.isAllselected = this.isAllselected||this.goodsList.length==0?false : true;
-				this.sum();
-			},
-			// 减少数量
-			sub(index){
-				if(this.goodsList[index].number<=1){
-					return;
-				}
-				this.goodsList[index].number--;
-				this.sum();
-			},
-			// 增加数量
-			add(index){
-				this.goodsList[index].number++;
-				this.sum();
-			},
-			// 合计
-			sum(e,index){
-				this.sumPrice=0;
-				let len = this.goodsList.length;
-				for(let i=0;i<len;i++){
-					if(this.goodsList[i].selected) {
-						if(e && i==index){
-							this.sumPrice = this.sumPrice + (e.detail.value*this.goodsList[i].price);
-						}else{
-							this.sumPrice = this.sumPrice + (this.goodsList[i].number*this.goodsList[i].price);
-						}
-					}
-				}
-				this.sumPrice = this.sumPrice.toFixed(2);
-			},
-			discard() {
-				//丢弃
 			}
+		},
+		// 单击结算
+		jiesuan(){
+			let str = ''
+			this.activePro.forEach((item,index) => {
+				str += item.cart_id+'|'+item.goods_num + ',';
+			});
+			str = str.substring(0,str.length-1)
+			if(str) {
+				// 跳转到支付页面
+			} else {
+				uni.showToast({
+					title: '请先选择要购买的商品',
+					icon:'none',
+					mask: false,
+					duration: 1500
+				});
+			}
+			if(this.noData) {
+				uni.showToast({
+					title: '请先添加要购买的商品',
+					icon:'none',
+					mask: false,
+					duration: 1500
+				});
+			}
+		},
+		
+		// 点击选中与取消===店铺,(选中店铺的所有商品)
+		shopActive(item) {
+			console.log('shopActive',item);
+			!item.checked ? this._shopTrue(item) : this._shopFalse(item);
+		},
+		_shopTrue(item) {
+			//遍历商店每一个商品，状态为false的改变为true，又在_checkTrue()方法中将商店状态改为true
+			item.data.forEach((pro,index) => {
+				pro.isChecked === false ? this._checkTrue(item,pro) : ''
+			})
+		},
+		_shopFalse(item) {
 			
+			item.data.forEach((pro,index) => {
+				pro.isChecked === true ? this._checkFalse(item,pro) : ''
+			})
+		},
+		// 点击取消选中商品
+		proActive(item,pro) {
+			pro.isChecked ? this._checkFalse(item,pro) : this._checkTrue(item,pro)
+		},
+		_checkTrue(item,pro) {
+			pro.isChecked = true;
+			++item.checkedCount == item.data.length ? item.checked = true : ''
+			//每选中一个商品，被选中的商品数加一，如果数值等于商品数，商店的全选状态为true
+			item.checked ? ++this.allShops === this.shopData.length ? this.isCheckAll = true : this.isCheckAll = false : ''
+			//当商店全选状态，每全选一个商店，被选中商店数加一，数值等于所有商店数，全选状态为true
+			// 向选中数组中添加
+			this.activePro.push(pro);
+		},
+		_checkFalse(item,pro) {
+			pro.isChecked = false;
+			//被选中的商品数减一
+			--item.checkedCount
+			if(item.checked) {
+				item.checked = false
+				--this.allShops 
+			}
+			this.isCheckAll = false;
+			// 移除选中数组中的这一项
+			this.activePro.forEach((active,activeIndex) => {
+				if(pro.cart_id == active.cart_id) {
+					this.activePro.splice(activeIndex,1);
+				}
+			});
+		},
+		// 全选
+		allCheck() {
+			this.isCheckAll = !this.isCheckAll;
+			this.isCheckAll ? 
+			this.shopData.forEach((item) => {this._shopTrue(item)}) : 
+			this.shopData.forEach((item) => {this._shopFalse(item)})
+		},
+		changeCount(val,way,id) {
+			let vm = this;
+			if(way > 0) {
+				val.goods_num++;
+			} else {
+				if(val.goods_num > 1) {
+					val.goods_num--;
+				}
+			}
+			console.log('商品数量',val.goods_num);
+			// 更新购物车数量
+			this.editCount(id,val.goods_num)
+		},
+		inputCarCount(e) {
+			// console.log('e',e);
+			let car_id = e.currentTarget.id;
+			let goods_num = e.detail.value;
+			this.editCount(car_id,goods_num)
+		},
+		// 调用更新购物车数量的接口
+		editCount(id,goods_num) {
+			
+			
+		},
+		// 每次调用此方法，将初始值为0，便利价格并累加
+		_totalPrice() {
+			this.allPrice = 0;
+			this.shopData.forEach(item => {
+				let products = item.data;
+				products.forEach(pros => {
+					if(pros.isChecked) {
+						this.allPrice += pros.goods_price * pros.goods_num;
+					}
+				});
+			});
+		},
+		_totalCount() {
+			this.allCount = 0;
+			this.shopData.forEach(item => {
+				this.allCount += item.checkedCount;
+			});
+		},
+		// 删除商品
+		deletePro(cart_id,store_id){
+			console.log();
+			console.log('购物车id',cart_id);
+			let vm = this;
+			uni.showModal({
+				title: '提示',
+				content: '确定要删除吗？',
+				success: function (res) {
+					if (res.confirm) {
+						// 删除数组中的这一项
+						if(vm.shopData) {
+							vm.shopData.forEach((item,index)=>{
+								console.log('item',item,vm.shopData);
+								if(item.data) {
+									item.data.forEach((ite,ind)=> {
+										if(ite.cart_id == cart_id) {
+											item.data.splice(ind,1);
+										}
+									});
+								} 
+								if(item.data.length == 0) {
+									// 删除店铺名字
+									vm.shopData.splice(index,1);
+									item.store_id = 0;
+									vm.isCheckAll = false;
+								}
+							});
+						}	
+						uni.showToast({
+							title: '删除成功',
+							mask: false,
+							icon:'none',
+							duration: 1500
+						});
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
+			});
+		},
+		// 请求购物车列表数据
+		requestData() {
+			
+		},
+		toProDetail(goods_id,store_id){
 			
 		}
+	},
+	components:{
+		checkBox
+	},
+	// 单间商品的价格 x 数量
+	filters:{
+		totalprice(price,count) {
+			console.log('当前项',price,count);
+			return price * count;
+		}
+	},
+	computed: {
+		minHeight() {
+			var systemInfo = uni.getSystemInfoSync();
+			return `min-height:${systemInfo.windowHeight}px`;
+		}
+	},
+	watch: { //深度监听所有数据，每次改变重新计算总价和总数
+		shopData: {
+			deep: true,
+			handler(val, oldval) {
+				this._totalPrice()
+				this._totalCount()
+			}
+		}
 	}
+};
 </script>
+
 <style lang="scss">
-	page{position: relative;background-color: #fff;}
-	.checkbox-box{
+		.numInput {
+		overflow: hidden;
+		float: right;
+		text {
+			float: left;
+			color: #999;
+			font-size: 45upx;
+			line-height: 50upx;
+			display: inline-block;
+			width: 40upx;
+			height: 40upx;
+			text-align: center;
+			line-height: 40upx;
+			background-color: #F4F4F4;
+			border-radius: 50%;
+			margin-top: 8upx;
+		}
+		input {
+			display: inline-block;
+			width: 80upx;
+			float: left;
+			text-align: center;
+			color: #999;
+		}
+		.numbox-disabled {
+			color: #c0c0c0;
+		}
+	}
+	
+	.shoppingcar{
+		background-color: #FAFAFA;
+		padding-bottom: 98upx;
+	}
+	.shoppingcar .dianpu{
+		background-color: #FFFFFF;
+		margin-bottom: 20upx;
+	}
+	.shoppingcar .dianpu .dianpu-name{
+		height: 70upx;
+		box-sizing: border-box;
+		padding: 20upx 32upx;
+		border-bottom: 1px solid #FAFAFA;
 		display: flex;
-		align-items: center;
-		.checkbox{
-			width: 35upx;
-			height: 35upx;
-			border-radius: 100%;
-			border: solid 2upx #f06c7a;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			.on{
-				width: 25upx;
-				height: 25upx;
-				border-radius: 100%;
-				background-color: #f06c7a;
-			}
-		}
-		.text{
-			font-size: 28upx;
-			margin-left: 10upx;
-		}
+		margin-top: 1upx;
 	}
-.status {
-		width: 100%;
-		height: 0;
-		position: fixed;
-		z-index: 10;
-		background-color: #fff;
-		top: 0;
-		/*  #ifdef  APP-PLUS  */
-		height: var(--status-bar-height);//覆盖样式
-		/*  #endif  */
+	.shoppingcar .dianpu .select,
+	.shoppingcar .dianpu .select-active{
+		flex-shrink:0;
 	}
-
-	.header{
-		width: 92%;
-		padding: 0 4%;
-		height: 100upx;
+	.shoppingcar .dianpu .dianpu-name .iconfont{
+		font-size: 45upx;
+		color: #FF6B94;
+		line-height: 32upx;
+		margin-right: 8upx;
+	}
+	.shoppingcar .dianpu .dianpu-name .text{
+		font-size: 24upx;
+		color: #333333;
+		line-height: 31upx;
+	}
+	.shoppingcar .dianpu .shangpin{
+		width: 750upx;
+		padding: 22upx 32upx;
 		display: flex;
-		align-items: center;
-		position: fixed;
-		top: 0;
-		z-index: 10;
-		background-color: #fff;
-		/*  #ifdef  APP-PLUS  */
-		top: var(--status-bar-height);
-		/*  #endif  */
-		.title{
-			font-size: 36upx;
-		}
-		
+		border-bottom: 1px solid #FAFAFA;
 	}
-	.place{
-		
-		background-color: #ffffff;
-		height: 100upx;
-		/*  #ifdef  APP-PLUS  */
-		margin-top: var(--status-bar-height);
-		/*  #endif  */
+	.shoppingcar .dianpu .shangpin .select,
+	.shoppingcar .dianpu .shangpin .select-active{
+		margin-top: 40upx;
 	}
-	.goods-list{
+	.shoppingcar .dianpu .shangpin .shangpin-info{
+		display: flex;
+		flex: 1;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .img{
+		width: 108upx;
+		height: 108upx;
+		margin-right: 10upx;
+		flex-shrink:0;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .img image{
+		display: block;
 		width: 100%;
-		padding: 20upx 0 120upx 0;
-		.tis{
-			width: 100%;
-			height: 60upx;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 32upx;
-		}
-		.row{
-			width: calc(92%);
-			height: calc(22vw + 40upx); 
-			margin: 20upx auto;
-			
-			// border-radius: 15upx;
-			box-shadow: 0upx 5upx 20upx rgba(0,0,0,0.1);
-			display: flex;
-			align-items: center;
-			position: relative;
-			overflow: hidden;
-			z-index: 4;
-			border: 0;
-			.menu{
-				.icon{
-					color: #fff;
-					// font-size: 25upx;
-				}
-				position: absolute;
-				width: 30%;
-				height: 100%;
-				right: 0;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				background-color: red;
-				color: #fff;
-				z-index: 2;
-			}
-			.carrier{
-				@keyframes showMenu {
-					0% {transform: translateX(0);}100% {transform: translateX(-30%);}
-				}
-				@keyframes closeMenu {
-					0% {transform: translateX(-30%);}100% {transform: translateX(0);}
-				}
-				&.open{
-					animation: showMenu 0.25s linear both;
-				}
-				&.close{
-					animation: closeMenu 0.15s linear both;
-				}
-				background-color: #fff;
-				.checkbox-box{
-					padding-left: 20upx;
-					flex-shrink: 0;
-					height: 22vw;
-					margin-right: 20upx;
-				}
-				position: absolute;
-				width: 100%;
-				padding: 0 0;
-				height: 100%;
-				z-index: 3;
-				display: flex;
-				align-items: center;
-
-				.goods-info{
-					width: 100%;
-					display: flex;
-					padding-right: 20upx;
-					.img{
-						width: 22vw;
-						height: 22vw;
-						border-radius: 10upx;
-						overflow: hidden;
-						flex-shrink: 0;
-						margin-right: 10upx;
-						image{
-							width: 22vw;
-							height: 22vw;
-						}
-					}
-					.info{
-						width: 100%;
-						height: 22vw;
-						overflow: hidden;
-						display: flex;
-						flex-wrap: wrap;
-						position: relative;
-						.title{
-							width: 100%;
-							font-size: 28upx;
-							display: -webkit-box;
-							-webkit-box-orient: vertical;
-							-webkit-line-clamp: 2;
-							// text-align: justify;
-							overflow: hidden;
-						}
-						.spec{
-							font-size: 20upx;
-							background-color: #f3f3f3;
-							color: #a7a7a7;
-							height: 30upx;
-							display: flex;
-							align-items: center;
-							padding: 0 10upx;
-							border-radius: 15upx;
-							margin-bottom: 20vw;
-						}
-						.price-number{
-							position: absolute;
-							width: 100%;
-							bottom: 0upx;
-							display: flex;
-							justify-content: space-between;
-							align-items: flex-end;
-							font-size: 28upx;
-							height: 60upx;
-							.price{
-							}
-							.number{
-								display: flex;
-								justify-content: center;
-								align-items: flex-end;
-								.input{
-									width: 60upx;
-									height: 60upx;
-									margin: 0 10upx;
-									background-color: #f3f3f3;
-									input{
-										width: 60upx;
-										height: 60upx;
-										display: flex;
-										justify-content: center;
-										align-items: center;
-										text-align: center;
-										font-size: 26upx;
-									}
-								}
-								.sub ,.add{
-									width: 45upx;
-									height: 45upx;
-									background-color: #f3f3f3;
-									border-radius: 5upx;
-									.icon{
-										font-size: 22upx;
-										width: 45upx;
-										height: 45upx;
-										display: flex;
-										justify-content: center;
-										align-items: center;
-										
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		height: 100%;
+		border-radius: 8upx;
 	}
-	.footer{
-		width: 92%;
-		padding: 0 4%;
-		background-color: #fbfbfb;
-		height: 100upx;
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info {
+		width: 100%;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text{
+		line-height: 34upx;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .biaoqian{
+		color: #FD395B;
+		font-size: 26upx;
+		margin-right: 10upx;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .name{
+		color: #333;
+		font-size: 26upx;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .bieming{
+		color: #333;
+		font-size: 20upx;
+		margin: 0 6upx;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .title-text .youhui{
+		color: #FD395B;
+		font-size: 24upx;
+		float: right;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .jiage{
+		font-size: 24upx;
+		color: #999999;
+		display: inline-block;
+		font-weight: 600;
+	}
+	.shoppingcar .dianpu .shangpin .shangpin-info .text-info .jiage .danjia{
+		color: #FD395B;
+		margin-right: 10upx;
+	}
+	.shoppingcar .dianpu .jiesuan{
+		padding: 30upx 30upx 30upx;
+		color: #333333;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		box-sizing: border-box;
+	}
+	.shoppingcar .dianpu .jiesuan .yuefei,
+	.shoppingcar .dianpu .jiesuan .zongji{
+		font-size: 22upx;
+		lighting-color: 40upx;
+	}
+	.shoppingcar .bottom-jiesuan{
+		width: 100%;
+		height: 98upx;
+		box-sizing: border-box;
+		position: fixed;
+		bottom: 0;
+		display: flex;
+		box-shadow:0px 0px 4upx 0px rgba(0,0,0,0.1);
+	}
+	.shoppingcar .bottom-jiesuan .info{
+		box-sizing: border-box;
+		padding: 0 30upx;
+		width: 510upx;
+		font-size: 24upx;
+		color: #333333;
+		background-color: #FFFFFF;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		font-size: 28upx;
-		position: fixed;
-		bottom: 0upx;
-		z-index: 5;
-		.delBtn{
-			border: solid 1upx #f06c7a;
-			color: #f06c7a;
-			padding: 0 30upx;
-			height: 50upx;
-			border-radius: 30upx;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		.settlement{
-			width: 60%;
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			.sum{
-				width: 50%;
-				font-size: 28upx;
-				margin-right: 10upx;
-				display: flex;
-				justify-content: flex-end;
-				.money{
-					font-weight: 600;
-				}
-			}
-			.btn{
-				padding: 0 30upx;
-				height: 50upx;
-				background-color: #f06c7a;
-				color: #fff;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				border-radius: 30upx;
-			}
+	}
+	.shoppingcar .bottom-jiesuan .info view{
+		line-height: 105upx;
+	}
+	.shoppingcar .bottom-jiesuan .info .select,
+	.shoppingcar .bottom-jiesuan .info .select-active{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.shoppingcar .bottom-jiesuan .info text{
+		line-height: 98upx;
+		color: #FD395B;
+	}
+	.shoppingcar .bottom-jiesuan .btn{
+		width: 240upx;
+		line-height: 98upx;
+		color: #FFFFFF;
+		font-size: 30upx;
+		text-align: center;
+		background-color: #FD395B;
+	}
+	/* 全选的文字 */
+	.allSelectText {
+		float: left;
+		overflow: hidden;
+		width: 150upx;
+		.allText {
+			float: left;
 		}
 	}
+	.allSelectText > view:first-child {
+		display: inline-block;
+		float: left;
+	} 
+	.scrollView{
+		width: 750upx;
+	}
+	.scrollView .viewbox{
+		width: 900upx;
+		display: flex;
+		transition: all .2s ease-in 0s;
+	}
+	.scrollView .hong{
+		width: 150upx;
+		background-color: #FD395B;
+		color: #FFFFFF;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	// 购物车没有数据提示
+	.shoppingcar .car-no-data {
+		width: 100%;
+		height: 700upx;
+		text-align: center;
+		line-height: 700upx;
+		color: #999;
+		font-size: 30upx;
+		vertical-align: middle;
+		.iconfont {
+			font-size: 40upx;
+			margin-right: 20upx;
+		}
+	}
+	
 </style>

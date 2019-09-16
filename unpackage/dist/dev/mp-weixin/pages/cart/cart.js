@@ -105,301 +105,371 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var checkBox = function checkBox() {return __webpack_require__.e(/*! import() | components/custom-checkbox */ "components/custom-checkbox").then(__webpack_require__.bind(null, /*! @/components/custom-checkbox.vue */ 175));};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var startX = 0;
+var endX = 0;var _default =
 {
   data: function data() {
     return {
-      sumPrice: '0.00',
-      headerPosition: "fixed",
-      headerTop: null,
-      statusTop: null,
-      showHeader: true,
-      selectedList: [],
-      isAllselected: false,
-      goodsList: [
-      { id: 1, img: '/static/img/goods/p1.jpg', name: '商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题', spec: '规格:S码', price: 127.5, number: 1, selected: false },
-      { id: 2, img: '/static/img/goods/p2.jpg', name: '商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题', spec: '规格:S码', price: 127.5, number: 1, selected: false },
-      { id: 3, img: '/static/img/goods/p3.jpg', name: '商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题', spec: '规格:S码', price: 127.5, number: 1, selected: false },
-      { id: 4, img: '/static/img/goods/p4.jpg', name: '商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题', spec: '规格:S码', price: 127.5, number: 1, selected: false },
-      { id: 5, img: '/static/img/goods/p5.jpg', name: '商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题', spec: '规格:S码', price: 127.5, number: 1, selected: false }],
+      // 全选，返回
+      isCheckAll: false,
+      allPrice: 0, //所有价格
+      allShops: 0, //被选中的商店数量
+      allCount: 0, //被选中的产品数量
+      shopData: [
+      {
+        'store_name': '香奈儿专营店',
+        'checked': false,
+        'yunfei': 10,
+        'price': 300,
+        checkedCount: 0,
+        'data': [
+        {
+          cart_id: 1,
+          goods_name: ' 香奈儿可可小姐淡香水 50ml',
+          goods_name2: ' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+          reduce_price: 16,
+          goods_price: 100,
+          goods_num: 1,
+          goods_image_url: '../../static/grid1.png',
+          isChecked: false,
+          // 滚动条
+          scrollLeft: 0 },
 
-      //控制滑动效果
-      theIndex: null,
-      oldIndex: null,
-      isStop: false };
-
-  },
-  onPageScroll: function onPageScroll(e) {
-    //兼容iOS端下拉时顶部漂移
-    this.headerPosition = e.scrollTop >= 0 ? "fixed" : "absolute";
-    this.headerTop = e.scrollTop >= 0 ? null : 0;
-    this.statusTop = e.scrollTop >= 0 ? null : -this.statusHeight + 'px';
-  },
-  //下拉刷新，需要自己在page.json文件中配置开启页面下拉刷新 "enablePullDownRefresh": true
-  onPullDownRefresh: function onPullDownRefresh() {
-    setTimeout(function () {
-      uni.stopPullDownRefresh();
-    }, 1000);
-  },
-  onLoad: function onLoad() {
-    //兼容H5下结算条位置
-
-
-
-
+        {
+          cart_id: 2,
+          goods_name: ' 香奈儿可可小姐淡香水 50ml',
+          goods_name2: ' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+          reduce_price: 16,
+          goods_price: 100,
+          goods_num: 1,
+          goods_image_url: '../../static/grid2.png',
+          isChecked: false,
+          // 滚动条
+          scrollLeft: 0 }] },
 
 
+
+      {
+        'store_name': '香奈儿专营店',
+        'checked': false,
+        'yunfei': 12,
+        'price': 500,
+        checkedCount: 0,
+        'data': [
+        {
+          cart_id: 3,
+          goods_name: ' 香奈儿可可小姐淡香水 50ml',
+          goods_name2: ' (又名：香奈儿 可可小姐淡香水（瓶装）50ml)',
+          reduce_price: 16,
+          goods_price: 100,
+          goods_num: 1,
+          goods_image_url: '../../static/grid3.png',
+          isChecked: false,
+          // 滚动条
+          scrollLeft: 0 }] }],
+
+
+
+
+      noData: false,
+      // 选中的商品信息
+      activePro: [],
+      // 记录商品是否是从店铺进入的
+      storeEnter: false };
 
   },
   methods: {
-    //加入商品 参数 goods:商品数据
-    joinGoods: function joinGoods(goods) {
-      /*
-                                          * 这里只是展示一种添加逻辑，模板并没有做从其他页面加入商品到购物车的具体动作，
-                                          * 在实际应用上，前端并不会直接插入记录到goodsList这一个动作，一般是更新列表和本地列表缓存。
-                                          * 一般商城购物车的增删改动作是由后端来完成的,
-                                          * 后端记录后返回前端更新前端缓存
-                                          */
-      var len = this.goodsList.length;
-      var isFind = false; //是否找到ID一样的商品
-      for (var _i = 0; _i < len; _i++) {
-        var row = this.goodsList[_i];
-        if (row.id == goods.id)
-        {//找到商品一样的商品
-          this.goodsList[_i].number++; //数量自增
-          isFind = true; //找到一样的商品
-          break; //跳出循环
-        }
-      }
-      if (!isFind) {
-        //没有找到一样的商品，新增一行到购物车商品列表头部
-        this.goodsList[i].unshift(goods);
-      }
+    touchS: function touchS(e) {
+      startX = e.mp.changedTouches[0].clientX;
     },
-    //控制左滑删除效果-begin
-    touchStart: function touchStart(index, event) {
-      //多点触控不触发
-      if (event.touches.length > 1) {
-        this.isStop = true;
-        return;
-      }
-      this.oldIndex = this.theIndex;
-      this.theIndex = null;
-      //初始坐标
-      this.initXY = [event.touches[0].pageX, event.touches[0].pageY];
-    },
-    touchMove: function touchMove(index, event) {var _this = this;
-      //多点触控不触发
-      if (event.touches.length > 1) {
-        this.isStop = true;
-        return;
-      }
-      var moveX = event.touches[0].pageX - this.initXY[0];
-      var moveY = event.touches[0].pageY - this.initXY[1];
-
-      if (this.isStop || Math.abs(moveX) < 5) {
-        return;
-      }
-      if (Math.abs(moveY) > Math.abs(moveX)) {
-        // 竖向滑动-不触发左滑效果
-        this.isStop = true;
-        return;
-      }
-
-      if (moveX < 0) {
-        this.theIndex = index;
-        this.isStop = true;
-      } else if (moveX > 0) {
-        if (this.theIndex != null && this.oldIndex == this.theIndex) {
-          this.oldIndex = index;
-          this.theIndex = null;
-          this.isStop = true;
-          setTimeout(function () {
-            _this.oldIndex = null;
-          }, 150);
+    touchE: function touchE(e) {
+      endX = e.mp.changedTouches[0].clientX;
+      // 手指滑动了
+      if (Math.abs(endX - startX) > 10) {
+        // 手指往右滑
+        if (endX - startX > 0) {
+          this.shopData.forEach(function (item) {
+            item.data.forEach(function (goods) {
+              if (goods.cart_id == e.currentTarget.id) {
+                goods.scrollLeft = 0;
+              }
+            });
+          });
+        } else {
+          // 手指往左滑
+          this.shopData.forEach(function (item) {
+            item.data.forEach(function (goods) {
+              if (goods.cart_id == e.currentTarget.id) {
+                goods.scrollLeft = 75;
+              } else {
+                goods.scrollLeft = 0;
+              }
+            });
+          });
         }
       }
     },
-    touchEnd: function touchEnd(index, $event) {
-      //结束禁止触发效果
-      this.isStop = false;
-    },
-    //控制左滑删除效果-end
-
-
-    //商品跳转
-    toGoods: function toGoods(e) {
-      uni.showToast({ title: '商品' + e.id, icon: "none" });
-      uni.navigateTo({
-        url: '../../goods/goods' });
-
-    },
-    //跳转确认订单页面
-    toConfirmation: function toConfirmation() {
-      var tmpList = [];
-      var len = this.goodsList.length;
-      for (var _i2 = 0; _i2 < len; _i2++) {
-        if (this.goodsList[_i2].selected) {
-          tmpList.push(this.goodsList[_i2]);
-        }
-      }
-      if (tmpList.length < 1) {
+    // 单击结算
+    jiesuan: function jiesuan() {
+      var str = '';
+      this.activePro.forEach(function (item, index) {
+        str += item.cart_id + '|' + item.goods_num + ',';
+      });
+      str = str.substring(0, str.length - 1);
+      if (str) {
+        // 跳转到支付页面
+      } else {
         uni.showToast({
-          title: '请选择商品结算',
-          icon: 'none' });
+          title: '请先选择要购买的商品',
+          icon: 'none',
+          mask: false,
+          duration: 1500 });
 
-        return;
       }
-      uni.setStorage({
-        key: 'buylist',
-        data: tmpList,
-        success: function success() {
-          uni.navigateTo({
-            url: '../../order/confirmation' });
+      if (this.noData) {
+        uni.showToast({
+          title: '请先添加要购买的商品',
+          icon: 'none',
+          mask: false,
+          duration: 1500 });
 
+      }
+    },
+
+    // 点击选中与取消===店铺,(选中店铺的所有商品)
+    shopActive: function shopActive(item) {
+      console.log('shopActive', item);
+      !item.checked ? this._shopTrue(item) : this._shopFalse(item);
+    },
+    _shopTrue: function _shopTrue(item) {var _this = this;
+      //遍历商店每一个商品，状态为false的改变为true，又在_checkTrue()方法中将商店状态改为true
+      item.data.forEach(function (pro, index) {
+        pro.isChecked === false ? _this._checkTrue(item, pro) : '';
+      });
+    },
+    _shopFalse: function _shopFalse(item) {var _this2 = this;
+
+      item.data.forEach(function (pro, index) {
+        pro.isChecked === true ? _this2._checkFalse(item, pro) : '';
+      });
+    },
+    // 点击取消选中商品
+    proActive: function proActive(item, pro) {
+      pro.isChecked ? this._checkFalse(item, pro) : this._checkTrue(item, pro);
+    },
+    _checkTrue: function _checkTrue(item, pro) {
+      pro.isChecked = true;
+      ++item.checkedCount == item.data.length ? item.checked = true : '';
+      //每选中一个商品，被选中的商品数加一，如果数值等于商品数，商店的全选状态为true
+      item.checked ? ++this.allShops === this.shopData.length ? this.isCheckAll = true : this.isCheckAll = false : '';
+      //当商店全选状态，每全选一个商店，被选中商店数加一，数值等于所有商店数，全选状态为true
+      // 向选中数组中添加
+      this.activePro.push(pro);
+    },
+    _checkFalse: function _checkFalse(item, pro) {var _this3 = this;
+      pro.isChecked = false;
+      //被选中的商品数减一
+      --item.checkedCount;
+      if (item.checked) {
+        item.checked = false;
+        --this.allShops;
+      }
+      this.isCheckAll = false;
+      // 移除选中数组中的这一项
+      this.activePro.forEach(function (active, activeIndex) {
+        if (pro.cart_id == active.cart_id) {
+          _this3.activePro.splice(activeIndex, 1);
+        }
+      });
+    },
+    // 全选
+    allCheck: function allCheck() {var _this4 = this;
+      this.isCheckAll = !this.isCheckAll;
+      this.isCheckAll ?
+      this.shopData.forEach(function (item) {_this4._shopTrue(item);}) :
+      this.shopData.forEach(function (item) {_this4._shopFalse(item);});
+    },
+    changeCount: function changeCount(val, way, id) {
+      var vm = this;
+      if (way > 0) {
+        val.goods_num++;
+      } else {
+        if (val.goods_num > 1) {
+          val.goods_num--;
+        }
+      }
+      console.log('商品数量', val.goods_num);
+      // 更新购物车数量
+      this.editCount(id, val.goods_num);
+    },
+    inputCarCount: function inputCarCount(e) {
+      // console.log('e',e);
+      var car_id = e.currentTarget.id;
+      var goods_num = e.detail.value;
+      this.editCount(car_id, goods_num);
+    },
+    // 调用更新购物车数量的接口
+    editCount: function editCount(id, goods_num) {
+
+
+    },
+    // 每次调用此方法，将初始值为0，便利价格并累加
+    _totalPrice: function _totalPrice() {var _this5 = this;
+      this.allPrice = 0;
+      this.shopData.forEach(function (item) {
+        var products = item.data;
+        products.forEach(function (pros) {
+          if (pros.isChecked) {
+            _this5.allPrice += pros.goods_price * pros.goods_num;
+          }
+        });
+      });
+    },
+    _totalCount: function _totalCount() {var _this6 = this;
+      this.allCount = 0;
+      this.shopData.forEach(function (item) {
+        _this6.allCount += item.checkedCount;
+      });
+    },
+    // 删除商品
+    deletePro: function deletePro(cart_id, store_id) {
+      console.log();
+      console.log('购物车id', cart_id);
+      var vm = this;
+      uni.showModal({
+        title: '提示',
+        content: '确定要删除吗？',
+        success: function success(res) {
+          if (res.confirm) {
+            // 删除数组中的这一项
+            if (vm.shopData) {
+              vm.shopData.forEach(function (item, index) {
+                console.log('item', item, vm.shopData);
+                if (item.data) {
+                  item.data.forEach(function (ite, ind) {
+                    if (ite.cart_id == cart_id) {
+                      item.data.splice(ind, 1);
+                    }
+                  });
+                }
+                if (item.data.length == 0) {
+                  // 删除店铺名字
+                  vm.shopData.splice(index, 1);
+                  item.store_id = 0;
+                  vm.isCheckAll = false;
+                }
+              });
+            }
+            uni.showToast({
+              title: '删除成功',
+              mask: false,
+              icon: 'none',
+              duration: 1500 });
+
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
         } });
 
     },
-    //删除商品
-    deleteGoods: function deleteGoods(id) {
-      var len = this.goodsList.length;
-      for (var _i3 = 0; _i3 < len; _i3++) {
-        if (id == this.goodsList[_i3].id) {
-          this.goodsList.splice(_i3, 1);
-          break;
-        }
-      }
-      this.selectedList.splice(this.selectedList.indexOf(id), 1);
-      this.sum();
-      this.oldIndex = null;
-      this.theIndex = null;
+    // 请求购物车列表数据
+    requestData: function requestData() {
+
     },
-    // 删除商品s
-    deleteList: function deleteList() {
-      var len = this.selectedList.length;
-      while (this.selectedList.length > 0)
-      {
-        this.deleteGoods(this.selectedList[0]);
-      }
-      this.selectedList = [];
-      this.isAllselected = this.selectedList.length == this.goodsList.length && this.goodsList.length > 0;
-      this.sum();
-    },
-    // 选中商品
-    selected: function selected(index) {
-      this.goodsList[index].selected = this.goodsList[index].selected ? false : true;
-      var i = this.selectedList.indexOf(this.goodsList[index].id);
-      i > -1 ? this.selectedList.splice(i, 1) : this.selectedList.push(this.goodsList[index].id);
-      this.isAllselected = this.selectedList.length == this.goodsList.length;
-      this.sum();
-    },
-    //全选
-    allSelect: function allSelect() {
-      var len = this.goodsList.length;
-      var arr = [];
-      for (var _i4 = 0; _i4 < len; _i4++) {
-        this.goodsList[_i4].selected = this.isAllselected ? false : true;
-        arr.push(this.goodsList[_i4].id);
-      }
-      this.selectedList = this.isAllselected ? [] : arr;
-      this.isAllselected = this.isAllselected || this.goodsList.length == 0 ? false : true;
-      this.sum();
-    },
-    // 减少数量
-    sub: function sub(index) {
-      if (this.goodsList[index].number <= 1) {
-        return;
-      }
-      this.goodsList[index].number--;
-      this.sum();
-    },
-    // 增加数量
-    add: function add(index) {
-      this.goodsList[index].number++;
-      this.sum();
-    },
-    // 合计
-    sum: function sum(e, index) {
-      this.sumPrice = 0;
-      var len = this.goodsList.length;
-      for (var _i5 = 0; _i5 < len; _i5++) {
-        if (this.goodsList[_i5].selected) {
-          if (e && _i5 == index) {
-            this.sumPrice = this.sumPrice + e.detail.value * this.goodsList[_i5].price;
-          } else {
-            this.sumPrice = this.sumPrice + this.goodsList[_i5].number * this.goodsList[_i5].price;
-          }
-        }
-      }
-      this.sumPrice = this.sumPrice.toFixed(2);
-    },
-    discard: function discard() {
-      //丢弃
-    } } };exports.default = _default;
+    toProDetail: function toProDetail(goods_id, store_id) {
+
+    } },
+
+  components: {
+    checkBox: checkBox },
+
+  // 单间商品的价格 x 数量
+  filters: {
+    totalprice: function totalprice(price, count) {
+      console.log('当前项', price, count);
+      return price * count;
+    } },
+
+  computed: {
+    minHeight: function minHeight() {
+      var systemInfo = uni.getSystemInfoSync();
+      return "min-height:".concat(systemInfo.windowHeight, "px");
+    } },
+
+  watch: { //深度监听所有数据，每次改变重新计算总价和总数
+    shopData: {
+      deep: true,
+      handler: function handler(val, oldval) {
+        this._totalPrice();
+        this._totalCount();
+      } } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
