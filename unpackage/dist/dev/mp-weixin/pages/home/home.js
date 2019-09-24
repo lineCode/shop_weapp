@@ -282,7 +282,6 @@ __webpack_require__.r(__webpack_exports__);
         name: '夹克',
         thumb: '/static/logo.png' }],
 
-      city: '常州',
       currentSwiper: 0,
       // 轮播图片
       swiperList: [{

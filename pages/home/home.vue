@@ -24,13 +24,13 @@
 						</view>
 					</view>
 
-					<view class="sub-category" v-if="currentTab > 0">
-						<uni-grid :column="5" :show-border="false" :square="false" @change="change">
-							<uni-grid-item v-for="subItem in subCategory" :key="subItem">
-								<image class="sub-image" src="/static/logo.png" mode="aspectFill" />
-								<text class="sub-text">夹克</text>
-							</uni-grid-item>
-						</uni-grid>
+					<view class="grace-grids grace-margin-top five" v-if="currentTab > 0">
+						<view class="items" v-for="subItem in subCategory" :key="subItem">
+							<view class="icon">
+								<image class="sub-image" :src="subItem.thumb" mode="widthFix"></image>
+							</view>
+							<view class="text">{{subItem.name}}</view>
+						</view>
 					</view>
 
 					<view class="banner-container">
@@ -43,7 +43,7 @@
 
 					<view class="goods-list">
 						<view class="product-list">
-							<view class="product" v-for="(goods) in goodsList" :key="goods.goods_id" @tap="toProduct(goods.goods_id)">
+							<view class="product grace-box-shadow" v-for="(goods) in goodsList" :key="goods.goods_id" @tap="toProduct(goods.goods_id)">
 								<image mode="widthFix" :src="goods.img"></image>
 								<view class="name">{{goods.name}}</view>
 								<view class="info">
@@ -131,7 +131,6 @@
 					name: '夹克',
 					thumb: '/static/logo.png',
 				}],
-				city: '常州',
 				currentSwiper: 0,
 				// 轮播图片
 				swiperList: [{
@@ -167,13 +166,13 @@
 			}
 		},
 		onLoad() {
-		
+
 		},
 		methods: {
-		
+
 			toProduct(id) {
 				uni.navigateTo({
-					url: "/pages/product/product_info?id="+id
+					url: "/pages/product/product_info?id=" + id
 				})
 			},
 			// 滚动切换标签样式
@@ -398,7 +397,8 @@
 		width: 100%;
 		text-align: center;
 		margin: 14rpx 0 24rpx 0;
-		text{
+
+		text {
 			font-size: 34rpx;
 			font-weight: 600;
 		}
@@ -424,15 +424,14 @@
 
 			.product {
 				width: 340rpx;
-				border-radius: 20upx;
+				border-radius: 10upx;
 				background-color: #fff;
-				margin: 0 0 15upx 0;
-				box-shadow: 0upx 2rpx 12rpx rgba(0, 0, 0, 0.1);
-
+				margin: 0 0 20upx 0;
+				
 				image {
 					width: 340rpx;
 					height: 340rpx;
-					border-radius: 20upx 20upx 0 0;
+					border-radius: 10upx 10upx 0 0;
 				}
 
 				.name {
@@ -467,5 +466,7 @@
 			}
 		}
 	}
+	
+	.five > .items{width:20%;}
+	
 </style>
-
