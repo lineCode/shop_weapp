@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "购物车",
-  "usingComponents": {
-    "grace-number-box": "/graceUI/components/graceNumberBox",
-    "grace-empty": "/graceUI/components/graceEmpty",
-    "grace-check-btn": "/graceUI/components/graceCheckBtn",
-    "grace-immersed-statusbar": "/graceUI/components/graceImmersedStatusbar"
-  }
-}
