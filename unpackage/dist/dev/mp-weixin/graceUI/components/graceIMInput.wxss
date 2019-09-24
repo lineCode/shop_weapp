@@ -1,0 +1,27 @@
+
+@font-face {font-family: "graceIMFonts"; src:url('data:font/truetype;charset=utf-8;base64,d09GMgABAAAAAASoAAsAAAAACpAAAARbAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqILIZ4ATYCJAMUCwwABCAFhG0HSxsHCcgOJQUABgUAAMBk8EB6fW8yk/3Z7Cd4BLPXQW6vA9B99wc4f67lvzL5jC8R2YVkAS+XAsN4QPB1pPqF+wfHUj8K/8Hyvu1BXjGyLDq25lGBDagb1ySRuNkEfcvRGr5iXEVcDQGYRBOJS2OXykbwRoFqQYpmTZc48HZYUBEkgaF3BBypENvQMbT12hNgq/b24g35wgANXYLX6jelSITc52EvKqRlDzJKWljFuYDbcSCBTAAFYkGgZxZuhipT05hBv+dOLYCJgYb2POx50vPyFxW2DZaiQzqT/8MDDYlCgHCAGk+KrY0reB4m8aDB8yQeJDwv50HBiwrZtGh0ur0JhAGiEhCdYIisoERHonui2lcmOM2zJHp7m6a+suXpoNZng9tfDG17vkyohugi+3dbns4wdwWyFuTaGyL2DH1o+v/RweMTg2Y6LqngIEk2qXNSr6zPX9naOrilZVBb25D29qFN+/Nh99riT7Z3vdsad6xlyKkr1tWNZ09eGz6kkbRWS7iliav7hBVp1hm64Q4O3rMhcFCzzBa4ywoa3MgWtHtjyNAmVUhYR3kdd6O7DasHDfpeN2jwb7vbQFjoV6Fa7o6VK9v0qChdVrZdRURhRbwW3rqlUHWLS5mMreMeM3nRSDO2TbYUy16uGosg002pTpZwphre5b7iZKa3S1VPqnNboCS+PE4Hmd9c9SJ2Lk+1zG3JjnAsPmH0XBpvDWJl+WX186e6zIWKSG6z0np0qthYRZSdTEQULL34fb9uJZ66RKiru0eP4K4lSXcWecR/xPf20/WbFi0Bz/8qJrcUz0VLHq9jd7SqyEjVyoWKSFZYZV4TL99QQihCuiGEghgP3sLyqYFyCAlv/7hDnEsCyWXFCOnjZkAVINnlhrLtTEJFJEusvRjRsGVZpxpGRH+psDBFlC1MRCRsj0k9bjZvPtcjYrOpiXamCVUROssu7hLWO2VNhdl5+yxFRU/Z8/pcBwNGkpu2yNAKAPaY/CNXAvak/CmXAfaM/CYXH8o/w6M7d+aODar8ZrgUAB2fJ5zRauxBhbTgeNSSWHrgShOOqa8crbp6d0qSt09n10Gh0T6LTOBwDfjzrxh7EEUmBAZBFmh4EAUSg0SkwmaCjotCcGBQAyYZlBzvIgCKG0I5gXTGAAS+nIKGN9dB4ssnUmH/QCeY/+DAV0gwGSICzugiWUw3GxZgjmER8V1IESyTCDvz1YvrsdSmc9Qu18jNmDqVIIrLznUnS7CJaRH7ONuleMYIItQyUDFcD+u6hWxqqVhg0TJjdnpMzpSgJ4oWLAN8aYCC4WBgRBA8XSAUBCxMiLIww9fz+vVgJNrQ4aARXT/8zWAoTpTVI+KIJjYBskRjJuralEon7UjEw2iEgCC3QgsDRDF1YXQes0DYwZupYAQY0cgZIjbpxNDJSFJNdPU6Yx5LT5ueeAZdaEIKJXThwGPGdM60RcRz0WJbUY1TF8sb8IrH8sVdigkAAA==') format('truetype');}
+.graceIMFonts {font-family:"graceIMFonts" !important; font-size:15px; font-style:normal; color:#5E5E5E;}
+.icon-voice:before{content: "\E63A";}
+.icon-photograph:before {content:"\E619";}
+.icon-close:before {content:"\E625";}
+.icon-kbd{content:"\E73B";}
+.grace-im-footer{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex; background:#FFFFFF; width:100%; position:fixed; left:0; bottom:0; height:50px; -webkit-flex-wrap:nowrap; -ms-flex-wrap:nowrap; flex-wrap:nowrap; overflow:hidden; -webkit-box-shadow:1px 1px 6px #888; box-shadow:1px 1px 6px #888;}
+.grace-im-footer .grace-items{width:auto; line-height:50px; -webkit-flex-shrink:0; -ms-flex-negative:0; flex-shrink:0;}
+.grace-im-menus{width:44px; height:50px; -webkit-flex-shrink:0; -ms-flex-negative:0; flex-shrink:0; line-height:50px; text-align:center; font-size:32px;}
+.grace-im-input{width:100%; margin:5px; padding:0 8px; background:#F4F5F6; border-radius:5px; height:40px; -webkit-flex-wrap:nowrap; -ms-flex-wrap:nowrap; flex-wrap:nowrap; margin-left:10px;}
+.grace-im-input input{width:100%; background:#F4F5F6; height:20px; margin:8px 0; line-height:20px; border-radius:5px;}
+.grace-im-record{width:100%; position:fixed; left:0; bottom:0; background:#FFF; padding:30px 0; padding-bottom:50px; z-index:11; -webkit-box-shadow:1px 1px 6px #888; box-shadow:1px 1px 6px #888;}
+.grace-im-record-close{width:50px; height:50px; position:absolute; top:0px; right:0px; z-index:100; text-align:center; line-height:50px; color:#ccc; font-size:20px;}
+.grace-im-record-txt{text-align:center; line-height:30px; padding-bottom:10px; color:#ccc;}
+.grace-im-record-btn{width:60px; height:60px; margin:0 auto; border:5px solid #F1F2F3; border-radius:100%; background:#00B26A;}
+.grace-im-recording{background:#FF0000; -webkit-animation:fade linear 2s infinite; animation:fade linear 2s infinite;}
+@-webkit-keyframes fade{from{opacity:0.1;}
+50%{opacity:1;}
+to{opacity:0.1;}}
+@keyframes fade{from{opacity:0.1;}
+50%{opacity:1;}
+to{opacity:0.1;}}
+.grace-im-record-txt text{color:#00B26A; padding:0 12px;}
+.grace-im-send-voice{margin-top:12px; color:#00BA62; text-align:center;}
+.grace-im-send-voice text{margin:0 15px; color:#00BA62;}
+
