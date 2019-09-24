@@ -208,7 +208,7 @@
 	
 	/* 顶部搜索栏 */
 	.input-view {
-		width: 66%;
+		width: 330rpx;
 		display: flex;
 		background-color: #e7e7e7;
 		height: 30px;
