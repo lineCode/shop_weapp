@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "乐众小店",
+  "navigationBarBackgroundColor": "#0177BF",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "tui-modal": "/components/modal/modal"
+  }
+}

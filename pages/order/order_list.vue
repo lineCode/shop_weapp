@@ -1,362 +1,161 @@
 <template>
 	<view>
-		<!-- 顶部导航 -->
-		<view class="topTabBar" :style="{position:headerPosition,top:headerTop}">
-			<view class="grid" v-for="(grid,tbIndex) in orderType" :key="tbIndex" @tap="showType(tbIndex)">
-				<view class="text" :class="[tbIndex==tabbarIndex?'on':'']">{{grid}}</view>
+		<view class="grace-fixed-top top1">
+			<view style="margin-top:16rpx;" class="grace-body">
+				<graceNav :items="tabs" :currentIndex="swiperCurrentIndex" @change="navChange" fontSize="24rpx" :size="138"></graceNav>
 			</view>
 		</view>
-		<!-- 考虑非APP端长列表和复杂的DOM使用scroll-view会卡顿，所以漂浮顶部选项卡使用page本身的滑动 -->
-		<view class="order-list">
-			<view class="list">
-				<view class="onorder" v-if="list.length==0">
-					<image src="../../../static/img/noorder.png"></image>
-					<view class="text">
-						没有相关订单
+		<view style="width:750rpx; height:90rpx;"></view>
+		<!-- 选项卡 -->
+		<view class="grace-tab" style="margin-top:20rpx;">
+			<swiper :style="{height:tabHeight+'px'}" :current="swiperCurrentIndex" @change="swiperChange">
+				<swiper-item class="grace-order-item" v-for="(swiper, index) in tabs" :key="index">
+					<!-- 空数据 -->
+					<view style="margin-top:150rpx;" v-if="loadingTypes[index] == 5">
+						<graceEmpty text="暂无订单数据" :iconSize="80" :iconType="4" iconColor="#999999"></graceEmpty>
 					</view>
-				</view>
-				<view class="row" v-for="(row,index) in list" :key="index">
-					<view class="type">
-						<text class="store-text">
-							吕蒙旗舰店>
-						</text>
-						<text class="type-text">
-							{{typeText[row.type]}}
-						</text>
-						
-					</view>
-					<view class="order-info">
-						<view class="left">
-							<image :src="row.img"></image>
-						</view>
-						<view class="right">
-							<view class="name">
-								{{row.name}}
+					<!-- 订单列表 -->
+					<scroll-view :style="{height:tabHeight+'px'}" scroll-y @scrolltolower="scrollend">
+						<view class="grace-order grace-box-shadow" v-for="(order, orderIndex) in orders[index]" :key="orderIndex">
+							<view class="grace-space-between grace-flex-center">
+								<text class="grace-order-number">订单号 : {{order.orderNumber}}</text>
+								<view class="grace-icons icon-close"><text class="grace-text" style="margin-left:10rpx;" @tap="removeorder(order.orderNumber)">删除订单</text></view>
 							</view>
-							<view class="spec">{{row.spec}}</view>
-							<view class="price-number">
-								￥<view class="price">{{row.price}}</view>
-								x<view class="number">{{row.numner}}</view>
+							<!-- 以商铺为单位进行循环 -->
+							<block v-for="(shop, indexShop) in order.items" :key="shop.shopId">
+								<view class="grace-title">
+									<text class="title grace-black">{{shop.shopName}}</text>
+								</view>
+								<!-- 循环订单商品 -->
+								<view class="grace-order-goods" v-for="(goods, indexGoods) in shop.goods" :key="goods.goods_id">
+									<image :src="goods.goods_img" class="grace-order-goods-img" mode="widthFix"></image>
+									<text class="grace-order-goods-name">{{goods.goods_name}}</text>
+									<view class="grace-order-goods-price">￥{{goods.goods_price}}<text class="grace-order-goods-num"> x {{goods.goods_buynum}}</text></view>
+								</view>
+							</block>
+							<!-- 订单底部 -->
+							<view class="grace-order-footer grace-nowrap">
+								<text class="grace-order-number">{{order.status}} - {{order.orderDate}}</text>
+								<text class="grace-order-btn">查看发票</text>
+								<text class="grace-order-btn grace-order-btn-red">再次购买</text>
 							</view>
 						</view>
-						
-					</view>
-					<view class="detail">
-						<view class="number">共{{row.numner}}件商品</view><view class="sum">合计￥<view class="price">{{row.payment}}</view></view><view class="nominal">(含运费 ￥{{row.freight}})</view>
-					</view>
-					<view class="btns">
-						<block v-if="row.type=='unpaid'"><view class="default" @tap="cancelOrder(row)">取消订单</view><view class="pay" @tap="toPayment(row)">付款</view></block>
-						<block v-if="row.type=='back'"><view class="default" @tap="remindDeliver(row)">提醒发货</view></block>
-						<block v-if="row.type=='unreceived'"><view class="default" @tap="showLogistics(row)">查看物流</view><view class="pay">确认收货</view><view class="pay">我要退货</view></block>
-						<block v-if="row.type=='received'"><view class="default">评价</view><view class="default">再次购买</view></block>
-						<block v-if="row.type=='completed'"><view class="default">再次购买</view></block>
-						<block v-if="row.type=='refunds'"><view class="default">查看进度</view></block>
-						<block v-if="row.type=='cancelled'"><view class="default">已取消</view></block>
-					</view>
-				</view>
-			</view>
+						<!-- 每个选项卡都有一个自己的加载更多  -->
+						<graceLoading :loadingType="loadingTypes[index]"></graceLoading>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
 		</view>
+		<!-- 选项卡 -->
 	</view>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				headerPosition:"fixed",
-				headerTop:"0px",
-				typeText:{
-					unpaid:'等待付款',
-					back:'等待商家发货',
-					unreceived:'商家已发货',
-					received:'等待用户评价',
-					completed:'交易已完成',
-					refunds:'商品退货处理中',
-					cancelled:'订单已取消'
-				},
-				orderType: ['全部','待付款','待使用','未收货','点评'],
-				//订单列表 演示数据
-				orderList:[
-					[
-						{ type:"unpaid",ordersn:0,goods_id: 0, img: '/static/img/goods/p1.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"unpaid",ordersn:1,goods_id: 1, img: '/static/img/goods/p2.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"back",ordersn:2,goods_id: 1, img: '/static/img/goods/p3.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"unreceived",ordersn:3,goods_id: 1, img: '/static/img/goods/p4.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"received",ordersn:4,goods_id: 1, img: '/static/img/goods/p5.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"completed",ordersn:5,goods_id: 1, img: '/static/img/goods/p6.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '168.00',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"refunds",ordersn:6,goods_id: 1, img: '/static/img/goods/p5.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"cancelled",ordersn:7,goods_id: 1, img: '/static/img/goods/p5.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 }
-					],
-					[
-						{ type:"unpaid",ordersn:0,goods_id: 0, img: '/static/img/goods/p1.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 },
-						{ type:"unpaid",ordersn:1,goods_id: 1, img: '/static/img/goods/p2.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 }
-					],
-					[
-						//无
-					],
-					[
-						{ type:"unreceived",ordersn:3,goods_id: 1, img: '/static/img/goods/p4.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 }
-					],
-					[
-						{ type:"received",ordersn:4,goods_id: 1, img: '/static/img/goods/p5.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 }
-					],
-					[
-						{ type:"refunds",ordersn:6,goods_id: 1, img: '/static/img/goods/p5.jpg', name: '商品名称商品名称商品名称商品名称商品名称', price: '￥168',payment:168.00,freight:12.00,spec:'规格:S码',numner:1 }
-					]
-					
-				],
-				list:[],
-				tabbarIndex:0
-			};
-		},
-		onLoad(option) {
-			//option为object类型，会序列化上个页面传递的参数
-			console.log("option: " + JSON.stringify(option));
-			let tbIndex = parseInt(option.type);
-			this.list = this.orderList[tbIndex];
-			this.tabbarIndex = tbIndex;
-		},
-		onPageScroll(e){
-			return;
-			//兼容iOS端下拉时顶部漂移
-			this.headerPosition = e.scrollTop>=0?"fixed":"absolute";
-		},
-		methods: {
-			showType(tbIndex){
-				this.tabbarIndex = tbIndex;
-				this.list = this.orderList[tbIndex];
-			},
-			showLogistics(row){
-				
-			},
-			remindDeliver(row){
-				uni.showToast({
-					title:'已提醒商家发货'
-				})
-			},
-			cancelOrder(row){
-				uni.showModal({
-					title: '取消订单',
-					content: '确定取消此订单？',
-					success: (res)=>{
-						if (res.confirm) {
-							console.log('用户点击确定');
-							this.doCancelOrder(row.ordersn);
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				});
-			},
-			doCancelOrder(ordersn){
-				let typeNum = this.orderList.length;
-				for(let i=0;i<typeNum;i++){
-					let list = this.orderList[i];
-					let orderNum = list.length;
-					if(orderNum>0 && list[0].type=='unpaid'){
-						for(let j=0;j<orderNum;j++){
-							if(this.orderList[i][j].ordersn == ordersn){
-								this.orderList[i][j].type = 'cancelled';
-								break;
-							}
-						}
-					}
-					
-				}
-			},
-			toPayment(row){
-				//本地模拟订单提交UI效果
-				uni.showLoading({
-					title:'正在获取订单...'
-				})
-				let paymentOrder = [];
-				paymentOrder.push(row);
-				setTimeout(()=>{
-					uni.setStorage({
-						key:'paymentOrder',
-						data:paymentOrder,
-						success: () => {
-							uni.hideLoading();
-							uni.navigateTo({
-								url:'../../pay/payment/payment?amount='+row.payment
-							})
-						}
-					})
-				},500)
-			}
+import graceNav from "../../graceUI/components/graceNavBar.vue";
+import graceEmpty from '../../graceUI/components/graceEmpty.vue';
+import graceLoading from "../../graceUI/components/graceLoading.vue";
+var systemInfo = require('../../graceUI/jsTools/systemInfo.js');
+var request = require('../../graceUI/jsTools/request.js');
+
+export default {
+	data() {
+		return {
+			swiperCurrentIndex: 0,
+			tabs: [ '全部', '待付款', '待收货', '已完成', '已取消'],
+			tabHeight : 200,
+			// 订单数据  订单数组和订单状态数组元素一致
+			orders : [[], [], [], [], []],
+			// 订单页码
+			pages : [1,1,1,1,1],
+			// 加载状态
+			loadingTypes : [0,0,0,0,0]
 		}
-	}
+	},
+	onLoad : function () {
+		var system = systemInfo.info();
+		this.tabHeight = system.windowHeight - system.iPhoneXBottomHeightPx - uni.upx2px(110);
+		this.getOrders();
+	},
+	methods:{
+		navChange: function (e) {
+			this.swiperCurrentIndex = e;
+		},
+		swiperChange: function (e) {
+			var index = e.detail.current;
+			this.swiperCurrentIndex = index;
+			// 如果切换时尚未读取数据则读取
+			if(this.orders[this.swiperCurrentIndex].length < 1 && this.loadingTypes[this.swiperCurrentIndex] != 5){ this.getOrders(); }
+		},
+		scrollend : function(){
+			// 避免重复加载
+			if(this.loadingTypes[this.swiperCurrentIndex] == 1 || this.loadingTypes[this.swiperCurrentIndex] == 2){return ;}
+			this.getOrders();
+		},
+		getOrders : function (){
+			console.log('类型 : ' + this.tabs[this.swiperCurrentIndex] + ' 第'+ this.pages[this.swiperCurrentIndex] +'页');
+			this.loadingTypes.splice(this.swiperCurrentIndex, 1, 1);
+			// this.tabs[this.swiperCurrentIndex] 代表向 api 接口传递订单要求返回的订单状态
+			// page 代表第几页
+			// 接口地址组合
+			var url = "http://grace.hcoder.net/api/index/orders/"+this.tabs[this.swiperCurrentIndex]+'/'+this.pages[this.swiperCurrentIndex];
+			request.get(url,{}, res => {
+				if(res.status == 'ok'){
+					// 第一页
+					if(this.pages[this.swiperCurrentIndex] == 1){
+						this.orders.splice(this.swiperCurrentIndex, 1 , res.data);
+					}
+					// 之后的加载页
+					else{
+						this.orders[this.swiperCurrentIndex] = this.orders[this.swiperCurrentIndex].concat(res.data);
+					}
+					// 页码增加
+					this.pages[this.swiperCurrentIndex]++;
+					this.loadingTypes.splice(this.swiperCurrentIndex, 1, 6);
+				}else if(res.status == 'empty'){
+					console.log('empty');
+					this.loadingTypes.splice(this.swiperCurrentIndex, 1, 5);
+				}else if(res.status == 'nomore'){
+					console.log('nomore');
+					this.loadingTypes.splice(this.swiperCurrentIndex, 1, 2);
+				}
+			});
+		},
+		removeorder : function(oid){
+			console.log(oid);
+			uni.showModal({
+				title: '确认提醒',
+				content: '您确定要移除订单 [ ' + oid + ' ] 吗？',
+				success:function(e){
+					if (e.confirm) {
+						//自行完善删除代码
+					}
+				}
+			});
+		}
+	},
+	components:{graceNav, graceEmpty,graceLoading}
+}
 </script>
+<style>
+page{background:#F4F5F6;}
+/* h5 端需要动态增加 44px [ 避开默认的头部导航 ] */
+.top1{top:0; height:90rpx; background-color:#FFFFFF;}
+/* #ifdef H5 */
+.top1{top:44px;}
+/* #endif */
 
-<style lang="scss">
-
-.topTabBar{
-	width: 100%;
-	position: fixed;
-	top: 0;
-	z-index: 10;
-	background-color: #fefefe;
-	height: 80upx;
-	display: flex;
-	justify-content: space-around;
-	.grid{
-		width: 20%;
-		height: 80upx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #444;
-		font-size: 28upx;
-		.text{
-			height: 76upx;
-			display: flex;
-			align-items: center;
-			&.on{
-				color: #409EFF;
-				border-bottom: solid 4upx #409EFF;
-			}
-		}
-		
-	}
-}
-.order-list{
-	margin-top: 80upx;
-	padding-top: 20upx;
-	width: 100%;
-	.list{
-		width: 94%;
-		margin: 0 auto;
-		.onorder{
-			width: 100%;
-			height: 50vw;
-			display: flex;
-			justify-content: center;
-			align-content: center;
-			flex-wrap: wrap;
-			image{
-				width: 20vw;
-				height: 20vw;
-				border-radius: 100%;
-			}
-			.text{
-				width: 100%;
-				height: 60upx;
-				font-size: 28upx;
-				color: #444;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-		}
-		.row{
-			width: calc(100% - 40upx);
-			padding: 10upx 20upx;
-			border-radius: 10upx;
-			background-color: #fff;
-			margin-bottom: 20upx;
-			.type{
-				font-size: 26upx;
-				height: 50upx;
-				align-items: center;
-				.store-text{
-					float: left;
-					color: #303133;
-				}
-				
-				.type-text{
-					float: right;
-					color: #409EFF;
-				}
-			}
-			.order-info{
-				width: 100%;
-				display: flex;
-				.left{
-					flex-shrink: 0;
-					width: 25vw;
-					height: 25vw;
-					image{
-						width: 25vw;
-						height: 25vw;
-						border-radius: 10upx;
-					}
-				}
-				.right{
-					width: 100%;
-					margin-left: 10upx;
-					position: relative;
-					.name{
-						width: 100%;
-						font-size: 28upx;
-						display: -webkit-box;
-						-webkit-box-orient: vertical;
-						-webkit-line-clamp: 2;
-						overflow: hidden;
-					}
-					.spec{
-						color: #a7a7a7;
-						font-size: 22upx;
-
-					}
-					.price-number{
-						position: absolute;
-						bottom: 0;
-						width: 100%;
-						display: flex;
-						justify-content: flex-end;
-						font-size: 22upx;
-						color: #333;
-						display: flex;
-						align-items: flex-end;
-						.price{
-							font-size: 24upx;
-							margin-right: 5upx;
-						}
-						
-					}
-				}
-			}
-			.detail{
-				display: flex;
-				justify-content: flex-end;
-				align-items: flex-end;
-				height: 60upx;
-				font-size: 26upx;
-				.sum{
-					padding: 0 8upx;
-					display: flex;
-					align-items: flex-end;
-					.price{
-						font-size: 30upx;
-					}
-				}
-				
-			}
-			.btns{
-				height: 80upx;
-				display: flex;
-				align-items: center;
-				justify-content: flex-end;
-				view{
-					min-width: 120upx;
-					height: 50upx;
-					padding: 0 20upx;
-					border-radius: 50upx;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					font-size: 28upx;
-					margin-left: 20upx;
-				}
-				.default{
-					border: solid 1upx #ccc;
-					color: #666;
-				}
-				.pay{
-					border: solid 1upx #409EFF;
-					color: #409EFF;
-				}
-			}
-		}
-	}
-}
+.grace-common-line{background-color:#FFFFFF;}
+.grace-order-item{width:750rpx; height:auto;}
+.grace-order{background-color:#FFFFFF; padding:20rpx; margin:0 25rpx; border-radius:10rpx; margin-bottom:50rpx; width:660rpx;}
+.grace-shop{line-height:60rpx; font-size:28rpx; font-weight:bold; color:#333333;}
+.grace-order-goods{font-size:0; overflow:hidden; width:660rpx; display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center; padding-bottom:20rpx; margin:10rpx 0;}
+.grace-order-goods-img{width:100rpx; height:100rpx;}
+.grace-order-goods-name{line-height:40rpx; height:80rpx; width:100rpx; flex:auto; overflow:hidden; font-size:26rpx; margin:0 20rpx; color:#666666;}
+.grace-order-goods-price{font-size:26rpx; line-height:50rpx; color:#333333; padding-left:10rpx; font-weight:bold;}
+.grace-order-goods-num{font-size:22rpx; color:#999999; margin-left:10rpx;}
+.icon-close{font-size:28rpx; color:#999999; margin-left:30rpx;}
+.grace-order-footer{margin-top:2px;}
+.grace-order-number{line-height:50rpx; color:#999999; font-size:24rpx; width:100rpx; flex:auto;}
+.grace-order-status{line-height:50rpx; color:#999999; font-size:24rpx; width:100rpx; flex:auto; text-align:center;}
+.grace-order-btn{display:block; width:150rpx; height:50rpx; line-height:50rpx; color:#999999; font-size:22rpx; text-align:center; border-radius:60rpx; border:1px solid #999999; margin-left:20rpx;}
+.grace-order-btn-red{border-color:#FF0036; color:#FF0036;}
 </style>

@@ -22,6 +22,9 @@
 <style lang="scss">
 	/*每个页面公共css */
 	@import "/static/iconfont/font.scss";
+	
+	@import "./graceUI/graceIcons.css";
+	@import "./graceUI/graceUI.css";
 
 	page {
 		background-color: #fafafa;

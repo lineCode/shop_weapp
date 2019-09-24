@@ -1,0 +1,1 @@
+<view><view class="graceImmersedStatusbar" style="{{'background:'+(bgColor)+';'+('height:'+(height)+';')}}"></view><view style="{{'height:'+(height)+';'+('width:'+('100%')+';')}}"></view></view>
