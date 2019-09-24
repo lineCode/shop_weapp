@@ -1,9 +1,153 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页",
+				"navigationBarTextStyle":"white",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/local/local",
+			"style": {
+				"navigationBarTitleText": "本地生活馆",
+				"navigationBarTextStyle":"white",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/store/offline_store",
+			"style": {
+				"navigationBarTitleText": "商家信息",
+				"navigationBarTextStyle":"white",
+				"navigationBarBackgroundColor":"#0177BF"
+			}
+		},
+		{
+			"path": "pages/product/product_list",
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
+		},
+		{
+			"path": "pages/product/product_info",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
+			"path": "pages/store/online_store",
+			"style": {
+				"navigationBarTitleText": "线上商家",
+				"navigationBarTextStyle":"white",
+				"navigationBarBackgroundColor":"#0177BF"
+			}
+		},
+		{
+			"path": "pages/chat/chat_info",
+			"style": {
+				"navigationBarTitleText": "对话"
+			}
+		},
+		{
+			"path": "pages/chat/chat_list",
+			"style": {
+				"navigationBarTitleText": "消息列表"
+			}
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "乐众小店",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/order/order_list",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/coupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/product_collect",
+			"style": {
+				"navigationBarTitleText": "商品收藏",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/store_collect",
+			"style": {
+				"navigationBarTitleText": "店铺收藏",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/deposit",
+			"style": {
+				"navigationBarTitleText": "在线充值",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/deposit_success",
+			"style": {
+				"navigationBarTitleText": "充值成功",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/remain_money",
+			"style": {
+				"navigationBarTitleText": "余额明细",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/location_list",
+			"style": {
+				"navigationBarTitleText": "收货地址",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/user/location_edit",
+			"style": {
+				"navigationBarTitleText": "收货地址",
+				"navigationBarBackgroundColor":"#0177BF",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	],
@@ -12,5 +156,42 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#333C4F",
+		"selectedColor": "#0177BF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/tab/home.png",
+				"selectedIconPath": "static/tab/home-current.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/local/local",
+				"iconPath": "static/tab/local.png",
+				"selectedIconPath": "static/tab/local-current.png",
+				"text": "本地生活馆"
+			},
+			{
+				"pagePath": "pages/chat/chat_list",
+				"iconPath": "static/tab/chat.png",
+				"selectedIconPath": "static/tab/chat-current.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/tab/cart.png",
+				"selectedIconPath": "static/tab/cart-current.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "static/tab/user.png",
+				"selectedIconPath": "static/tab/user-current.png",
+				"text": "我的"
+			}
+		]
 	}
 }
