@@ -1,6 +1,10 @@
 {
   "navigationBarTitleText": "首页",
-  "navigationBarTextStyle": "white",
+  "scrollIndicator": "none",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "search-header": "/components/layouts/SearchHeader",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+  }
 }

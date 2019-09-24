@@ -1,0 +1,1 @@
+<view><grace-header vue-id="1" background="linear-gradient(to right, #0081ff 0%,#1cbbb4 80%)" bind:__l="__l" vue-slots="{{['default']}}"><view class="grace-header-body"><text class="grace-white title">{{title}}</text></view></grace-header></view>

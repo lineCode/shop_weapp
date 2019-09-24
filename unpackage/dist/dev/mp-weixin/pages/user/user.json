@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "乐众小店",
-  "navigationBarBackgroundColor": "#0177BF",
+  "scrollIndicator": "none",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "common-header": "/components/layouts/CommonHeader"
+  }
 }
