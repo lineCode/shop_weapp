@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "首页",
-  "scrollIndicator": "none",
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {

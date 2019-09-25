@@ -4,7 +4,6 @@
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"scrollIndicator": "none",
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white",
 				"app-plus": {
@@ -95,7 +94,7 @@
 			"path": "pages/order/order_list",
 			"style": {
 				"navigationBarTitleText": "我的订单",
-				"navigationBarBackgroundColor": "#0177BF",
+				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
 		},

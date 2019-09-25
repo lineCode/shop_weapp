@@ -1604,102 +1604,6 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 179:
-/*!********************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 获取系统信息并识别 iphoneX
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-module.exports = {
-  info: function info() {
-    try {
-      var res = uni.getSystemInfoSync();
-      var iPhoneXBottom = 0;
-      if (res.model.indexOf('iPhoneX') != -1) {
-        res.iPhoneXBottomHeightRpx = 72;
-        res.iPhoneXBottomHeightPx = uni.upx2px(72);
-      } else {
-        res.iPhoneXBottomHeightRpx = 0;
-        res.iPhoneXBottomHeightPx = 0;
-      }
-      return res;
-    } catch (e) {
-      return null;
-    }
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 180:
-/*!*****************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 网络请求工具
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-
-module.exports = {
-
-  get: function get(url, data, callback, headers) {
-    uni.request({
-      url: url,
-      data: data,
-      method: "GET",
-      dataType: "json",
-      header: headers,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  },
-
-  post: function post(url, data, contentType, headers, callback) {
-    switch (contentType) {
-      case "form":
-        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
-        break;
-      case "json":
-        var headerObj = { 'content-type': 'application/json' };
-        break;
-      default:
-        var headerObj = { 'content-type': 'application/json' };}
-
-    for (var k in headers) {headerObj[k] = headers[k];}
-    uni.request({
-      url: url,
-      data: data,
-      method: "POST",
-      dataType: "json",
-      header: headerObj,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -8609,7 +8513,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationBarTitleText": "首页", "scrollIndicator": "none", "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/local/local": { "navigationBarTitleText": "本地生活馆", "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/store/offline_store": { "navigationBarTitleText": "商家信息", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF" }, "pages/product/product_list": { "navigationBarTitleText": "商品列表" }, "pages/product/product_info": { "navigationBarTitleText": "商品详情", "scrollIndicator": "none", "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/store/online_store": { "navigationBarTitleText": "线上商家", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF" }, "pages/chat/chat_info": { "navigationBarTitleText": "对话" }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表" }, "pages/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/user/user": { "navigationBarTitleText": "乐众小店", "scrollIndicator": "none", "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/order/order_list": { "navigationBarTitleText": "我的订单", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/coupon": { "navigationBarTitleText": "我的优惠券", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/location_list": { "navigationBarTitleText": "收货地址", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/location_edit": { "navigationBarTitleText": "收货地址", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationBarTitleText": "首页", "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "search-header": "/components/layouts/SearchHeader", "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar" } }, "pages/local/local": { "navigationBarTitleText": "本地生活馆", "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": {} }, "pages/store/offline_store": { "navigationBarTitleText": "商家信息", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF", "usingComponents": {} }, "pages/product/product_list": { "navigationBarTitleText": "商品列表", "usingComponents": {} }, "pages/product/product_info": { "navigationBarTitleText": "商品详情", "scrollIndicator": "none", "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/store/online_store": { "navigationBarTitleText": "线上商家", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF", "usingComponents": {} }, "pages/chat/chat_info": { "navigationBarTitleText": "对话", "usingComponents": {} }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表", "usingComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/user/user": { "navigationBarTitleText": "乐众小店", "scrollIndicator": "none", "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/order/order_list": { "navigationBarTitleText": "我的订单", "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-nav": "/graceUI/components/graceNavBar", "grace-empty": "/graceUI/components/graceEmpty", "grace-loading": "/graceUI/components/graceLoading", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/coupon": { "navigationBarTitleText": "我的优惠券", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/location_list": { "navigationBarTitleText": "收货地址", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/location_edit": { "navigationBarTitleText": "收货地址", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
@@ -8622,6 +8526,102 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__D0DEE11" };exports.default = _default;
+
+/***/ }),
+
+/***/ 87:
+/*!********************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 获取系统信息并识别 iphoneX
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+module.exports = {
+  info: function info() {
+    try {
+      var res = uni.getSystemInfoSync();
+      var iPhoneXBottom = 0;
+      if (res.model.indexOf('iPhoneX') != -1) {
+        res.iPhoneXBottomHeightRpx = 72;
+        res.iPhoneXBottomHeightPx = uni.upx2px(72);
+      } else {
+        res.iPhoneXBottomHeightRpx = 0;
+        res.iPhoneXBottomHeightPx = 0;
+      }
+      return res;
+    } catch (e) {
+      return null;
+    }
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 88:
+/*!*****************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 网络请求工具
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+
+module.exports = {
+
+  get: function get(url, data, callback, headers) {
+    uni.request({
+      url: url,
+      data: data,
+      method: "GET",
+      dataType: "json",
+      header: headers,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  },
+
+  post: function post(url, data, contentType, headers, callback) {
+    switch (contentType) {
+      case "form":
+        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
+        break;
+      case "json":
+        var headerObj = { 'content-type': 'application/json' };
+        break;
+      default:
+        var headerObj = { 'content-type': 'application/json' };}
+
+    for (var k in headers) {headerObj[k] = headers[k];}
+    uni.request({
+      url: url,
+      data: data,
+      method: "POST",
+      dataType: "json",
+      header: headerObj,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

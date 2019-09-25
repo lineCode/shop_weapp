@@ -1,10 +1,11 @@
 {
   "navigationBarTitleText": "我的订单",
-  "navigationBarBackgroundColor": "#0177BF",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "grace-nav": "/graceUI/components/graceNavBar",
     "grace-empty": "/graceUI/components/graceEmpty",
-    "grace-loading": "/graceUI/components/graceLoading"
+    "grace-loading": "/graceUI/components/graceLoading",
+    "common-header": "/components/layouts/CommonHeader"
   }
 }
