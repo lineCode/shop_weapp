@@ -42,7 +42,14 @@
 		{
 			"path": "pages/product/product_info",
 			"style": {
-				"navigationBarTitleText": "商品详情"
+				"navigationBarTitleText": "商品详情",
+				"scrollIndicator": "none",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
 			}
 		},
 		{

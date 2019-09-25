@@ -34,7 +34,7 @@
 					</view>
 
 					<view class="banner-container">
-						<image src="/static/img/laopo/4.png" mode="aspectFill"></image>
+						<image src="/static/logo.png" mode="aspectFill"></image>
 					</view>
 
 					<view class="title-devider">
@@ -72,56 +72,56 @@
 			return {
 				goodsList: [{
 						goods_id: 0,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 1,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 2,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 3,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 4,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 5,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 6,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
 					},
 					{
 						goods_id: 7,
-						img: '/static/img/goods/p1.jpg',
+						img: '/static/logo.png',
 						name: '商品名称商品名称商品名称商品名称商品名称',
 						price: '￥168',
 						slogan: '1235人付款'
@@ -136,17 +136,17 @@
 				swiperList: [{
 						id: 1,
 						src: 'url1',
-						img: '/static/img/1.jpg'
+						img: '/static/logo.png',
 					},
 					{
 						id: 2,
 						src: 'url2',
-						img: '/static/img/2.jpg'
+						img: '/static/logo.png',
 					},
 					{
 						id: 3,
 						src: 'url3',
-						img: '/static/img/3.jpg'
+						img: '/static/logo.png',
 					}
 				],
 				tabbar: [
@@ -318,11 +318,6 @@
 		padding-top: 70rpx;
 	}
 
-	.uni-navbar--shadow {
-		-webkit-box-shadow: 0 1px 2px #ccc;
-		box-shadow: 0 0.5px 2px #ccc;
-	}
-
 	.swiper {
 		width: 100%;
 		display: flex;
@@ -334,7 +329,6 @@
 			margin-top: 18rpx;
 			border-radius: 20rpx;
 			overflow: hidden;
-			box-shadow: 0upx 8upx 25upx rgba(0, 0, 0, 0.2);
 			//兼容ios，微信小程序
 			position: relative;
 			z-index: 1;

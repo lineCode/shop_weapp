@@ -1,4 +1,9 @@
 {
   "navigationBarTitleText": "商品详情",
-  "usingComponents": {}
+  "scrollIndicator": "none",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "common-header": "/components/layouts/CommonHeader"
+  }
 }
