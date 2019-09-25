@@ -2,7 +2,7 @@
 	<view>
 		<common-header title="我的订单"></common-header>
 		<view>
-			<view class="grace-fixed-top top1">
+			<view :style="{top:statusBarHeight+'px'}" class="grace-fixed-top top1">
 				<view style="margin-top:16rpx;" class="grace-body">
 					<graceNav :items="tabs" :currentIndex="swiperCurrentIndex" activeLineWidth="100%" margin="20" @change="navChange"
 					 fontSize="24rpx" :size="120" :textAlign="center" :isCenter="true"></graceNav>
@@ -66,6 +66,7 @@
 	export default {
 		data() {
 			return {
+				statusBarHeight: 0,
 				swiperCurrentIndex: 0,
 				tabs: ['全部', '待付款', '待使用', '未收货', '点评'],
 				tabHeight: 200,
@@ -87,6 +88,7 @@
 			var system = systemInfo.info();
 			this.tabHeight = system.windowHeight - system.iPhoneXBottomHeightPx - uni.upx2px(110);
 			this.getOrders();
+			this.statusBarHeight = system.statusBarHeight + 44
 		},
 		methods: {
 			navChange: function(e) {
@@ -158,9 +160,9 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.top1 {
-		top: 65px;
+		top: 87px;
 		height: 90rpx;
 		background-color: #FFFFFF;
 	}
