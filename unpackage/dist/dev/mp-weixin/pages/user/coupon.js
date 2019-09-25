@@ -120,12 +120,47 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var graceCoupons = function graceCoupons() {return __webpack_require__.e(/*! import() | graceUI/components/graceCoupons */ "graceUI/components/graceCoupons").then(__webpack_require__.bind(null, /*! ../../graceUI/components/graceCoupons.vue */ 182));};var CommonHeader = function CommonHeader() {return __webpack_require__.e(/*! import() | components/layouts/CommonHeader */ "components/layouts/CommonHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/CommonHeader */ 154));};var _default =
 
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  data: function data() {
+    return {
+      coupons: [
+      {
+        color: '#FF3456', ltBg: "#FFFFFF", height: '180rpx',
+        unit: "￥", number: 10, txt: "满50元可用", title: "电器专场用券", desc: "有效期至 2018-05-28",
+        btn: "已领取" },
+
+      {
+        color: '#FF8830', ltBg: "#FFFFFF", height: '180rpx',
+        unit: "￥", number: 100, txt: "满500元可用", title: "服饰专场用券", desc: "有效期至 2018-05-28",
+        btn: "领券" }] };
+
+
+
+  },
+  components: {
+    "grace-coupons": graceCoupons,
+    CommonHeader: CommonHeader },
+
+  methods: {
+    getIt: function getIt(e) {
+      console.log(JSON.stringify(e));
+      // 点击数据可用通过 data- 方式设置及获取
+      // 点击代码请自行完善
+    } } };exports.default = _default;
 
 /***/ })
 

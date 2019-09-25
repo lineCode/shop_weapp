@@ -1,6 +1,8 @@
 {
-  "navigationBarTitleText": "我的优惠券",
-  "navigationBarBackgroundColor": "#0177BF",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "grace-coupons": "/graceUI/components/graceCoupons",
+    "common-header": "/components/layouts/CommonHeader"
+  }
 }

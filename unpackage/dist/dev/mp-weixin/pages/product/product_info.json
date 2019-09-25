@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "商品详情",
-  "scrollIndicator": "none",
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {

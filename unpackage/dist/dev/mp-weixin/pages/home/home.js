@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 139));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 144));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 142));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 147));};var _default =
 
 
 
