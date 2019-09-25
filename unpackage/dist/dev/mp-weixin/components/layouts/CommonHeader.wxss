@@ -5,4 +5,7 @@
 	line-height: 44px;
 	font-size: 36rpx;
 }
+.title.back-title{
+	margin-left: 6rpx;
+}
 

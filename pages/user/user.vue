@@ -1,6 +1,6 @@
 	<template>
 	<view>
-		<common-header title="乐众小店"></common-header>
+		<common-header hideBack="true" title="乐众小店"></common-header>
 		<view class="header">
 			<view class="userinfo">
 				<view class="face">

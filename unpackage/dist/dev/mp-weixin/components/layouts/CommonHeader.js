@@ -117,8 +117,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 {
-  props: ['title'],
+  props: ['title', 'hideBack'],
   components: {
     graceHeader: graceHeader },
 
@@ -131,7 +133,13 @@ __webpack_require__.r(__webpack_exports__);
         that.winHeight = calc;
       } });
 
-  } };exports.default = _default;
+  },
+  methods: {
+    goback: function goback() {
+      uni.navigateBack({});
+
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
