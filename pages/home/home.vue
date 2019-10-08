@@ -3,7 +3,7 @@
 		<search-header></search-header>
 		<view>
 			<scroll-view scroll-x scroll-with-animation class="tab-view" :scroll-left="scrollLeft">
-				<view v-for="(item,index) in tabbar" :key="index" class="tab-bar-item" :class="[currentTab==index ? 'active' : '']"
+				<view v-for="(item,index) in category" :key="index" class="tab-bar-item" :class="[currentTab==index ? 'active' : '']"
 				 :data-current="index" @tap.stop="swichNav">
 					<text class="tab-bar-title">{{item}}</text>
 				</view>
@@ -57,19 +57,22 @@
 				</view>
 			</scroll-view>
 		</view>
+		<confirm-login></confirm-login>
 	</view>
 </template>
 <script>
 	import SearchHeader from '@/components/layouts/SearchHeader.vue';
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
-
+	import confirmLogin from '@/components/confirmLogin.vue';
 	export default {
 		components: {
 			SearchHeader,
-			uniNavBar
+			uniNavBar,
+			confirmLogin
 		},
 		data() {
 			return {
+				showconfirmLogin: true,
 				goodsList: [{
 						goods_id: 0,
 						img: '/static/logo.png',
@@ -149,7 +152,7 @@
 						img: '/static/logo.png',
 					}
 				],
-				tabbar: [
+				category: [
 					'热门',
 					'美食',
 					'男装',
@@ -166,10 +169,24 @@
 			}
 		},
 		onLoad() {
-
+			this.getCategory()
 		},
 		methods: {
-
+			getCategory() {
+				uni.request({
+					url: getApp().globalData.api + 'category/index',
+					method:'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id')
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.category = res.data.options
+					}
+				});
+			},
 			toProduct(id) {
 				uni.navigateTo({
 					url: "/pages/product/product_info?id=" + id
@@ -209,6 +226,7 @@
 
 
 <style lang="scss">
+	
 	.header-bar {
 		background: #0177BF;
 	}

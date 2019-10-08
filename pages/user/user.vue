@@ -4,11 +4,11 @@
 		<view class="header">
 			<view class="userinfo">
 				<view class="face">
-					<image src="/static/logo.png"></image>
+					<image :src="userinfo.avatar"></image>
 				</view>
 				<view class="info">
-					<view class="username">{{userinfo.username}}</view>
-					<view class="integral">积分:{{userinfo.integral}}</view>
+					<view class="username">{{userinfo.nickname}}</view>
+					<view class="integral">积分:100</view>
 				</view>
 			</view>
 			<view class="setting">
@@ -137,18 +137,13 @@
 				],
 			};
 		},
-		onLoad() {
+		onShow() {
 			//加载
 			this.init();
 		},
 		methods: {
 			init() {
-				//用户信息
-				this.userinfo = {
-					face: '/static/img/face.jpg',
-					username: "吕蒙",
-					integral: "1435"
-				}
+				this.userinfo = uni.getStorageSync('userInfo')
 			},
 			toInnerType(index) {
 				let url = ''

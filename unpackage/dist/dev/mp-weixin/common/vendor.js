@@ -1604,7 +1604,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 141:
+/***/ 143:
 /*!**********************************************************!*\
   !*** C:/code/shop_weapp/graceUI/jsTools/graceChecker.js ***!
   \**********************************************************/
@@ -7679,7 +7679,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 201:
+/***/ 222:
 /*!************************************************************************!*\
   !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/province.js ***!
   \************************************************************************/
@@ -7829,7 +7829,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 202:
+/***/ 223:
 /*!********************************************************************!*\
   !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/city.js ***!
   \********************************************************************/
@@ -9343,7 +9343,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 203:
+/***/ 224:
 /*!********************************************************************!*\
   !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/area.js ***!
   \********************************************************************/
@@ -22842,7 +22842,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "search-header": "/components/layouts/SearchHeader", "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar" } }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": {} }, "pages/store/offline_store": { "navigationBarTitleText": "商家信息", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF", "usingComponents": {} }, "pages/product/product_list": { "navigationBarTitleText": "商品列表", "usingComponents": {} }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/store/online_store": { "navigationBarTitleText": "线上商家", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF", "usingComponents": {} }, "pages/chat/chat_info": { "navigationBarTitleText": "对话", "usingComponents": {} }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表", "usingComponents": {} }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-number-box": "/graceUI/components/graceNumberBox", "grace-empty": "/graceUI/components/graceEmpty", "grace-check-btn": "/graceUI/components/graceCheckBtn", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-nav": "/graceUI/components/graceNavBar", "grace-empty": "/graceUI/components/graceEmpty", "grace-loading": "/graceUI/components/graceLoading", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-coupons": "/graceUI/components/graceCoupons", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "mpvue-picker": "/graceUI/threeComponents/mpvuePicker", "mpvue-city-picker": "/graceUI/threeComponents/mpvueCityPicker", "common-header": "/components/layouts/CommonHeader" } } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/store/offline_store": { "navigationBarTitleText": "商家信息", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF" }, "pages/product/product_list": { "navigationBarTitleText": "商品列表" }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/store/online_store": { "navigationBarTitleText": "线上商家", "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#0177BF" }, "pages/chat/chat_info": { "navigationBarTitleText": "对话" }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表" }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
@@ -22858,7 +22858,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 87:
+/***/ 89:
 /*!********************************************************!*\
   !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
   \********************************************************/
@@ -22896,7 +22896,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 88:
+/***/ 90:
 /*!*****************************************************!*\
   !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
   \*****************************************************/

@@ -131,7 +131,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 142));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 147));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 144));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 149));};var confirmLogin = function confirmLogin() {return __webpack_require__.e(/*! import() | components/confirmLogin */ "components/confirmLogin").then(__webpack_require__.bind(null, /*! @/components/confirmLogin.vue */ 156));};var _default =
+
 
 
 
@@ -199,10 +200,12 @@ __webpack_require__.r(__webpack_exports__);
 {
   components: {
     SearchHeader: SearchHeader,
-    uniNavBar: uniNavBar },
+    uniNavBar: uniNavBar,
+    confirmLogin: confirmLogin },
 
   data: function data() {
     return {
+      showconfirmLogin: true,
       goodsList: [{
         goods_id: 0,
         img: '/static/logo.png',
@@ -282,7 +285,7 @@ __webpack_require__.r(__webpack_exports__);
         img: '/static/logo.png' }],
 
 
-      tabbar: [
+      category: [
       '热门',
       '美食',
       '男装',
@@ -299,10 +302,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   onLoad: function onLoad() {
-
+    this.getCategory();
   },
   methods: {
+    getCategory: function getCategory() {var _this = this;
+      uni.request({
+        url: getApp().globalData.api + 'category/index',
+        method: 'GET',
+        data: {
+          open_id: uni.getStorageSync('open_id') },
 
+        header: {
+          'content-type': 'application/json' //自定义请求头信息
+        },
+        success: function success(res) {
+          _this.category = res.data.options;
+        } });
+
+    },
     toProduct: function toProduct(id) {
       uni.navigateTo({
         url: "/pages/product/product_info?id=" + id });
