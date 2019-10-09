@@ -36,6 +36,13 @@
 			}
 		},
 		{
+			"path": "pages/product/ratings",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/store/online_store",
 			"style": {
 				"navigationBarTitleText": "线上商家",

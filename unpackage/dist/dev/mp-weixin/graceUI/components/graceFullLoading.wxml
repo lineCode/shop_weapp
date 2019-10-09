@@ -1,0 +1,1 @@
+<block wx:if="{{graceFullLoading}}"><view data-event-opts="{{[['tap',[['stopFun',['$event']]]],['touchmove',[['stopFun',['$event']]]]]}}" class="grace-full-loading" catchtap="__e" catchtouchmove="__e"><view class="content"><view class="image"><image src="{{logoUrl}}" mode="widthFix"></image></view><view class="text">{{text}}</view></view></view></block>

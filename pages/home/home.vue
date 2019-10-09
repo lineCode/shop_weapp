@@ -3,9 +3,9 @@
 		<search-header></search-header>
 		<view>
 			<scroll-view scroll-x scroll-with-animation class="tab-view" :scroll-left="scrollLeft">
-				<view v-for="(item,index) in category" :key="index" class="tab-bar-item" :class="[currentTab==index ? 'active' : '']"
-				 :data-current="index" @tap.stop="swichNav">
-					<text class="tab-bar-title">{{item}}</text>
+				<view v-for="(item,index) in category" :key="item.id" class="tab-bar-item" :class="[currentTab==item.id ? 'active' : '']"
+				 :data-current="item.id" @tap.stop="swichNav">
+					<text class="tab-bar-title">{{item.name}}</text>
 				</view>
 			</scroll-view>
 
@@ -14,12 +14,12 @@
 					<view class="swiper" v-if="currentTab == 0">
 						<view class="swiper-box">
 							<swiper circular="true" autoplay="true" @change="swiperChange">
-								<swiper-item v-for="swiper in swiperList" :key="swiper.id">
-									<image :src="swiper.img" mode="aspectFill" @tap="toSwiper(swiper)"></image>
+								<swiper-item v-for="item in banners" :key="item.id">
+									<image :src="item.attach" mode="aspectFill"></image>
 								</swiper-item>
 							</swiper>
 							<view class="indicator">
-								<view class="dots" v-for="(swiper, index) in swiperList" :class="[currentSwiper >= index ? 'on' : '']" :key="index"></view>
+								<view class="dots" v-for="(swiper, index) in banners" :class="[currentSwiper >= index ? 'on' : '']" :key="index"></view>
 							</view>
 						</view>
 					</view>
@@ -34,7 +34,7 @@
 					</view>
 
 					<view class="banner-container">
-						<image src="/static/logo.png" mode="aspectFill"></image>
+						<image :src="sigleBanner.attach" mode="aspectFill"></image>
 					</view>
 
 					<view class="title-devider">
@@ -43,12 +43,12 @@
 
 					<view class="goods-list">
 						<view class="product-list">
-							<view class="product grace-box-shadow" v-for="(goods) in goodsList" :key="goods.goods_id" @tap="toProduct(goods.goods_id)">
-								<image mode="widthFix" :src="goods.img"></image>
-								<view class="name">{{goods.name}}</view>
+							<view class="product grace-box-shadow" v-for="item in productList" :key="item.id" @tap="toProduct(item.id)">
+								<image mode="aspectFill" :src="item.thumb"></image>
+								<view class="name">{{item.name}}</view>
 								<view class="info">
-									<view class="price">{{goods.price}}</view>
-									<view class="slogan">{{goods.slogan}}</view>
+									<view class="price">￥{{item.price}}</view>
+									<view class="slogan">{{item.sold}}人付款</view>
 								</view>
 							</view>
 						</view>
@@ -152,30 +152,45 @@
 						img: '/static/logo.png',
 					}
 				],
-				category: [
-					'热门',
-					'美食',
-					'男装',
-					'女装',
-					'数码',
-					'箱包',
-					'百货',
-					'美妆',
-					'家居'
-				],
+				banners: [],
+				category: [],
+				sigleBanner: {},
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
-				scrollLeft: 0 //tab标题的滚动条位置
+				scrollLeft: 0 ,//tab标题的滚动条位置
+				productList: [],
+				hasMore: 1,
 			}
 		},
 		onLoad() {
 			this.getCategory()
+			this.getBanner()
+			this.getList(0)
 		},
 		methods: {
+			// 商品列表
+			getList(category) {
+				uni.request({
+					url: getApp().globalData.api + 'product/index',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+						category_id: category
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.productList = res.data.data.list
+						this.hasMore = res.data.data.has_more
+					}
+				});
+			},
+			// 顶部分类
 			getCategory() {
 				uni.request({
 					url: getApp().globalData.api + 'category/index',
-					method:'GET',
+					method: 'GET',
 					data: {
 						open_id: uni.getStorageSync('open_id')
 					},
@@ -183,7 +198,24 @@
 						'content-type': 'application/json' //自定义请求头信息
 					},
 					success: (res) => {
-						this.category = res.data.options
+						this.category = res.data.data
+					}
+				});
+			},
+			// 获取banner图片
+			getBanner() {
+				uni.request({
+					url: getApp().globalData.api + 'system/banners',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id')
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.banners = res.data.data.list
+						this.sigleBanner = res.data.data.single
 					}
 				});
 			},
@@ -226,7 +258,6 @@
 
 
 <style lang="scss">
-	
 	.header-bar {
 		background: #0177BF;
 	}
@@ -439,7 +470,7 @@
 				border-radius: 10upx;
 				background-color: #fff;
 				margin: 0 0 20upx 0;
-				
+
 				image {
 					width: 340rpx;
 					height: 340rpx;
@@ -478,7 +509,8 @@
 			}
 		}
 	}
-	
-	.five > .items{width:20%;}
-	
+
+	.five>.items {
+		width: 20%;
+	}
 </style>

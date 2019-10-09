@@ -5,9 +5,6 @@
 		<view class="header">
 			<!-- 头部-默认显示 -->
 			<view class="before" :style="{ opacity: 1 - afterHeaderOpacity, zIndex: beforeHeaderzIndex }">
-				<view class="back">
-					<view class="icon xiangqian" @tap="back" v-if="showBack"></view>
-				</view>
 				<view class="middle"></view>
 				<view class="icon-btn">
 					<view class="icon tongzhi" @tap="toMsg"></view>
@@ -16,9 +13,6 @@
 			</view>
 			<!-- 头部-滚动渐变显示 -->
 			<view class="after" :style="{ opacity: afterHeaderOpacity, zIndex: afterHeaderzIndex }">
-				<view class="back">
-					<view class="icon xiangqian" @tap="back" v-if="showBack"></view>
-				</view>
 				<view class="middle">
 					<view v-for="(anchor,index) in anchorlist" :class="[selectAnchor==index ?'on':'']" :key="index" @tap="toAnchor(index)">{{anchor.name}}</view>
 				</view>
@@ -39,9 +33,9 @@
 					<view class="icon kefu"></view>
 					<view class="text">客服</view>
 				</view>
-				<view class="box" @tap="keep">
-					<view class="icon" :class="[isKeep?'shoucangsel':'shoucang']"></view>
-					<view class="text">{{isKeep?'已':''}}收藏</view>
+				<view class="box" @tap="collect">
+					<view class="icon" :class="[info.is_collect == 1 ?'shoucangsel':'shoucang']"></view>
+					<view class="text">{{info.is_collect == 1 ? '已':''}}收藏</view>
 				</view>
 			</view>
 			<view class="btn">
@@ -135,18 +129,15 @@
 		</view>
 		<!-- 商品主图轮播 -->
 		<view class="swiper-box">
-			<swiper circular="true" autoplay="true" @change="swiperChange">
-				<swiper-item v-for="swiper in swiperList" :key="swiper.id">
-					<image :src="swiper.img" mode="aspectFill"></image>
-				</swiper-item>
-			</swiper>
-			<view class="indicator">{{currentSwiper+1}}/{{swiperList.length}}</view>
+			<view style="width: 750rpx;height: 750rpx;">
+				<image mode="aspectFill" style="height: 750rpx;width: 750rpx;" :src="info.thumb"></image>
+			</view>
 		</view>
 		<!-- 标题 价格 -->
 		<view class="info-box goods-info">
-			<view class="price">￥{{goodsData.price}}</view>
+			<view class="price">￥{{info.price}}</view>
 			<view class="title">
-				{{goodsData.name}}
+				{{info.name}}
 			</view>
 		</view>
 		<!-- 服务-规则选择 -->
@@ -167,7 +158,6 @@
 					<view class="sp">
 						<view v-for="(item,index) in goodsData.spec" :key="index" :class="[index==selectSpec?'on':'']">{{item}}</view>
 					</view>
-
 				</view>
 				<view class="arrow">
 					<view class="icon xiangyou"></view>
@@ -175,31 +165,31 @@
 			</view>
 		</view>
 		<!-- 评价 -->
-		<view class="info-box comments" id="comments">
+		<view class="info-box comments" id="comments" v-if="info.evalue.length > 0">
 			<view class="row">
-				<view class="text">商品评价({{goodsData.comment.number}})</view>
-				<view class="arrow" @tap="toRatings">
-					<view class="show" @tap="showComments(goodsData.id)">
+				<view class="text">商品评价</view>
+				<view class="arrow" @tap="toEvalues(info.id)">
+					<view class="show">
 						查看全部
 						<view class="icon xiangyou"></view>
 					</view>
 				</view>
 			</view>
-			<view class="comment" @tap="toRatings">
+			<view class="comment" @tap="toEvalues(info.id)">
 				<view class="user-info">
 					<view class="face">
-						<image :src="goodsData.comment.userface"></image>
+						<image :src="info.evalue.avatar"></image>
 					</view>
-					<view class="username">{{goodsData.comment.username}}</view>
+					<view class="username">{{info.evalue.nickname}}</view>
 				</view>
 				<view class="content">
-					{{goodsData.comment.content}}
+					{{info.evalue.content}}
 				</view>
 			</view>
 		</view>
 		
 		<view class="grace-card-view grace-margin-top">
-			<view class="body">
+			<view class="body" style="padding-bottom: 0;border-bottom: none;">
 				<view class="img">
 					<image src="/static/logo.png" />
 				</view>
@@ -214,52 +204,34 @@
 			</view>
 		</view>
 		<!-- 详情 -->
-		<view class="description">
+		<view class="description" style="margin-bottom: 120rpx;">
 			<view class="title">———— 商品详情 ————</view>
 			<view class="content">
-				<rich-text :nodes="descriptionStr"></rich-text>
+				<rich-text :nodes="info.content"></rich-text>
 			</view>
 		</view>
+		<graceFullLoading :graceFullLoading="loading" logoUrl="https://staticimgs.oss-cn-beijing.aliyuncs.com/logo.png"></graceFullLoading>
 	</view>
 </template>
 
 <script>
 	import CommonHeader from '@/components/layouts/CommonHeader.vue';
+	import graceFullLoading from "@/graceUI/components/graceFullLoading.vue"
+
 	export default {
 		components:{
-			CommonHeader
+			CommonHeader,
+			graceFullLoading
 		},
 		data() {
 			return {
+				info:{},
+				loading: true,
 				//控制渐变标题栏的参数
 				beforeHeaderzIndex: 11, //层级
 				afterHeaderzIndex: 10, //层级
 				beforeHeaderOpacity: 1, //不透明度
 				afterHeaderOpacity: 0, //不透明度
-				//是否显示返回按钮
-				// #ifndef MP
-				showBack: true,
-				// #endif
-				//轮播主图数据
-				swiperList: [{
-						id: 1,
-						img: 'https://ae01.alicdn.com/kf/HTB1Mj7iTmzqK1RjSZFjq6zlCFXaP.jpg'
-					},
-					{
-						id: 2,
-						img: 'https://ae01.alicdn.com/kf/HTB1fbseTmzqK1RjSZFLq6An2XXaL.jpg'
-					},
-					{
-						id: 3,
-						img: 'https://ae01.alicdn.com/kf/HTB1dPUMThnaK1RjSZFtq6zC2VXa0.jpg'
-					},
-					{
-						id: 4,
-						img: 'https://ae01.alicdn.com/kf/HTB1OHZrTXzqK1RjSZFvq6AB7VXaw.jpg'
-					}
-				],
-				//轮播图下标
-				currentSwiper: 0,
 				anchorlist: [], //导航条锚点
 				selectAnchor: 0, //选中锚点
 				serviceClass: '', //服务弹窗css类，控制开关动画
@@ -293,18 +265,11 @@
 					}
 				},
 				selectSpec: null, //选中规格
-				isKeep: false, //收藏
-				//商品描述html
-				descriptionStr: '<div style="text-align:center;"><img width="100%" src="https://ae01.alicdn.com/kf/HTB1t0fUl_Zmx1VjSZFGq6yx2XXa5.jpg"/><img width="100%" src="https://ae01.alicdn.com/kf/HTB1LzkjThTpK1RjSZFKq6y2wXXaT.jpg"/><img width="100%" src="https://ae01.alicdn.com/kf/HTB18dkiTbvpK1RjSZPiq6zmwXXa8.jpg"/></div>'
+				isKeep: false //收藏
 			};
 		},
 		onLoad(option) {
-			// #ifdef MP
-			//小程序隐藏返回按钮
-			this.showBack = false;
-			// #endif
-			//option为object类型，会序列化上个页面传递的参数
-			console.log(option.cid); //打印出上个页面传递的参数。
+			this.getInfo(option.id)
 		},
 		onReady() {
 			this.calcAnchor(); //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
@@ -323,14 +288,32 @@
 		},
 		//上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
 		onReachBottom() {
-			uni.showToast({
-				title: '触发上拉加载'
-			});
+			
 		},
 		mounted() {
 
 		},
 		methods: {
+			getInfo(id){
+				uni.request({
+					url: getApp().globalData.api + 'product/info',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+						id: id
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.info = res.data.data
+						this.loading = false
+					},
+					fail: (res) => {
+						this.loading = false
+					}
+				});
+			},
 			//轮播图指示器
 			swiperChange(event) {
 				this.currentSwiper = event.detail.current;
@@ -363,8 +346,22 @@
 				}, 150);
 			},
 			//收藏
-			keep() {
-				this.isKeep = this.isKeep ? false : true;
+			collect() {
+				uni.request({
+					url: getApp().globalData.api + 'product/collect',
+					method: 'POST',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+						id: this.info.id,
+						status: this.info.collect == 1 ? 0 : 1
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.info.is_collect = this.info.is_collect == 1 ? 0 : 1;
+					}
+				});
 			},
 			// 加入购物车
 			joinCart() {
@@ -387,12 +384,6 @@
 					});
 				}
 				this.toConfirmation();
-			},
-			//商品评论
-			toRatings() {
-				uni.navigateTo({
-					url: 'ratings/ratings'
-				})
 			},
 			//跳转确认订单页面
 			toConfirmation() {
@@ -417,8 +408,10 @@
 				})
 			},
 			//跳转评论列表
-			showComments(goodsid) {
-
+			toEvalues(id) {
+				uni.navigateTo({
+					url: '/pages/product/ratings'
+				})
 			},
 			//选择规格
 			setSelectSpec(index) {
