@@ -17,15 +17,15 @@
 		{
 			"path": "pages/store/offline_store",
 			"style": {
-				"navigationBarTitleText": "商家信息",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#0177BF"
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{
 			"path": "pages/product/product_list",
 			"style": {
-				"navigationBarTitleText": "商品列表"
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{
@@ -45,9 +45,8 @@
 		{
 			"path": "pages/store/online_store",
 			"style": {
-				"navigationBarTitleText": "线上商家",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#0177BF"
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{

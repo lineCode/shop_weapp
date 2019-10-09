@@ -270,78 +270,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {
   components: {
     CommonHeader: CommonHeader,
@@ -351,73 +279,22 @@ __webpack_require__.r(__webpack_exports__);
     return {
       info: {},
       loading: true,
-      //控制渐变标题栏的参数
-      beforeHeaderzIndex: 11, //层级
-      afterHeaderzIndex: 10, //层级
-      beforeHeaderOpacity: 1, //不透明度
-      afterHeaderOpacity: 0, //不透明度
-      anchorlist: [], //导航条锚点
-      selectAnchor: 0, //选中锚点
-      serviceClass: '', //服务弹窗css类，控制开关动画
       specClass: '', //规格弹窗css类，控制开关动画
-      shareClass: '', //分享弹窗css类，控制开关动画
-      // 商品信息
-      goodsData: {
-        id: 1,
-        name: "商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题",
-        price: "127.00",
-        number: 1,
-        service: [{
-          name: "正品保证",
-          description: "此商品官方保证为正品" },
-
-        {
-          name: "极速退款",
-          description: "此商品享受退货极速退款服务" },
-
-        {
-          name: "7天退换",
-          description: "此商品享受7天无理由退换服务" }],
-
-
-        spec: ["XS", "S", "M", "L", "XL", "XXL"],
-        comment: {
-          number: 102,
-          userface: '/static/logo.png',
-          username: '大黑哥',
-          content: '很不错，之前买了很多次了，很好看，能放很久，和图片色差不大，值得购买！' } },
-
-
-      selectSpec: null, //选中规格
-      isKeep: false //收藏
+      selectSpec: null //选中规格
     };
   },
   onLoad: function onLoad(option) {
     this.getInfo(option.id);
   },
   onReady: function onReady() {
-    this.calcAnchor(); //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
-  },
-  onPageScroll: function onPageScroll(e) {
-    //锚点切换
-    this.selectAnchor = e.scrollTop >= this.anchorlist[2].top ? 2 : e.scrollTop >= this.anchorlist[1].top ? 1 : 0;
-    //导航栏渐变
-    var tmpY = 375;
-    e.scrollTop = e.scrollTop > tmpY ? 375 : e.scrollTop;
-    this.afterHeaderOpacity = e.scrollTop * (1 / tmpY);
-    this.beforeHeaderOpacity = 1 - this.afterHeaderOpacity;
-    //切换层级
-    this.beforeHeaderzIndex = e.scrollTop > 0 ? 10 : 11;
-    this.afterHeaderzIndex = e.scrollTop > 0 ? 11 : 10;
-  },
-  //上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
-  onReachBottom: function onReachBottom() {
-
-  },
-  mounted: function mounted() {
-
+    //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
   },
   methods: {
+    goCart: function goCart() {
+      uni.switchTab({
+        url: '/pages/cart/cart' });
+
+    },
     getInfo: function getInfo(id) {var _this = this;
       uni.request({
         url: getApp().globalData.api + 'product/info',
@@ -442,9 +319,9 @@ __webpack_require__.r(__webpack_exports__);
     swiperChange: function swiperChange(event) {
       this.currentSwiper = event.detail.current;
     },
-    goStore: function goStore() {
+    goStore: function goStore(id) {
       uni.navigateTo({
-        url: "/pages/store/online_store" });
+        url: "/pages/store/online_store?id=" + id });
 
     },
     //消息列表
@@ -534,7 +411,7 @@ __webpack_require__.r(__webpack_exports__);
     //跳转评论列表
     toEvalues: function toEvalues(id) {
       uni.navigateTo({
-        url: '/pages/product/ratings' });
+        url: '/pages/product/ratings?id=' + id });
 
     },
     //选择规格
@@ -592,18 +469,6 @@ __webpack_require__.r(__webpack_exports__);
     back: function back() {
       uni.navigateBack();
     },
-    //服务弹窗
-    showService: function showService() {
-      console.log('show');
-      this.serviceClass = 'show';
-    },
-    //关闭服务弹窗
-    hideService: function hideService() {var _this6 = this;
-      this.serviceClass = 'hide';
-      setTimeout(function () {
-        _this6.serviceClass = 'none';
-      }, 200);
-    },
     //规格弹窗
     showSpec: function showSpec(fun) {
       console.log('show');
@@ -614,14 +479,14 @@ __webpack_require__.r(__webpack_exports__);
       return;
     },
     //关闭规格弹窗
-    hideSpec: function hideSpec() {var _this7 = this;
+    hideSpec: function hideSpec() {var _this6 = this;
       this.specClass = 'hide';
       //回调
 
       this.selectSpec && this.specCallback && this.specCallback();
       this.specCallback = false;
       setTimeout(function () {
-        _this7.specClass = 'none';
+        _this6.specClass = 'none';
       }, 200);
     },
     discard: function discard() {

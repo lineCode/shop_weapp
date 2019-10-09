@@ -48,7 +48,7 @@
 								<view class="name">{{item.name}}</view>
 								<view class="info">
 									<view class="price">￥{{item.price}}</view>
-									<view class="slogan">{{item.sold}}人付款</view>
+									<view class="slogan">{{item.sold}} 人付款</view>
 								</view>
 							</view>
 						</view>
@@ -73,85 +73,11 @@
 		data() {
 			return {
 				showconfirmLogin: true,
-				goodsList: [{
-						goods_id: 0,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 1,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 2,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 3,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 4,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 5,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 6,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					},
-					{
-						goods_id: 7,
-						img: '/static/logo.png',
-						name: '商品名称商品名称商品名称商品名称商品名称',
-						price: '￥168',
-						slogan: '1235人付款'
-					}
-				],
 				subCategory: [{
 					name: '夹克',
 					thumb: '/static/logo.png',
 				}],
 				currentSwiper: 0,
-				// 轮播图片
-				swiperList: [{
-						id: 1,
-						src: 'url1',
-						img: '/static/logo.png',
-					},
-					{
-						id: 2,
-						src: 'url2',
-						img: '/static/logo.png',
-					},
-					{
-						id: 3,
-						src: 'url3',
-						img: '/static/logo.png',
-					}
-				],
 				banners: [],
 				category: [],
 				sigleBanner: {},

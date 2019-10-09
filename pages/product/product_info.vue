@@ -37,65 +37,17 @@
 					<view class="icon" :class="[info.is_collect == 1 ?'shoucangsel':'shoucang']"></view>
 					<view class="text">{{info.is_collect == 1 ? '已':''}}收藏</view>
 				</view>
+				<view class="box" @tap="goCart">
+					<view class="icon cart"></view>
+					<view class="text">购物车</view>
+				</view>
 			</view>
 			<view class="btn">
 				<view class="joinCart" @tap="joinCart">加入购物车</view>
 				<view class="buy" @tap="buy">立即购买</view>
 			</view>
 		</view>
-		<!-- share弹窗 -->
-		<view class="share" :class="shareClass" @touchmove.stop.prevent="discard" @tap="hideShare">
-			<view class="mask"></view>
-			<view class="layer" @tap.stop="discard">
-				<view class="h1">分享</view>
-				<view class="list">
-					<view class="box">
-						<image src="../../static/img/share/wx.png"></image>
-						<view class="title">
-							微信好友
-						</view>
-					</view>
-					<view class="box">
-						<image src="../../static/img/share/pyq.png"></image>
-						<view class="title">
-							朋友圈
-						</view>
-					</view>
-					<view class="box">
-						<image src="../../static/img/share/wb.png"></image>
-						<view class="title">
-							新浪微博
-						</view>
-					</view>
-					<view class="box">
-						<image src="../../static/img/share/qq.png"></image>
-						<view class="title">
-							QQ
-						</view>
-					</view>
-				</view>
-				<view class="btn" @tap="hideShare">
-					取消
-				</view>
-			</view>
 
-		</view>
-		<!-- 服务-模态层弹窗 -->
-		<view class="popup service" :class="serviceClass" @touchmove.stop.prevent="discard" @tap="hideService">
-			<!-- 遮罩层 -->
-			<view class="mask"></view>
-			<view class="layer" @tap.stop="discard">
-				<view class="content">
-					<view class="row" v-for="(item,index) in goodsData.service" :key="index">
-						<view class="title">{{item.name}}</view>
-						<view class="description">{{item.description}}</view>
-					</view>
-				</view>
-				<view class="btn">
-					<view class="button" @tap="hideService">完成</view>
-				</view>
-			</view>
-		</view>
 		<!-- 规格-模态层弹窗 -->
 		<view class="popup spec" :class="specClass" @touchmove.stop.prevent="discard" @tap="hideSpec">
 			<!-- 遮罩层 -->
@@ -140,32 +92,8 @@
 				{{info.name}}
 			</view>
 		</view>
-		<!-- 服务-规则选择 -->
-		<view class="info-box spec">
-			<view class="row" @tap="showService">
-				<view class="text">服务</view>
-				<view class="content">
-					<view class="serviceitem" v-for="(item,index) in goodsData.service" :key="index">{{item.name}}</view>
-				</view>
-				<view class="arrow">
-					<view class="icon xiangyou"></view>
-				</view>
-			</view>
-			<view class="row" @tap="showSpec(false)">
-				<view class="text">选择</view>
-				<view class="content">
-					<view>选择规格：</view>
-					<view class="sp">
-						<view v-for="(item,index) in goodsData.spec" :key="index" :class="[index==selectSpec?'on':'']">{{item}}</view>
-					</view>
-				</view>
-				<view class="arrow">
-					<view class="icon xiangyou"></view>
-				</view>
-			</view>
-		</view>
 		<!-- 评价 -->
-		<view class="info-box comments" id="comments" v-if="info.evalue.length > 0">
+		<view class="info-box comments" id="comments" v-if="info.evalue.id > 0">
 			<view class="row">
 				<view class="text">商品评价</view>
 				<view class="arrow" @tap="toEvalues(info.id)">
@@ -187,19 +115,19 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="grace-card-view grace-margin-top">
 			<view class="body" style="padding-bottom: 0;border-bottom: none;">
 				<view class="img">
-					<image src="/static/logo.png" />
+					<image :src="info.store_logo" mode="aspectFill" />
 				</view>
 				<view class="desc">
-					<view class="title">店铺名称</view>
-					<view class="text">20人收藏</view>
-					<view class="text">商品数量：20</view>
+					<view class="title">{{info.store_name}}</view>
+					<view class="text">{{info.store_collect}}人收藏</view>
+					<view class="text">商品数量：{{info.store_product_num}}</view>
 				</view>
 				<view style="padding-top: 40rpx;">
-					<button type="primary" style="width: 180rpx;" size="mini" class="grace-button  grace-gtbg-blue-sky">进店逛逛</button>
+					<button type="primary" style="width: 180rpx;" size="mini" class="grace-button  grace-gtbg-blue-sky" @tap="goStore(info.store_id)">进店逛逛</button>
 				</view>
 			</view>
 		</view>
@@ -219,82 +147,31 @@
 	import graceFullLoading from "@/graceUI/components/graceFullLoading.vue"
 
 	export default {
-		components:{
+		components: {
 			CommonHeader,
 			graceFullLoading
 		},
 		data() {
 			return {
-				info:{},
+				info: {},
 				loading: true,
-				//控制渐变标题栏的参数
-				beforeHeaderzIndex: 11, //层级
-				afterHeaderzIndex: 10, //层级
-				beforeHeaderOpacity: 1, //不透明度
-				afterHeaderOpacity: 0, //不透明度
-				anchorlist: [], //导航条锚点
-				selectAnchor: 0, //选中锚点
-				serviceClass: '', //服务弹窗css类，控制开关动画
 				specClass: '', //规格弹窗css类，控制开关动画
-				shareClass: '', //分享弹窗css类，控制开关动画
-				// 商品信息
-				goodsData: {
-					id: 1,
-					name: "商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题",
-					price: "127.00",
-					number: 1,
-					service: [{
-							name: "正品保证",
-							description: "此商品官方保证为正品"
-						},
-						{
-							name: "极速退款",
-							description: "此商品享受退货极速退款服务"
-						},
-						{
-							name: "7天退换",
-							description: "此商品享受7天无理由退换服务"
-						}
-					],
-					spec: ["XS", "S", "M", "L", "XL", "XXL"],
-					comment: {
-						number: 102,
-						userface: '/static/logo.png',
-						username: '大黑哥',
-						content: '很不错，之前买了很多次了，很好看，能放很久，和图片色差不大，值得购买！'
-					}
-				},
 				selectSpec: null, //选中规格
-				isKeep: false //收藏
 			};
 		},
 		onLoad(option) {
 			this.getInfo(option.id)
 		},
 		onReady() {
-			this.calcAnchor(); //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
-		},
-		onPageScroll(e) {
-			//锚点切换
-			this.selectAnchor = e.scrollTop >= this.anchorlist[2].top ? 2 : e.scrollTop >= this.anchorlist[1].top ? 1 : 0;
-			//导航栏渐变
-			let tmpY = 375;
-			e.scrollTop = e.scrollTop > tmpY ? 375 : e.scrollTop;
-			this.afterHeaderOpacity = e.scrollTop * (1 / tmpY);
-			this.beforeHeaderOpacity = 1 - this.afterHeaderOpacity;
-			//切换层级
-			this.beforeHeaderzIndex = e.scrollTop > 0 ? 10 : 11;
-			this.afterHeaderzIndex = e.scrollTop > 0 ? 11 : 10;
-		},
-		//上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
-		onReachBottom() {
-			
-		},
-		mounted() {
-
+			 //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
 		},
 		methods: {
-			getInfo(id){
+			goCart() {
+				uni.switchTab({
+					url:'/pages/cart/cart'
+				})
+			},
+			getInfo(id) {
 				uni.request({
 					url: getApp().globalData.api + 'product/info',
 					method: 'GET',
@@ -318,9 +195,9 @@
 			swiperChange(event) {
 				this.currentSwiper = event.detail.current;
 			},
-			goStore() {
+			goStore(id) {
 				uni.navigateTo({
-					url: "/pages/store/online_store"
+					url: "/pages/store/online_store?id="+id
 				})
 			},
 			//消息列表
@@ -410,7 +287,7 @@
 			//跳转评论列表
 			toEvalues(id) {
 				uni.navigateTo({
-					url: '/pages/product/ratings'
+					url: '/pages/product/ratings?id='+id
 				})
 			},
 			//选择规格
@@ -468,18 +345,6 @@
 			back() {
 				uni.navigateBack();
 			},
-			//服务弹窗
-			showService() {
-				console.log('show');
-				this.serviceClass = 'show';
-			},
-			//关闭服务弹窗
-			hideService() {
-				this.serviceClass = 'hide';
-				setTimeout(() => {
-					this.serviceClass = 'none';
-				}, 200);
-			},
 			//规格弹窗
 			showSpec(fun) {
 				console.log('show');
@@ -508,7 +373,6 @@
 </script>
 
 <style lang="scss">
-
 	@keyframes showPopup {
 		0% {
 			opacity: 0;

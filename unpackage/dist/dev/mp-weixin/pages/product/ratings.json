@@ -1,5 +1,7 @@
 {
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "common-header": "/components/layouts/CommonHeader"
+  }
 }

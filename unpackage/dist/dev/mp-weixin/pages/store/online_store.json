@@ -1,6 +1,8 @@
 {
-  "navigationBarTitleText": "线上商家",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "navigationBarBackgroundColor": "#0177BF",
-  "usingComponents": {}
+  "usingComponents": {
+    "common-header": "/components/layouts/CommonHeader",
+    "grace-full-loading": "/graceUI/components/graceFullLoading"
+  }
 }

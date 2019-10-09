@@ -32,12 +32,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "pages/product/product_info",
 					"pathName": "pages/product/product_info",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/product/ratings",
+					"pathName": "pages/product/ratings",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/store/online_store",
+					"pathName": "pages/store/online_store",
 					"query": "id=1",
 					"scene": null
 				}
