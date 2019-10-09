@@ -1497,6 +1497,102 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
+/***/ 103:
+/*!********************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 获取系统信息并识别 iphoneX
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+module.exports = {
+  info: function info() {
+    try {
+      var res = uni.getSystemInfoSync();
+      var iPhoneXBottom = 0;
+      if (res.model.indexOf('iPhoneX') != -1) {
+        res.iPhoneXBottomHeightRpx = 72;
+        res.iPhoneXBottomHeightPx = uni.upx2px(72);
+      } else {
+        res.iPhoneXBottomHeightRpx = 0;
+        res.iPhoneXBottomHeightPx = 0;
+      }
+      return res;
+    } catch (e) {
+      return null;
+    }
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 104:
+/*!*****************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 网络请求工具
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+
+module.exports = {
+
+  get: function get(url, data, callback, headers) {
+    uni.request({
+      url: url,
+      data: data,
+      method: "GET",
+      dataType: "json",
+      header: headers,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  },
+
+  post: function post(url, data, contentType, headers, callback) {
+    switch (contentType) {
+      case "form":
+        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
+        break;
+      case "json":
+        var headerObj = { 'content-type': 'application/json' };
+        break;
+      default:
+        var headerObj = { 'content-type': 'application/json' };}
+
+    for (var k in headers) {headerObj[k] = headers[k];}
+    uni.request({
+      url: url,
+      data: data,
+      method: "POST",
+      dataType: "json",
+      header: headerObj,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 14:
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -1604,10 +1700,10 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 149:
-/*!*******************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/graceChecker.js ***!
-  \*******************************************************************************/
+/***/ 157:
+/*!**********************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/graceChecker.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7679,10 +7775,10 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 235:
-/*!*********************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/province.js ***!
-  \*********************************************************************************************/
+/***/ 243:
+/*!************************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/province.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7829,10 +7925,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 236:
-/*!*****************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/city.js ***!
-  \*****************************************************************************************/
+/***/ 244:
+/*!********************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/city.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9343,10 +9439,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 237:
-/*!*****************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/area.js ***!
-  \*****************************************************************************************/
+/***/ 245:
+/*!********************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/area.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21928,9 +22024,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!**********************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json ***!
-  \**********************************************************/
+/*!*************************************!*\
+  !*** C:/code/shop_weapp/pages.json ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22830,127 +22926,31 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-23220190921001","_inBundle":false,"_integrity":"sha512-xlHjc5YqMrdr4rIKE/aMXlfzLDVxbCY31e/jH+n2NtFA14KDtNIHzsgNM0h0Mq8IUfDFtMMPmmlay59RTmHonQ==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-23220190921001.tgz","_shasum":"63200bbfbdcc4c696ed0be335fa14613757c4026","_spec":"@dcloudio/uni-stat@next","_where":"/Users/fxy/Documents/DCloud/HbuilderX-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"d26b206188ff9e5de659870e5f4e8b2d24d8f02f","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-23220190921001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-23320190923002","_inBundle":false,"_integrity":"sha512-MnftsvgOac3q1FCOBPzivbFn8GNQFo7D2DY325HeEZyFCWgx5GEwHpGYjT1PQU6v7DaDn0ruxa3ObdpUIYbmZw==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-23320190923002.tgz","_shasum":"0c400c140ca0b3c05f52d25f11583cf05a0c4e9a","_spec":"@dcloudio/uni-stat@next","_where":"/Users/fxy/Documents/DCloud/HbuilderX-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"fed4c73fb9142a1b277dd79313939cad90693d3e","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-23320190923002"};
 
 /***/ }),
 
 /***/ 7:
-/*!***************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json?{"type":"style"} ***!
-  \***************************************************************************/
+/*!******************************************************!*\
+  !*** C:/code/shop_weapp/pages.json?{"type":"style"} ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "search-header": "/components/layouts/SearchHeader", "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar", "confirm-login": "/components/confirmLogin" } }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": {} }, "pages/store/offline_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/product/product_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader", "grace-full-loading": "/graceUI/components/graceFullLoading" } }, "pages/product/ratings": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/store/online_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/chat/chat_info": { "navigationBarTitleText": "对话", "usingComponents": {} }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表", "usingComponents": {} }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-number-box": "/graceUI/components/graceNumberBox", "grace-empty": "/graceUI/components/graceEmpty", "grace-check-btn": "/graceUI/components/graceCheckBtn", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-nav": "/graceUI/components/graceNavBar", "grace-empty": "/graceUI/components/graceEmpty", "grace-loading": "/graceUI/components/graceLoading", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-coupons": "/graceUI/components/graceCoupons", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "mpvue-picker": "/graceUI/threeComponents/mpvuePicker", "mpvue-city-picker": "/graceUI/threeComponents/mpvueCityPicker", "common-header": "/components/layouts/CommonHeader" } } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/store/offline_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/product_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/ratings": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/store/online_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/chat/chat_info": { "navigationBarTitleText": "对话" }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表" }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!**************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json?{"type":"stat"} ***!
-  \**************************************************************************/
+/*!*****************************************************!*\
+  !*** C:/code/shop_weapp/pages.json?{"type":"stat"} ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__D0DEE11" };exports.default = _default;
-
-/***/ }),
-
-/***/ 95:
-/*!*****************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/systemInfo.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 获取系统信息并识别 iphoneX
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-module.exports = {
-  info: function info() {
-    try {
-      var res = uni.getSystemInfoSync();
-      var iPhoneXBottom = 0;
-      if (res.model.indexOf('iPhoneX') != -1) {
-        res.iPhoneXBottomHeightRpx = 72;
-        res.iPhoneXBottomHeightPx = uni.upx2px(72);
-      } else {
-        res.iPhoneXBottomHeightRpx = 0;
-        res.iPhoneXBottomHeightPx = 0;
-      }
-      return res;
-    } catch (e) {
-      return null;
-    }
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 96:
-/*!**************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/request.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 网络请求工具
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-
-module.exports = {
-
-  get: function get(url, data, callback, headers) {
-    uni.request({
-      url: url,
-      data: data,
-      method: "GET",
-      dataType: "json",
-      header: headers,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  },
-
-  post: function post(url, data, contentType, headers, callback) {
-    switch (contentType) {
-      case "form":
-        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
-        break;
-      case "json":
-        var headerObj = { 'content-type': 'application/json' };
-        break;
-      default:
-        var headerObj = { 'content-type': 'application/json' };}
-
-    for (var k in headers) {headerObj[k] = headers[k];}
-    uni.request({
-      url: url,
-      data: data,
-      method: "POST",
-      dataType: "json",
-      header: headerObj,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

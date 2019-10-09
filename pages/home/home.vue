@@ -24,10 +24,10 @@
 						</view>
 					</view>
 
-					<view class="grace-grids grace-margin-top five" v-if="currentTab > 0">
-						<view class="items" v-for="subItem in subCategory" :key="subItem">
+					<view class="grace-grids five" v-if="currentTab > 0">
+						<view class="items" v-for="subItem in subCategory" :key="subItem.id" @tap="toSubCategory(subItem.id,subItem.name)">
 							<view class="icon">
-								<image class="sub-image" :src="subItem.thumb" mode="widthFix"></image>
+								<image class="sub-image" style="height: 100%;" :src="subItem.thumb" mode="aspectFill"></image>
 							</view>
 							<view class="text">{{subItem.name}}</view>
 						</view>
@@ -38,6 +38,34 @@
 					</view>
 
 					<view class="title-devider">
+						<text>大牌抢购</text>
+					</view>
+
+					<swiper class="grace-swiper swiper2" autoplay="true" indicator-color="rgba(255, 255, 255, 1)"
+					 indicator-active-color="#00B26A" style="height:445rpx" interval="5000">
+						<swiper-item style="background-color: #FFFFFF;" v-for="item in dapaiList" :key="item.id">
+							<navigator :url="'/pages/product/product_info?id='+item.id+'&title='+item.name">
+								<view>
+									<image style="width: 750rpx;height: 375rpx;" :src='item.thumb'
+									 mode='aspectFill'></image>
+									<view class="title" style="bottom: 70rpx;font-size: 32rpx;font-weight: 500;">{{item.name}}</view>
+									<view style="height: 70rpx;width: 100%;">
+										<view class="dapai-price">
+											<text>￥{{item.price}}</text>
+										</view>
+										<view class="dapai-btn">
+											<button type="primary" class="grace-button grace-gtbg-pink" size="mini">立即抢购</button>
+										</view>
+										<view class="dapai-sold">
+											<text>已售{{item.sold}}件</text>
+										</view>
+									</view>
+								</view>
+							</navigator>
+						</swiper-item>
+					</swiper>
+
+					<view class="title-devider" style="margin-top: 30rpx;">
 						<text>热门商品</text>
 					</view>
 
@@ -73,27 +101,46 @@
 		data() {
 			return {
 				showconfirmLogin: true,
-				subCategory: [{
-					name: '夹克',
-					thumb: '/static/logo.png',
-				}],
 				currentSwiper: 0,
 				banners: [],
 				category: [],
+				subCategory: [],
 				sigleBanner: {},
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
-				scrollLeft: 0 ,//tab标题的滚动条位置
+				scrollLeft: 0, //tab标题的滚动条位置
 				productList: [],
 				hasMore: 1,
+				dapaiList: []
 			}
 		},
 		onLoad() {
 			this.getCategory()
 			this.getBanner()
 			this.getList(0)
+			this.getDapai()
 		},
 		methods: {
+			toSubCategory(id, name) {
+				uni.navigateTo({
+					url: '/pages/product/product_list?category=' + id + '&title=' + name
+				})
+			},
+			getDapai() {
+				uni.request({
+					url: getApp().globalData.api + 'product/dapai',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.dapaiList = res.data.data.list
+					}
+				});
+			},
 			// 商品列表
 			getList(category) {
 				uni.request({
@@ -118,6 +165,7 @@
 					url: getApp().globalData.api + 'category/index',
 					method: 'GET',
 					data: {
+						parent: 1,
 						open_id: uni.getStorageSync('open_id')
 					},
 					header: {
@@ -125,6 +173,23 @@
 					},
 					success: (res) => {
 						this.category = res.data.data
+					}
+				});
+			},
+			// 二级分类
+			getSubCategory(category_id) {
+				uni.request({
+					url: getApp().globalData.api + 'category/sub',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+						category_id: category_id
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.subCategory = res.data.data
 					}
 				});
 			},
@@ -158,11 +223,15 @@
 			},
 			// 点击标题切换当前页时改变样式
 			swichNav: function(e) {
-				let cur = e.currentTarget.dataset.current;
+
+				let cur = e.currentTarget.dataset.current; //cur ： 一级分类编号
+
 				if (this.currentTab == cur) {
 					return false;
 				} else {
 					this.currentTab = cur
+					this.getList(cur)
+					this.getSubCategory(cur)
 				}
 			},
 			//判断当前滚动超过一屏时，设置tab标题滚动条。
@@ -184,49 +253,7 @@
 
 
 <style lang="scss">
-	.header-bar {
-		background: #0177BF;
-	}
-
-	/* 顶部城市栏 */
-	.city {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		margin-left: 16rpx;
-		white-space: nowrap;
-
-		.location-text {
-			color: #ffffff;
-			font-weight: 600;
-			font-size: 36rpx;
-			margin-right: 10rpx;
-		}
-	}
-
-	/* 顶部搜索栏 */
-	.input-view {
-		width: 330rpx;
-		display: flex;
-		background-color: #e7e7e7;
-		height: 30px;
-		border-radius: 15px;
-		padding: 0 4%;
-		flex-wrap: nowrap;
-		margin: 7px 16rpx;
-		line-height: 30px;
-		background: #f5f5f5;
-
-		.input {
-			height: 30px;
-			line-height: 30px;
-			width: 94%;
-			padding: 0 3%;
-		}
-	}
-
+	
 	/*tabbar start*/
 	::-webkit-scrollbar {
 		width: 0;
@@ -438,5 +465,46 @@
 
 	.five>.items {
 		width: 20%;
+	}
+
+	.dapai-price {
+		display: inline-block;
+		height: 70rpx;
+		float: left;
+		text-align: left;
+		padding-left: 20rpx;
+
+		text {
+			line-height: 70rpx;
+			color: #F56C6C;
+			font-size: 36rpx;
+			font-weight: 500;
+		}
+	}
+
+	.dapai-sold {
+		display: inline-block;
+		height: 70rpx;
+		float: right;
+		margin-right: 26rpx;
+
+		text {
+			line-height: 70rpx;
+			font-size: 28rpx;
+			color: #606266;
+		}
+	}
+
+	.dapai-btn {
+		display: inline-block;
+		height: 70rpx;
+		float: right;
+		margin-right: 20rpx;
+
+		.grace-button {
+			height: 50rpx;
+			margin-top: 10rpx;
+			line-height: 50rpx;
+		}
 	}
 </style>

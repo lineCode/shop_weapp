@@ -64,6 +64,7 @@
 }
 .store-banner {
   margin-top: 20rpx;
+  margin-bottom: 20rpx;
   text-align: center;
 }
 .store-banner image {
@@ -175,8 +176,9 @@
   line-height: 90rpx;
 }
 .orderImg {
-  width: 28px;
-  height: 28px;
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 4rpx;
 }
 .grace-filter-ft {
   width: 100%;

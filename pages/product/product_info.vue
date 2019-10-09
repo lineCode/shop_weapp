@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<common-header title="商品名称"></common-header>
+		<common-header :title="title"></common-header>
 		<view class="status" :style="{ opacity: afterHeaderOpacity }"></view>
 		<view class="header">
 			<!-- 头部-默认显示 -->
@@ -157,10 +157,12 @@
 				loading: true,
 				specClass: '', //规格弹窗css类，控制开关动画
 				selectSpec: null, //选中规格
+				title: ''
 			};
 		},
-		onLoad(option) {
-			this.getInfo(option.id)
+		onLoad(e) {
+			this.getInfo(e.id)
+			this.title = e.title
 		},
 		onReady() {
 			 //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
@@ -792,7 +794,7 @@
 				color: #fff;
 				display: flex;
 				align-items: center;
-				font-size: 28upx;
+				font-size: 26upx;
 			}
 
 			.joinCart {

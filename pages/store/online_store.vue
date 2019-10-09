@@ -24,45 +24,30 @@
 			<image :src="info.thumb" mode="aspectFill"></image>
 		</view>
 
-		<!-- 排序部分 -->
-
-		<!-- 		<view class="sort-part">
-			<view class="sort-item">
-				综合排序
-			</view>
-			<view class="sort-item">
-				销量
-			</view>
-			<view class="sort-item">
-				价格
-			</view>
-			<view class="sort-item">
-				评论数量
-			</view>
-		</view> -->
-
-		<!-- 商品列表 -->
-
 		<view class="grace-nowrap grace-border-b grace-flex-vcenter" :class="[isFixed ? 'grace-fixed-top' : '']" style="background:#FFFFFF;">
-			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changePriceOrder">
-				<text>价格</text>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/asc.png" mode="widthFix" v-if="priceOrder == 1"></image>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/desc.png" mode="widthFix" v-if="priceOrder == 2"></image>
+			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changeOrder(1)">
+				<text>综合排序</text>
+				<image class="orderImg" src="/static/icon/asc.png" mode="aspectFit" v-if="currentOrder == 1 && orderType == 1"></image>
+				<image class="orderImg" src="/static/icon/desc.png" mode="aspectFit" v-if="currentOrder == 1 && orderType == 2"></image>
+				<image class="orderImg" src="/static/icon/order.png" mode="aspectFit" v-if="currentOrder != 1"></image>
 			</view>
-			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changePriceOrder">
-				<text>价格</text>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/asc.png" mode="widthFix" v-if="priceOrder == 1"></image>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/desc.png" mode="widthFix" v-if="priceOrder == 2"></image>
+			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changeOrder(2)">
+				<text>销量</text>
+				<image class="orderImg" src="/static/icon/asc.png" mode="aspectFit" v-if="currentOrder == 2 && orderType == 1"></image>
+				<image class="orderImg" src="/static/icon/desc.png" mode="aspectFit" v-if="currentOrder == 2 && orderType == 2"></image>
+				<image class="orderImg" src="/static/icon/order.png" mode="aspectFit" v-if="currentOrder != 2"></image>
 			</view>
-			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changePriceOrder">
+			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changeOrder(3)">
 				<text>价格</text>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/asc.png" mode="widthFix" v-if="priceOrder == 1"></image>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/desc.png" mode="widthFix" v-if="priceOrder == 2"></image>
+				<image class="orderImg" src="/static/icon/asc.png" mode="aspectFit" v-if="currentOrder == 3 && orderType == 1"></image>
+				<image class="orderImg" src="/static/icon/desc.png" mode="aspectFit" v-if="currentOrder == 3 && orderType == 2"></image>
+				<image class="orderImg" src="/static/icon/order.png" mode="aspectFit" v-if="currentOrder != 3"></image>
 			</view>
-			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changePriceOrder">
-				<text>价格</text>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/asc.png" mode="widthFix" v-if="priceOrder == 1"></image>
-				<image class="orderImg" src="https://staticimgs.oss-cn-beijing.aliyuncs.com/desc.png" mode="widthFix" v-if="priceOrder == 2"></image>
+			<view class="graceSelectMenuItem grace-flex grace-nowrap grace-flex-center grace-flex-vcenter" @tap.stop="changeOrder(4)">
+				<text>评论数量</text>
+				<image class="orderImg" src="/static/icon/asc.png" mode="aspectFit" v-if="currentOrder == 4 && orderType == 1"></image>
+				<image class="orderImg" src="/static/icon/desc.png" mode="aspectFit" v-if="currentOrder == 4 && orderType == 2"></image>
+				<image class="orderImg" src="/static/icon/order.png" mode="aspectFit" v-if="currentOrder != 4"></image>
 			</view>
 		</view>
 
@@ -72,7 +57,7 @@
 					<image mode="aspectFill" :src="item.thumb"></image>
 					<view class="name">{{item.name}}</view>
 					<view class="info">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 						<view class="slogan">{{item.sold}} 人付款</view>
 					</view>
 				</view>
@@ -96,7 +81,9 @@
 			return {
 				loading: true,
 				info: {},
-				list: []
+				list: [],
+				currentOrder: 0,
+				orderType: 0
 			}
 		},
 		onLoad(e) {
@@ -104,6 +91,26 @@
 			this.getList(e.id)
 		},
 		methods: {
+			changeOrder(current){
+				let type = this.orderType
+				if(current == this.currentOrder){
+					if(type == 0){
+						this.currentOrder = current
+						this.orderType = 2
+					}else if(type == 2){
+						this.currentOrder = current
+						this.orderType = 1
+					}else if(type == 1){
+						this.currentOrder = 0
+						this.orderType = 0
+					}
+				}else{
+					this.currentOrder = current
+					this.orderType = 2
+				}
+				
+				this.getList(this.info.id)
+			},
 			toProduct(id) {
 				uni.navigateTo({
 					url: "/pages/product/product_info?id=" + id
@@ -115,7 +122,9 @@
 					method: 'GET',
 					data: {
 						open_id: uni.getStorageSync('open_id'),
-						id: id
+						id: id,
+						order: this.currentOrder,
+						order_type: this.orderType
 					},
 					header: {
 						'content-type': 'application/json' //自定义请求头信息
@@ -175,7 +184,6 @@
 				});
 			}
 		}
-
 	}
 </script>
 
@@ -228,6 +236,7 @@
 
 	.store-banner {
 		margin-top: 20rpx;
+		margin-bottom: 20rpx;
 		text-align: center;
 
 		image {
@@ -321,10 +330,7 @@
 	}
 	
 	.graceSelectMenuItem{width:200rpx; line-height:90rpx;}
-	/* #ifdef  H5 */
-	.grace-fixed-top{top:44px;}
-	/* #endif */
-	.orderImg{width:28px; height:28px;}
+	.orderImg{width:34rpx; height:34rpx;margin-left: 4rpx;}
 	.grace-filter-ft{width:100%; height:50px; display:flex; flex-wrap:nowrap; flex-direction:row;}
 	.grace-filter-ft-close{line-height:50px; text-align:center; width:50%;}
 	.grace-filter-rbtn{width:50%; position:relative; line-height:50px; color:#3688FF; text-align:center;}
