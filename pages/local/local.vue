@@ -18,8 +18,8 @@
 							<!-- 这里放评分 -->
 						</view>
 						<view class="info">
-							<view class="hangye">某行业</view>
-							<view class="slogan">商圈人付款</view>
+							<view class="hangye">奶茶行业</view>
+							<view class="slogan">{{item.sold}}人付款</view>
 						</view>
 					</view>
 				</view>
