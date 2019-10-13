@@ -51,17 +51,18 @@
 			};
 		},
 		onLoad(e) {
-			this.getList(e.id)
+			this.getList(e.id,e.store_id)
 		},
 		methods: {
-			getList(id) {
+			getList(id,store_id) {
+				let data = id > 0 ? {open_id: uni.getStorageSync('open_id'),
+						product_id: id,store_id: 0} : {open_id: uni.getStorageSync('open_id'),
+						store_id: store_id,
+						product_id: 0}
 				uni.request({
 					url: getApp().globalData.api + 'product/evalue-list',
 					method: 'GET',
-					data: {
-						open_id: uni.getStorageSync('open_id'),
-						product_id: id
-					},
+					data: data,
 					header: {
 						'content-type': 'application/json' //自定义请求头信息
 					},

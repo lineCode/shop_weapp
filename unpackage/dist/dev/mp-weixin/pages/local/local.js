@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 158));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var SearchHeader = function SearchHeader() {return __webpack_require__.e(/*! import() | components/layouts/SearchHeader */ "components/layouts/SearchHeader").then(__webpack_require__.bind(null, /*! @/components/layouts/SearchHeader.vue */ 160));};var _default =
 
 
 
@@ -172,6 +172,11 @@ __webpack_require__.r(__webpack_exports__);
     this.getList();
   },
   methods: {
+    toStore: function toStore(id) {
+      uni.navigateTo({
+        url: '/pages/store/offline_store?id=' + id });
+
+    },
     getList: function getList() {var _this = this;
       uni.request({
         url: getApp().globalData.api + 'store/index',

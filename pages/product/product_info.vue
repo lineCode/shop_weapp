@@ -232,7 +232,7 @@
 					data: {
 						open_id: uni.getStorageSync('open_id'),
 						id: this.info.id,
-						status: this.info.collect == 1 ? 0 : 1
+						status: this.info.is_collect == 1 ? 0 : 1
 					},
 					header: {
 						'content-type': 'application/json' //自定义请求头信息

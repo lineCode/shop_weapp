@@ -11,15 +11,15 @@
 			<view style="height: 60rpx;width: 100%;"></view>
 			<view class="goods-list">
 				<view class="product-list">
-					<view class="product grace-box-shadow" v-for="item in list" :key="item.id" @tap="toProduct(item.id)">
+					<view class="product grace-box-shadow" v-for="item in list" :key="item.id" @tap="toStore(item.id)">
 						<image mode="aspectFill" :src="item.thumb"></image>
 						<view class="name">{{item.name}}</view>
 						<view>
 							<!-- 这里放评分 -->
 						</view>
 						<view class="info">
-							<view class="hangye">某行业</view>
-							<view class="slogan">商圈人付款</view>
+							<view class="hangye">{{item.shangquan}}</view>
+							<view class="slogan">{{item.category_name}}</view>
 						</view>
 					</view>
 				</view>
@@ -48,6 +48,11 @@
 			this.getList()
 		},
 		methods: {
+			toStore(id) {
+				uni.navigateTo({
+					url: '/pages/store/offline_store?id='+id
+				})
+			},
 			getList() {
 				uni.request({
 					url: getApp().globalData.api + 'store/index',
