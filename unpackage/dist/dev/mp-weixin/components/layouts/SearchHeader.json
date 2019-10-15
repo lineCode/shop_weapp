@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "grace-header": "/graceUI/components/graceHeader"
-  },
-  "component": true
-}

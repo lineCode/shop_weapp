@@ -1,6 +1,0 @@
-
-.grace-shoppingcard-checkbtn{width:180rpx; margin-left:50rpx; -webkit-flex-shrink:0; -ms-flex-negative:0; flex-shrink:0;}
-.grace-shoppingcard-check-text{font-size:28rpx; margin-left:12rpx; color:#666666;}
-.grace-shoppingcard-text{width:700rpx; line-height:100rpx;}
-.grace-line-title > .line{width:50rpx; -webkit-box-flex:1; -webkit-flex:auto; -ms-flex:auto; flex:auto; height:1px; background:#D1D1D1; margin:0 50rpx;}
-

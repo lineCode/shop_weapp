@@ -1,1 +1,0 @@
-<text data-event-opts="{{[['tap',[['changeStatus',['$event']]]]]}}" class="{{['grace-check-btn',status?'grace-check-checked':'']}}" style="{{'font-size:'+(size+'rpx')+';'+('line-height:'+(size+'rpx')+';')+('color:'+(status?checkedColor:color)+';')}}" bindtap="__e"></text>

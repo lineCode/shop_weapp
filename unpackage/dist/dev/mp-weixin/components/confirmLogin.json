@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "grace-dialog": "/graceUI/components/graceDialog"
-  },
-  "component": true
-}
