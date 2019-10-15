@@ -1,0 +1,10 @@
+
+.btn-group{
+	width: 100%;
+	position: fixed;
+	bottom: 60rpx;
+}
+page{
+	background: #FFFFFF;
+}
+

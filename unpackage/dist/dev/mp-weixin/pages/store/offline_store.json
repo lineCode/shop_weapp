@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "common-header": "/components/layouts/CommonHeader",
+    "grace-full-loading": "/graceUI/components/graceFullLoading",
+    "grace-star": "/graceUI/components/graceStar"
+  }
+}

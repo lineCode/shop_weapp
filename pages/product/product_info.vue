@@ -56,8 +56,8 @@
 				<view class="content">
 					<view class="title">选择规格：</view>
 					<view class="sp">
-						<view v-for="(item,index) in goodsData.spec" :class="[index==selectSpec?'on':'']" @tap="setSelectSpec(index)"
-						 :key="index">{{item}}</view>
+						<view v-for="item in info.skus" :class="[item.id==selectSpec?'on':'']" @tap="setSelectSpec(item.id)"
+						 :key="item.id">{{item.title}}</view>
 					</view>
 					<view class="length" v-if="selectSpec!=null">
 						<view class="text">数量</view>
@@ -66,7 +66,7 @@
 								<view class="icon jian"></view>
 							</view>
 							<view class="input" @tap.stop="discard">
-								<input type="number" v-model="goodsData.number" />
+								<input type="number" v-model="number" />
 							</view>
 							<view class="add" @tap.stop="add">
 								<view class="icon jia"></view>
@@ -157,7 +157,8 @@
 				loading: true,
 				specClass: '', //规格弹窗css类，控制开关动画
 				selectSpec: null, //选中规格
-				title: ''
+				title: '',
+				number: 1
 			};
 		},
 		onLoad(e) {
@@ -246,8 +247,33 @@
 			joinCart() {
 				if (this.selectSpec == null) {
 					return this.showSpec(() => {
-						uni.showToast({
-							title: "已加入购物车"
+						// 加入购物车
+						uni.request({
+							url: getApp().globalData.api + 'product/add-cart',
+							method: 'POST',
+							data: {
+								open_id: uni.getStorageSync('open_id'),
+								product_id: this.info.id,
+								store_id: this.info.store_id,
+								amount: this.number,
+								product_sku_id: this.selectSpec,
+							},
+							header: {
+								'content-type': 'application/json' //自定义请求头信息
+							},
+							success: (res) => {
+								this.selectSpec = null
+								if(res.data.code == 200){
+									uni.showToast({
+										title: "已加入购物车"
+									});
+								}else{
+									uni.showToast({
+										title: res.data.msg,
+										icon: 'none'
+									});
+								}
+							}
 						});
 					});
 				}
@@ -293,19 +319,20 @@
 				})
 			},
 			//选择规格
-			setSelectSpec(index) {
-				this.selectSpec = index;
+			setSelectSpec(id) {
+				console.log(id)
+				this.selectSpec = id;
 			},
 			//减少数量
 			sub() {
-				if (this.goodsData.number <= 1) {
+				if (this.number <= 1) {
 					return;
 				}
-				this.goodsData.number--;
+				this.number--;
 			},
 			//增加数量
 			add() {
-				this.goodsData.number++;
+				this.number++;
 			},
 			//跳转锚点
 			toAnchor(index) {

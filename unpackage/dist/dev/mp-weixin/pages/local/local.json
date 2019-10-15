@@ -1,0 +1,7 @@
+{
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "search-header": "/components/layouts/SearchHeader"
+  }
+}

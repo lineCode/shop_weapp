@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "mpvue-picker": "/graceUI/threeComponents/mpvuePicker",
+    "mpvue-city-picker": "/graceUI/threeComponents/mpvueCityPicker",
+    "common-header": "/components/layouts/CommonHeader"
+  }
+}

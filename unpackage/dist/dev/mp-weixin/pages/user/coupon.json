@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "grace-coupons": "/graceUI/components/graceCoupons",
+    "common-header": "/components/layouts/CommonHeader"
+  }
+}

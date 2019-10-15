@@ -18,13 +18,8 @@
 							<!-- 这里放评分 -->
 						</view>
 						<view class="info">
-<<<<<<< HEAD
-							<view class="hangye">奶茶行业</view>
-							<view class="slogan">{{item.sold}}人付款</view>
-=======
 							<view class="hangye">{{item.shangquan}}</view>
 							<view class="slogan">{{item.category_name}}</view>
->>>>>>> bcd5d31e0adc2a39c176cd927379378f2b1e2b5d
 						</view>
 					</view>
 				</view>
