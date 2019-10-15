@@ -15,6 +15,20 @@
 			}
 		},
 		{
+			"path": "pages/order/order_info",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/order/pay",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/store/offline_store",
 			"style": {
 				"navigationStyle": "custom",

@@ -191,7 +191,9 @@ var _self;var graceNumberBox = function graceNumberBox() {return __webpack_requi
       selectText: '全不选',
       loading: true,
       // 购物车数据 可以来自 api 请求或本地数据
-      shoppingCard: [] };
+      shoppingCard: [],
+      chosen: [],
+      chosenStore: [] };
 
   },
   onLoad: function onLoad() {
@@ -233,13 +235,18 @@ var _self;var graceNumberBox = function graceNumberBox() {return __webpack_requi
     //计算总计函数
     countTotoal: function countTotoal() {
       var total = 0;
+      var chosen_id = [];
+      var k = 0;
       for (var i = 0; i < this.shoppingCard.length; i++) {
         for (var ii = 0; ii < this.shoppingCard[i].items.length; ii++) {
           if (this.shoppingCard[i].items[ii].checked) {
             total += Number(this.shoppingCard[i].items[ii].price) * Number(this.shoppingCard[i].items[ii].count);
+            chosen_id[k] = this.shoppingCard[i].items[ii].item_id;
+            k++;
           }
         }
       }
+      this.chosen = chosen_id;
       this.totalprice = total;
     },
     numberChange: function numberChange(data) {var _this2 = this;
@@ -317,9 +324,37 @@ var _self;var graceNumberBox = function graceNumberBox() {return __webpack_requi
 
     },
     checkout: function checkout() {
-      uni.showToast({
-        title: '计算的数据保存在 shoppingCard 变量内 ^_^',
-        icon: "none" });
+      console.log(this.chosen);
+      if (this.chosen.length == 0) {
+        uni.showToast({
+          title: '请先选择商品',
+          icon: "none" });
+
+        return;
+      }
+      uni.request({
+        url: getApp().globalData.api + 'order/cart-create',
+        method: 'POST',
+        data: {
+          open_id: uni.getStorageSync('open_id'),
+          cart_item_ids: this.chosen,
+          total_amount: this.totalprice },
+
+        header: {
+          'content-type': 'application/json' //自定义请求头信息
+        },
+        success: function success(res) {
+          if (res.data.code == 200) {
+            uni.navigateTo({
+              url: '/pages/order/order_info?order_id=' + res.data.data.order_id });
+
+          } else {
+            uni.showToast({
+              title: res.data.msg,
+              icon: 'none' });
+
+          }
+        } });
 
     },
     // 店铺选中按钮状态切换
