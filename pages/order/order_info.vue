@@ -41,17 +41,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- 提示-备注 -->
-		<view class="order">
-			<view class="row">
-				<view class="left">
-					备注 :
-				</view>
-				<view class="right">
-					<input placeholder="选填,备注内容" v-model="note" />
-				</view>
-			</view>
-		</view>
 		
 		<view class="blck">
 

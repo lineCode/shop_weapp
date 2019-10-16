@@ -222,7 +222,7 @@
 					success: (res) => {
 						if(res.data.code == 200){
 							uni.navigateTo({
-								url: '/pages/order/order_info?order_id='+res.data.data.order_id
+								url: '/pages/order/order_info?id='+res.data.data.order_id
 							})
 						}else{
 							uni.showToast({
