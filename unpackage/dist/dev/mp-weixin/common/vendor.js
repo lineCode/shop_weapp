@@ -1498,9 +1498,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 12:
-/*!**********************************************************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/js_sdk/wxmp-jiguang/jmessage-wxapplet-sdk-1.4.0/jmessage-wxapplet-sdk-1.4.0.min.js ***!
-  \**********************************************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** C:/code/shop_weapp/js_sdk/wxmp-jiguang/jmessage-wxapplet-sdk-1.4.0/jmessage-wxapplet-sdk-1.4.0.min.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1511,10 +1511,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 126:
-/*!*****************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/systemInfo.js ***!
-  \*****************************************************************************/
+/***/ 128:
+/*!********************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1549,10 +1549,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ 127:
-/*!**************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/request.js ***!
-  \**************************************************************************/
+/***/ 129:
+/*!*****************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1608,9 +1608,9 @@ module.exports = {
 /***/ }),
 
 /***/ 13:
-/*!************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/js_sdk/js-md5/src/md5.js ***!
-  \************************************************************************/
+/*!***************************************************!*\
+  !*** C:/code/shop_weapp/js_sdk/js-md5/src/md5.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2299,7 +2299,7 @@ module.exports = {
     }
   }
 })();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 14), __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../soft/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 14), __webpack_require__(/*! ./../../../../../soft/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
 
 /***/ }),
 
@@ -2594,10 +2594,10 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 180:
-/*!*******************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/jsTools/graceChecker.js ***!
-  \*******************************************************************************/
+/***/ 182:
+/*!**********************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/jsTools/graceChecker.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8776,10 +8776,10 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 273:
-/*!*********************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/province.js ***!
-  \*********************************************************************************************/
+/***/ 275:
+/*!************************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/province.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8926,10 +8926,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 274:
-/*!*****************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/city.js ***!
-  \*****************************************************************************************/
+/***/ 276:
+/*!********************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/city.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10440,10 +10440,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 275:
-/*!*****************************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/graceUI/threeComponents/city-data/area.js ***!
-  \*****************************************************************************************/
+/***/ 277:
+/*!********************************************************************!*\
+  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/area.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23025,9 +23025,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!**********************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json ***!
-  \**********************************************************/
+/*!*************************************!*\
+  !*** C:/code/shop_weapp/pages.json ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23927,14 +23927,14 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-23220190921001","_inBundle":false,"_integrity":"sha512-xlHjc5YqMrdr4rIKE/aMXlfzLDVxbCY31e/jH+n2NtFA14KDtNIHzsgNM0h0Mq8IUfDFtMMPmmlay59RTmHonQ==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-23220190921001.tgz","_shasum":"63200bbfbdcc4c696ed0be335fa14613757c4026","_spec":"@dcloudio/uni-stat@next","_where":"/Users/fxy/Documents/DCloud/HbuilderX-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"d26b206188ff9e5de659870e5f4e8b2d24d8f02f","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-23220190921001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-23320190923002","_inBundle":false,"_integrity":"sha512-MnftsvgOac3q1FCOBPzivbFn8GNQFo7D2DY325HeEZyFCWgx5GEwHpGYjT1PQU6v7DaDn0ruxa3ObdpUIYbmZw==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-23320190923002.tgz","_shasum":"0c400c140ca0b3c05f52d25f11583cf05a0c4e9a","_spec":"@dcloudio/uni-stat@next","_where":"/Users/fxy/Documents/DCloud/HbuilderX-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"fed4c73fb9142a1b277dd79313939cad90693d3e","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-23320190923002"};
 
 /***/ }),
 
 /***/ 7:
-/*!***************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json?{"type":"style"} ***!
-  \***************************************************************************/
+/*!******************************************************!*\
+  !*** C:/code/shop_weapp/pages.json?{"type":"style"} ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23944,9 +23944,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!**************************************************************************!*\
-  !*** C:/phpStudy/PHPTutorial/WWW/shop_wechat/pages.json?{"type":"stat"} ***!
-  \**************************************************************************/
+/*!*****************************************************!*\
+  !*** C:/code/shop_weapp/pages.json?{"type":"stat"} ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
