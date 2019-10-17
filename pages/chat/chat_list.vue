@@ -18,7 +18,7 @@
 				</view>
 				<view class="action">
 					<view class="text-grey text-xs">{{item.timess}}</view>
-					<view class="cuIcon-notice_forbid_fill text-gray"></view>
+					<!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
 				</view>
 			</view>
 		</view>
@@ -176,12 +176,13 @@
 			to_chat(list_id){
 				var that=this;
 				var chater_info=that.$data.Conversation[list_id]
+				console.log(chater_info);
 				uni.setStorage({
 					key:'chater_info',
 					data:chater_info
 				})
 				uni.navigateTo({
-					url:'../chat/chat',
+					url:'/pages/chat/chat_info',
 					animationDuration:300
 				})
 				
@@ -192,5 +193,6 @@
 </script>
 
 <style>
-
+	@import "../../colorui/icon.css";
+	@import "../../colorui/main.css";
 </style>

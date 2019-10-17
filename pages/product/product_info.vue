@@ -56,8 +56,7 @@
 				<view class="content">
 					<view class="title">选择规格：</view>
 					<view class="sp">
-						<view v-for="item in info.skus" :class="[item.id==selectSpec?'on':'']" @tap="setSelectSpec(item.id)"
-						 :key="item.id">{{item.title}}</view>
+						<view v-for="item in info.skus" :class="[item.id==selectSpec?'on':'']" @tap="setSelectSpec(item.id)" :key="item.id">{{item.title}}</view>
 					</view>
 					<view class="length" v-if="selectSpec!=null">
 						<view class="text">数量</view>
@@ -166,12 +165,12 @@
 			this.title = e.title
 		},
 		onReady() {
-			 //计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
+			//计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
 		},
 		methods: {
 			goCart() {
 				uni.switchTab({
-					url:'/pages/cart/cart'
+					url: '/pages/cart/cart'
 				})
 			},
 			getInfo(id) {
@@ -200,19 +199,28 @@
 			},
 			goStore(id) {
 				uni.navigateTo({
-					url: "/pages/store/online_store?id="+id
+					url: "/pages/store/online_store?id=" + id
 				})
 			},
 			//消息列表
 			toMsg() {
 				uni.navigateTo({
-					url: '../msg/msg'
+					url: '/pages/chat/chat_info'
 				})
 			},
 			// 客服
 			toChat() {
+				var chater_info = {
+					username: 'kefu_' + this.info.id,
+					nickName: this.info.store_name
+				}
+				uni.setStorage({
+					key: 'chater_info',
+					data: chater_info
+				})
 				uni.navigateTo({
-					url: "../msg/chat/chat?name=客服008"
+					url: '/pages/chat/chat_info',
+					animationDuration: 300
 				})
 			},
 			// 分享
@@ -263,11 +271,11 @@
 							},
 							success: (res) => {
 								this.selectSpec = null
-								if(res.data.code == 200){
+								if (res.data.code == 200) {
 									uni.showToast({
 										title: "已加入购物车"
 									});
-								}else{
+								} else {
 									uni.showToast({
 										title: res.data.msg,
 										icon: 'none'
@@ -315,7 +323,7 @@
 			//跳转评论列表
 			toEvalues(id) {
 				uni.navigateTo({
-					url: '/pages/product/ratings?id='+id
+					url: '/pages/product/ratings?id=' + id
 				})
 			},
 			//选择规格
