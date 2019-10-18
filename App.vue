@@ -4,48 +4,10 @@
 	import md5 from 'js_sdk/js-md5/src/md5.js'
 	export default {
 		globalData: {
-			// api: 'http://127.0.0.1:8000/weapp/'
-			api: 'https://g.dxs.wiki/weapp/'
+			api: 'http://127.0.0.1:8000/weapp/'
+			// api: 'https://g.dxs.wiki/weapp/'
 		},
 		onLaunch: function() {
-			Vue.prototype.JIM=new JMessage({});
-			console.log('App Launch');
-			var appkey='b7ce35a8335c8ab76c58dfd0';
-			var key='80871baf19881a7036d774c5';
-			var timestamp = (new Date()).getTime();
-			var signature=md5("appkey=b7ce35a8335c8ab76c58dfd0&timestamp="+timestamp+"&random_str=022cd9fd995849b66666&key=80871baf19881a7036d774c5");
-			console.log(signature)
-			this.JIM.init({
-				"appkey"    : appkey,
-				"random_str": "022cd9fd995849b66666",
-				"signature" : signature,
-				"timestamp" : timestamp,
-				"flag":1
-			}).onSuccess(function(data) {
-			  console.log(data)
-			}).onFail(function(data) {
-			  //TODO
-			});  
-			//
-			this.JIM.onDisconnect(function(){
-				console.log('JIM断开链接')
-			});
-			
-			this.JIM.onMsgReceive(function(data) {
-				// 接受在线消息
-				console.log('在线接受消息')
-				console.log(data)
-				uni.$emit('msg_ol',data.messages[0].content)
-			});
-			
-			//this.JIM.isInit();// 无回调函数，调用则成功
-			Vue.prototype.onSyncConversation=null
-			uni.$once('onSyncConversation',function(data){
-				this.onSyncConversation=data
-				console.log('离线传递：')
-				console.log(data)
-				uni.$off()
-			})
 			var that = this
 			uni.login({
 				provider: 'weixin',
@@ -63,13 +25,7 @@
 						success: (res) => {
 							uni.setStorageSync('open_id', res.data.data.open_id)
 							uni.setStorageSync('userInfo', res.data.data.userInfo)
-							if(res.data.data.is_new == 1){
-								that.jRegister('user_'+res.data.data.userInfo.id)
-								// that.jRegister('kefu_2')
-							}else{
-								that.jLogin('user_'+res.data.data.userInfo.id)
-							}
-							uni.setStorageSync('username','user_'+res.data.data.userInfo.id);
+							uni.setStorageSync('j_username','user_'+res.data.data.userInfo.id);
 						}
 					});
 				}

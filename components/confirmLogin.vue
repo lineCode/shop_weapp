@@ -35,6 +35,8 @@
 			getuserinfo(e){
 				console.log(e)
 				console.log(e.detail.userInfo)
+				uni.setStorageSync('j_avatar',e.detail.userInfo.avatarUrl)
+				uni.setStorageSync('j_nickname',e.detail.userInfo.nickName)
 				uni.request({
 					url: getApp().globalData.api + 'user/edit',
 					method:'POST',
