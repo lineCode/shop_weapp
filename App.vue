@@ -4,8 +4,8 @@
 	import md5 from 'js_sdk/js-md5/src/md5.js'
 	export default {
 		globalData: {
-			api: 'http://127.0.0.1:8000/weapp/'
-			// api: 'https://g.dxs.wiki/weapp/'
+			// api: 'http://127.0.0.1:8000/weapp/'
+			api: 'https://g.dxs.wiki/weapp/'
 		},
 		onLaunch: function() {
 			var that = this

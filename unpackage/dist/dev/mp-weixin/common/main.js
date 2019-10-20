@@ -97,9 +97,9 @@ var _jmessageWxappletSdk140Min = _interopRequireDefault(__webpack_require__(/*! 
 var _md = _interopRequireDefault(__webpack_require__(/*! js_sdk/js-md5/src/md5.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   globalData: {
-    api: 'http://127.0.0.1:8000/weapp/'
-    // api: 'https://g.dxs.wiki/weapp/'
-  },
+    // api: 'http://127.0.0.1:8000/weapp/'
+    api: 'https://g.dxs.wiki/weapp/' },
+
   onLaunch: function onLaunch() {
     var that = this;
     uni.login({
