@@ -133,7 +133,7 @@
 		<!-- 详情 -->
 		<view class="description" style="margin-bottom: 120rpx;">
 			<view class="title">———— 商品详情 ————</view>
-			<view class="content">
+			<view class="content" style="background: #FFFFFF;padding: 20rpx;">
 				<rich-text :nodes="info.content"></rich-text>
 			</view>
 		</view>
@@ -162,7 +162,6 @@
 		},
 		onLoad(e) {
 			this.getInfo(e.id)
-			this.title = e.title
 		},
 		onReady() {
 			//计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
@@ -186,6 +185,10 @@
 					},
 					success: (res) => {
 						this.info = res.data.data
+						this.title = res.data.data.name
+						var richtext = this.info.content
+						const regex = new RegExp('<img', 'gi')
+						this.info.content = richtext.replace(regex, '<img style="max-width: 100%;"')
 						this.loading = false
 					},
 					fail: (res) => {
@@ -1117,4 +1120,5 @@
 			}
 		}
 	}
+
 </style>

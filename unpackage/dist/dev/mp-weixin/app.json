@@ -7,6 +7,7 @@
     "pages/store/offline_store",
     "pages/product/product_list",
     "pages/product/product_info",
+    "pages/product/offline_product",
     "pages/product/ratings",
     "pages/store/online_store",
     "pages/chat/chat_info",
@@ -68,6 +69,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap94.json"
+  "usingComponents": {}
 }

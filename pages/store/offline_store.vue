@@ -24,13 +24,17 @@
 
 		<view class="yingye">
 			<view class="container">
-				<p class="shijian">营业时间：9:00 AM - 9:00 PM</p>
-				<p class="fuli"><text>免费停车</text><text>免费WIFI</text></p>
+				<p class="shijian">营业时间：{{info.open_time}}</p>
+				<p class="fuli">
+					<text v-for="item in info.fuli" :key="item">
+						{{item}}
+					</text>
+				</p>
 			</view>
 		</view>
 
 		<view class="location">
-			<text style="font-size: 30rpx;line-height: 80rpx;margin-left: 25rpx;">典雅花园11栋</text>
+			<text style="font-size: 30rpx;line-height: 80rpx;margin-left: 25rpx;">{{info.address}}</text>
 		</view>
 
 		<view class="offline-list" style="margin-top: 20rpx;background: #FFFFFF;">
@@ -197,7 +201,7 @@
 			},
 			toProduct(id) {
 				uni.navigateTo({
-					url: "/pages/product/product_info?id=" + id
+					url: "/pages/product/offline_product?id=" + id
 				})
 			},
 			getList(id) {

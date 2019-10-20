@@ -50,6 +50,13 @@
 			}
 		},
 		{
+			"path": "pages/product/offline_product",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/product/ratings",
 			"style": {
 				"navigationStyle": "custom",

@@ -15,7 +15,7 @@
 						<view class="swiper-box">
 							<swiper circular="true" autoplay="true" @change="swiperChange">
 								<swiper-item v-for="item in banners" :key="item.id">
-									<image :src="item.attach" mode="aspectFill"></image>
+									<image :src="item.url" mode="aspectFill"></image>
 								</swiper-item>
 							</swiper>
 							<view class="indicator">
@@ -33,37 +33,38 @@
 						</view>
 					</view>
 
-					<view class="banner-container">
-						<image :src="sigleBanner.attach" mode="aspectFill"></image>
+					<view class="banner-container" v-if="currentTab == 0">
+						<image :src="singleBanner" mode="aspectFill"></image>
 					</view>
-
-					<view class="title-devider">
-						<text>大牌抢购</text>
-					</view>
-
-					<swiper class="grace-swiper swiper2" autoplay="true" indicator-color="rgba(255, 255, 255, 1)"
-					 indicator-active-color="#00B26A" style="height:445rpx" interval="5000">
-						<swiper-item style="background-color: #FFFFFF;" v-for="item in dapaiList" :key="item.id">
-							<navigator :url="'/pages/product/product_info?id='+item.id+'&title='+item.name">
-								<view>
-									<image style="width: 750rpx;height: 375rpx;" :src='item.thumb'
-									 mode='aspectFill'></image>
-									<view class="title" style="bottom: 70rpx;font-size: 32rpx;font-weight: 500;">{{item.name}}</view>
-									<view style="height: 70rpx;width: 100%;">
-										<view class="dapai-price">
-											<text>￥{{item.price}}</text>
-										</view>
-										<view class="dapai-btn">
-											<button type="primary" class="grace-button grace-gtbg-pink" size="mini">立即抢购</button>
-										</view>
-										<view class="dapai-sold">
-											<text>已售{{item.sold}}件</text>
+					<view v-if="currentTab == 0">
+						<view class="title-devider" >
+							<text>大牌抢购</text>
+						</view>
+						
+						<swiper class="grace-swiper swiper2" autoplay="true" indicator-color="rgba(255, 255, 255, 1)"
+						 indicator-active-color="#00B26A" style="height:445rpx" interval="5000">
+							<swiper-item style="background-color: #FFFFFF;" v-for="item in dapaiList" :key="item.id">
+								<navigator :url="item.is_online == 1 ? '/pages/product/product_info?id='+item.id : '/pages/product/offline_product?id='+item.id">
+									<view>
+										<image style="width: 750rpx;height: 375rpx;" :src='item.thumb'
+										 mode='aspectFill'></image>
+										<view class="title" style="bottom: 70rpx;font-size: 32rpx;font-weight: 500;">{{item.name}}</view>
+										<view style="height: 70rpx;width: 100%;">
+											<view class="dapai-price">
+												<text>￥{{item.price}}</text>
+											</view>
+											<view class="dapai-btn">
+												<button type="primary" class="grace-button grace-gtbg-pink" size="mini">立即抢购</button>
+											</view>
+											<view class="dapai-sold">
+												<text>已售{{item.sold}}件</text>
+											</view>
 										</view>
 									</view>
-								</view>
-							</navigator>
-						</swiper-item>
-					</swiper>
+								</navigator>
+							</swiper-item>
+						</swiper>
+					</view>
 
 					<view class="title-devider" style="margin-top: 30rpx;">
 						<text>热门商品</text>
@@ -105,7 +106,7 @@
 				banners: [],
 				category: [],
 				subCategory: [],
-				sigleBanner: {},
+				singleBanner: {},
 				winHeight: "", //窗口高度
 				currentTab: 0, //预设当前项的值
 				scrollLeft: 0, //tab标题的滚动条位置
@@ -206,7 +207,7 @@
 					},
 					success: (res) => {
 						this.banners = res.data.data.list
-						this.sigleBanner = res.data.data.single
+						this.singleBanner = res.data.data.single
 					}
 				});
 			},
