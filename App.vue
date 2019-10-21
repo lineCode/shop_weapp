@@ -5,7 +5,8 @@
 	export default {
 		globalData: {
 			// api: 'http://127.0.0.1:8000/weapp/'
-			api: 'https://g.dxs.wiki/weapp/'
+			// api: 'https://g.dxs.wiki/weapp/'
+			api: 'https://api.jiangsulezhong.com/weapp/'
 		},
 		onLaunch: function() {
 			var that = this

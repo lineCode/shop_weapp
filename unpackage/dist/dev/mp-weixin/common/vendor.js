@@ -1498,9 +1498,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 12:
-/*!*************************************************************************************************************!*\
-  !*** C:/code/shop_weapp/js_sdk/wxmp-jiguang/jmessage-wxapplet-sdk-1.4.0/jmessage-wxapplet-sdk-1.4.0.min.js ***!
-  \*************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/js_sdk/wxmp-jiguang/jmessage-wxapplet-sdk-1.4.0/jmessage-wxapplet-sdk-1.4.0.min.js ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1511,106 +1511,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 128:
-/*!********************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 获取系统信息并识别 iphoneX
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-module.exports = {
-  info: function info() {
-    try {
-      var res = uni.getSystemInfoSync();
-      var iPhoneXBottom = 0;
-      if (res.model.indexOf('iPhoneX') != -1) {
-        res.iPhoneXBottomHeightRpx = 72;
-        res.iPhoneXBottomHeightPx = uni.upx2px(72);
-      } else {
-        res.iPhoneXBottomHeightRpx = 0;
-        res.iPhoneXBottomHeightPx = 0;
-      }
-      return res;
-    } catch (e) {
-      return null;
-    }
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 129:
-/*!*****************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/jsTools/request.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { /*
-              graceUI-JS - 网络请求工具
-              link : graceui.hcoder.net
-              author : 5213606@qq.com 深海
-              
-              版权声明 : 
-              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
-              侵权必究，请遵守版权约定！
-              */
-
-module.exports = {
-
-  get: function get(url, data, callback, headers) {
-    uni.request({
-      url: url,
-      data: data,
-      method: "GET",
-      dataType: "json",
-      header: headers,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  },
-
-  post: function post(url, data, contentType, headers, callback) {
-    switch (contentType) {
-      case "form":
-        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
-        break;
-      case "json":
-        var headerObj = { 'content-type': 'application/json' };
-        break;
-      default:
-        var headerObj = { 'content-type': 'application/json' };}
-
-    for (var k in headers) {headerObj[k] = headers[k];}
-    uni.request({
-      url: url,
-      data: data,
-      method: "POST",
-      dataType: "json",
-      header: headerObj,
-      success: function success(res) {callback(res.data);},
-      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
-
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 13:
-/*!***************************************************!*\
-  !*** C:/code/shop_weapp/js_sdk/js-md5/src/md5.js ***!
-  \***************************************************/
+/*!*****************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/js_sdk/js-md5/src/md5.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2299,7 +2203,103 @@ module.exports = {
     }
   }
 })();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../soft/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 14), __webpack_require__(/*! ./../../../../../soft/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 14), __webpack_require__(/*! ./../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 136:
+/*!**********************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/jsTools/systemInfo.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 获取系统信息并识别 iphoneX
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+module.exports = {
+  info: function info() {
+    try {
+      var res = uni.getSystemInfoSync();
+      var iPhoneXBottom = 0;
+      if (res.model.indexOf('iPhoneX') != -1) {
+        res.iPhoneXBottomHeightRpx = 72;
+        res.iPhoneXBottomHeightPx = uni.upx2px(72);
+      } else {
+        res.iPhoneXBottomHeightRpx = 0;
+        res.iPhoneXBottomHeightPx = 0;
+      }
+      return res;
+    } catch (e) {
+      return null;
+    }
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 137:
+/*!*******************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/jsTools/request.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /*
+              graceUI-JS - 网络请求工具
+              link : graceui.hcoder.net
+              author : 5213606@qq.com 深海
+              
+              版权声明 : 
+              GraceUI 的版权约束是不能转售或者将 GraceUI 直接发布到公开渠道！
+              侵权必究，请遵守版权约定！
+              */
+
+module.exports = {
+
+  get: function get(url, data, callback, headers) {
+    uni.request({
+      url: url,
+      data: data,
+      method: "GET",
+      dataType: "json",
+      header: headers,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  },
+
+  post: function post(url, data, contentType, headers, callback) {
+    switch (contentType) {
+      case "form":
+        var headerObj = { 'content-type': 'application/x-www-form-urlencoded' };
+        break;
+      case "json":
+        var headerObj = { 'content-type': 'application/json' };
+        break;
+      default:
+        var headerObj = { 'content-type': 'application/json' };}
+
+    for (var k in headers) {headerObj[k] = headers[k];}
+    uni.request({
+      url: url,
+      data: data,
+      method: "POST",
+      dataType: "json",
+      header: headerObj,
+      success: function success(res) {callback(res.data);},
+      fail: function fail() {uni.showToast({ title: "网络请求失败", icon: "none" });} });
+
+  } };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -2594,10 +2594,117 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 182:
-/*!**********************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/jsTools/graceChecker.js ***!
-  \**********************************************************/
+/***/ 19:
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 190:
+/*!************************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/jsTools/graceChecker.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2703,113 +2810,6 @@ module.exports = {
     if (checkVal == NaN) {return false;}
     return true;
   } };
-
-/***/ }),
-
-/***/ 19:
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
 
 /***/ }),
 
@@ -8776,10 +8776,41 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 275:
-/*!************************************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/province.js ***!
-  \************************************************************************/
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 304:
+/*!**************************************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/threeComponents/city-data/province.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8926,10 +8957,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 276:
-/*!********************************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/city.js ***!
-  \********************************************************************/
+/***/ 305:
+/*!**********************************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/threeComponents/city-data/city.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10440,10 +10471,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 277:
-/*!********************************************************************!*\
-  !*** C:/code/shop_weapp/graceUI/threeComponents/city-data/area.js ***!
-  \********************************************************************/
+/***/ 306:
+/*!**********************************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/graceUI/threeComponents/city-data/area.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22993,41 +23024,10 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ 4:
-/*!*************************************!*\
-  !*** C:/code/shop_weapp/pages.json ***!
-  \*************************************/
+/*!***************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/pages.json ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23935,21 +23935,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!******************************************************!*\
-  !*** C:/code/shop_weapp/pages.json?{"type":"style"} ***!
-  \******************************************************/
+/*!********************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/pages.json?{"type":"style"} ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "search-header": "/components/layouts/SearchHeader", "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar", "confirm-login": "/components/confirmLogin" } }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": { "search-header": "/components/layouts/SearchHeader" } }, "pages/order/order_info": { "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/order/pay": { "navigationBarTextStyle": "white", "navigationStyle": "custom", "usingComponents": {} }, "pages/store/offline_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader", "grace-full-loading": "/graceUI/components/graceFullLoading", "grace-star": "/graceUI/components/graceStar" } }, "pages/product/product_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader", "confirm-login": "/components/confirmLogin" } }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader", "grace-full-loading": "/graceUI/components/graceFullLoading" } }, "pages/product/ratings": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/store/online_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader", "grace-full-loading": "/graceUI/components/graceFullLoading" } }, "pages/chat/chat_info": { "navigationBarTitleText": "对话", "usingComponents": {} }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表", "usingComponents": {} }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-number-box": "/graceUI/components/graceNumberBox", "grace-empty": "/graceUI/components/graceEmpty", "grace-check-btn": "/graceUI/components/graceCheckBtn", "common-header": "/components/layouts/CommonHeader", "grace-full-loading": "/graceUI/components/graceFullLoading" } }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-nav": "/graceUI/components/graceNavBar", "grace-empty": "/graceUI/components/graceEmpty", "grace-loading": "/graceUI/components/graceLoading", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "grace-coupons": "/graceUI/components/graceCoupons", "common-header": "/components/layouts/CommonHeader" } }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "common-header": "/components/layouts/CommonHeader" } }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white", "usingComponents": { "mpvue-picker": "/graceUI/threeComponents/mpvuePicker", "mpvue-city-picker": "/graceUI/threeComponents/mpvueCityPicker", "common-header": "/components/layouts/CommonHeader" } }, "pages/product/offline_product": { "navigationStyle": "custom", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/home/home": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/local/local": { "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/order/order_info": { "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/order/pay": { "navigationBarTextStyle": "white", "navigationStyle": "custom" }, "pages/store/offline_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/product_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/product_info": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/offline_product": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/product/ratings": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/store/online_store": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/chat/chat_info": { "navigationBarTitleText": "对话" }, "pages/chat/chat_list": { "navigationBarTitleText": "消息列表" }, "pages/cart/cart": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/user": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/order/order_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/coupon": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/product_collect": { "navigationBarTitleText": "商品收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/store_collect": { "navigationBarTitleText": "店铺收藏", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit": { "navigationBarTitleText": "在线充值", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/deposit_success": { "navigationBarTitleText": "充值成功", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/remain_money": { "navigationBarTitleText": "余额明细", "navigationBarBackgroundColor": "#0177BF", "navigationBarTextStyle": "white" }, "pages/user/location_list": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }, "pages/user/location_edit": { "navigationStyle": "custom", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!*****************************************************!*\
-  !*** C:/code/shop_weapp/pages.json?{"type":"stat"} ***!
-  \*****************************************************/
+/*!*******************************************************************!*\
+  !*** /Users/yugaoheng/Code/shop_weapp/pages.json?{"type":"stat"} ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

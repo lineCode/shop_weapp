@@ -25,12 +25,18 @@
 		<!-- 底部菜单 -->
 		<view class="footer">
 			<view class="icons">
-				<button class="box" style="background: #ffffff;position:static;line-height: 1.2;width: 72rpx;padding: 0;padding-top: 2rpx" open-type="share">
-					<view class="box">
-						<view class="icon fenxiang"></view>
-						<view class="text">分享</view>
-					</view>
-				</button>
+				<!-- 				<view style="display: inline-block;width: 72rpx;">
+					<button class="box" style="background: #ffffff;position:static;line-height: 1.2;width: 72rpx;padding: 0;padding-top: 2rpx" >
+						<view class="box">
+							<view class="icon fenxiang"></view>
+							<view class="text">分享</view>
+						</view>
+					</button>
+				</view> -->
+				<view class="box" @tap="share">
+					<view class="icon fenxiang"></view>
+					<view class="text">分享</view>
+				</view>
 				<view class="box" @tap="toChat">
 					<view class="icon kefu"></view>
 					<view class="text">客服</view>
@@ -139,6 +145,27 @@
 				<rich-text :nodes="info.content"></rich-text>
 			</view>
 		</view>
+		<!-- share弹窗 -->
+		<view class="share" :class="shareClass" @touchmove.stop.prevent="discard" @tap="hideShare">
+			<view class="mask"></view>
+			<view class="layer" @tap.stop="discard">
+				<view class="h1">分享</view>
+				<view class="list">
+					<view class="box" style="margin: auto;">
+						<button open-type="share" style="position: static;line-height: 1.3;background: transparent;">
+							<image src="/static/img/wx.png"></image>
+							<view class="title">
+								微信好友
+							</view>
+						</button>
+					</view>
+				</view>
+				<view class="btn" @tap="hideShare">
+					取消
+				</view>
+			</view>
+			
+		</view>
 		<graceFullLoading :graceFullLoading="loading" logoUrl="https://staticimgs.oss-cn-beijing.aliyuncs.com/logo.png"></graceFullLoading>
 	</view>
 </template>
@@ -159,7 +186,8 @@
 				specClass: '', //规格弹窗css类，控制开关动画
 				selectSpec: null, //选中规格
 				title: '',
-				number: 1
+				number: 1,
+				shareClass: 'hide'
 			};
 		},
 		onLoad(e) {

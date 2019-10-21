@@ -1,103 +1,140 @@
 <template>
-	<view>
+	<view class="container">
 		<common-header title="订单详情"></common-header>
-		<!-- 收货地址 -->
-		<view class="addr" @tap="selectAddress">
-			<view class="icon">
-				<image src="/static/img/addricon.png" mode=""></image>
-			</view>
-			<view class="right">
-				<view class="tel-name">
-					<view class="name">
-						{{recinfo.name}}
-					</view>
-					<view class="tel">
-						{{recinfo.tel}}
-					</view>
-				</view>
-				<view class="addres">
-					{{recinfo.address.region.label}}
-					{{recinfo.address.detailed}}
-				</view>
-			</view>
-		</view>
-		<!-- 购买商品列表 -->
-		<view class="buy-list">
-			<view class="row" v-for="(row,index) in info.items" :key="index">
-				<view class="goods-info">
-					<view class="img">
-						<image :src="row.product_thumb" mode="aspectFill"></image>
-					</view>
-					<view class="info">
-						<view class="title">{{row.product_name}}</view>
-						<view class="spec">数量:{{row.amount}}</view>
-						<view class="price-number">
-							<view class="price">￥{{row.price*row.amount}}</view>
-							<view class="number">
-
-							</view>
+		<view class="tui-box">
+			<tui-list-cell :arrow="true" :last="true" :radius="true" @click="chooseAddr">
+				<view class="tui-address">
+					<view v-if="false">
+						<view class="tui-userinfo">
+							<text class="tui-name">王大大</text> 139****7708
+						</view>
+						<view class="tui-addr">
+							<view class="tui-addr-tag">公司</view>
+							<text>广东省深圳市南山区高新科技园中区一路</text>
 						</view>
 					</view>
+					<view class="tui-none-addr" v-else>
+						<image src="/static/images/index/map.png" class="tui-addr-img" mode="widthFix"></image>
+						<text>选择收货地址</text>
+					</view>
 				</view>
+				<view class="tui-bg-img"></view>
+			</tui-list-cell>
+			<view class="tui-top tui-goods-info">
+				<tui-list-cell :hover="false" :lineLeft="false">
+					<view class="tui-goods-title">
+						商品信息
+					</view>
+				</tui-list-cell>
+				<block v-for="(item,index) in info.items" :key="index">
+					<tui-list-cell :hover="false" padding="0">
+						<view class="tui-goods-item">
+							<image :src="item.product_thumb" mode="aspectFill" class="tui-goods-img"></image>
+							<view class="tui-goods-center">
+								<view class="tui-goods-name">{{item.product_name}}</view>
+								<view class="tui-goods-attr">{{item.title}}</view>
+							</view>
+							<view class="tui-price-right">
+								<view>￥{{item.price}}</view>
+								<view>x{{item.amount}}</view>
+							</view>
+						</view>
+					</tui-list-cell>
+				</block>
+				<tui-list-cell :hover="false">
+					<view class="tui-padding tui-flex">
+						<view>商品总额</view>
+						<view>￥{{info.total_amount}}</view>
+					</view>
+				</tui-list-cell>
+				<!-- <tui-list-cell :arrow="hasCoupon" :hover="hasCoupon" >
+					<view class="tui-padding tui-flex">
+						<view>优惠券</view>
+						<view :class="{'tui-color-red':hasCoupon}">{{hasCoupon?"满5减1":'没有可用优惠券'}}</view>
+					</view>
+				</tui-list-cell> -->
+				<tui-list-cell :hover="false">
+					<view class="tui-padding tui-flex">
+						<view>配送方式</view>
+						<view>商家配送</view>
+					</view>
+				</tui-list-cell>
+				<tui-list-cell :hover="false" :lineLeft="false" padding="0">
+					<view class="tui-remark-box tui-padding tui-flex">
+						<view>订单备注</view>
+						<input type="text" class="tui-remark" placeholder="选填: 请先和商家协商一致" placeholder-class="tui-phcolor"></input>
+					</view>
+				</tui-list-cell>
+				<tui-list-cell :hover="false" :last="true">
+					<view class="tui-padding tui-flex tui-total-flex">
+						<view class="tui-flex-end tui-color-red">
+							<view class="tui-black">合计： </view>
+							<view class="tui-size-26">￥</view>
+							<view class="tui-price-large">{{info.total_amount}}</view>
+						</view>
+					</view>
+				</tui-list-cell>
 			</view>
-		</view>
-		
-		<view class="blck">
 
-		</view>
-		<view class="footer">
-			<view class="settlement">
-				<view class="sum">合计:<view class="money">￥{{info.total_amount|toFixed}}</view>
-				</view>
-				<view class="btn" @tap="toPay">提交订单</view>
+			<view class="tui-top">
+				<tui-list-cell :last="true" :hover="insufficient" :radius="true" :arrow="insufficient">
+					<view class="tui-flex">
+						<view class="tui-balance">余额支付<text class="tui-gray">(￥2019.00)</text></view>
+						<switch color="#30CC67" class="tui-scale-small" v-show="!insufficient" />
+						<view class="tui-pr-30 tui-light-dark" v-show="insufficient">余额不足, 去充值</view>
+					</view>
+				</tui-list-cell>
 			</view>
 		</view>
+		<view class="tui-safe-area"></view>
+		<view class="tui-tabbar">
+			<view class="tui-flex-end tui-color-red tui-pr-20">
+				<view class="tui-black">实付金额: </view>
+				<view class="tui-size-26">￥</view>
+				<view class="tui-price-large">1192</view>
+				<view class="tui-size-26">.00</view>
+			</view>
+			<view class="tui-pr25">
+				<tui-button width="200rpx" height="70rpx" type="danger" shape="circle" @click="btnPay">确认支付</tui-button>
+			</view>
+		</view>
+
 	</view>
 </template>
 
 <script>
+	import tuiButton from "@/components/extend/button/button"
+	import tuiListCell from "@/components/list-cell/list-cell"
+	import tuiBottomPopup from "@/components/bottom-popup/bottom-popup"
 	import CommonHeader from '@/components/layouts/CommonHeader.vue'
 	export default {
 		components: {
+			tuiButton,
+			tuiListCell,
+			tuiBottomPopup,
 			CommonHeader
 		},
 		data() {
 			return {
-				buylist: [], //订单列表
-				goodsPrice: 0.0, //商品合计价格
-				sumPrice: 0.0, //用户付款价格
-				freight: 12.00, //运费
-				note: '', //备注
-				int: 1200, //抵扣积分
-				deduction: 0, //抵扣价格
-				info: {},
-				recinfo: {
-					id: 1,
-					name: "大黑哥",
-					head: "大",
-					tel: "18816881688",
-					address: {
-						region: {
-							"label": "广东省-深圳市-福田区",
-							"value": [18, 2, 1],
-							"cityCode": "440304"
-						},
-						detailed: '深南大道1111号无名摩登大厦6楼A2'
-					},
-					isDefault: true
-				}
-
-			};
+				hasCoupon: true,
+				insufficient: false,
+				info: {}
+			}
 		},
 		onLoad(e) {
 			this.getInfo(e.id)
 		},
-		filters: {
-			toFixed: function(x) {
-				return parseFloat(x).toFixed(2);
-			}
-		},
 		methods: {
+			chooseAddr() {
+				uni.navigateTo({
+					url: "../address/address"
+				})
+			},
+			btnPay() {
+				uni.navigateTo({
+					url: "../success/success"
+				})
+			},
 			getInfo(order_id) {
 				uni.request({
 					url: getApp().globalData.api + 'order/info',
@@ -118,282 +155,280 @@
 					}
 				});
 			},
-			toPay() {
-				uni.showLoading({
-					title: '正在提交订单...'
-				})
-				uni.request({
-					url: getApp().globalData.api + 'order/submit',
-					method: 'POST',
-					data: {
-						open_id: uni.getStorageSync('open_id'),
-						id: this.info.id
-					},
-					header: {
-						'content-type': 'application/json' //自定义请求头信息
-					},
-					success: (res) => {
-						uni.hideLoading();
-						if(res.data.code == 200){
-							// 去支付
-							
-						}else{
-							uni.showToast({
-								title: res.data.msg,
-								icon: 'none'
-							})
-						}
-					},
-					fail: (res) => {
-						uni.hideLoading();
-					}
-				});
-				// setTimeout(() => {
-				// 	uni.setStorage({
-				// 		key: 'paymentOrder',
-				// 		data: paymentOrder,
-				// 		success: () => {
-				// 			uni.hideLoading();
-				// 			uni.redirectTo({
-				// 				url: "/pages/order/pay?amount=" + this.sumPrice
-				// 			})
-				// 		}
-				// 	})
-				// }, 1000)
-
-			},
-			//选择收货地址
-			selectAddress() {
-				uni.navigateTo({
-					url: '../user/address/address?type=select'
-				})
-			}
 		}
 	}
 </script>
 
-<style lang="scss">
-	.addr {
-		width: 86%;
-		padding: 20upx 3%;
-		margin: 30upx auto 20upx auto;
-		box-shadow: 0upx 5upx 20upx rgba(0, 0, 0, 0.1);
-		border-radius: 20upx;
-		display: flex;
-
-		.icon {
-			width: 80upx;
-			height: 80upx;
-			display: flex;
-			align-items: center;
-
-			image {
-				width: 60upx;
-				height: 60upx;
-			}
-		}
-
-		.tel-name {
-			width: 100%;
-			display: flex;
-			font-size: 32upx;
-
-			.tel {
-				margin-left: 40upx;
-			}
-		}
-
-		.addres {
-			width: 100%;
-			font-size: 26upx;
-			color: #999;
-		}
+<style>
+	.container {
+		padding-bottom: 98rpx;
 	}
 
-	.buy-list {
-		width: 86%;
-		padding: 10upx 3%;
-		margin: 30upx auto 20upx auto;
-		box-shadow: 0upx 5upx 20upx rgba(0, 0, 0, 0.1);
-		border-radius: 20upx;
-
-		.row {
-			margin: 30upx 0;
-
-			.goods-info {
-				width: 100%;
-				display: flex;
-
-				.img {
-					width: 22vw;
-					height: 22vw;
-					border-radius: 10upx;
-					overflow: hidden;
-					flex-shrink: 0;
-					margin-right: 10upx;
-
-					image {
-						width: 22vw;
-						height: 22vw;
-					}
-				}
-
-				.info {
-					width: 100%;
-					height: 22vw;
-					overflow: hidden;
-					display: flex;
-					flex-wrap: wrap;
-					position: relative;
-
-					.title {
-						width: 100%;
-						font-size: 28upx;
-						display: -webkit-box;
-						-webkit-box-orient: vertical;
-						-webkit-line-clamp: 2;
-						// text-align: justify;
-						overflow: hidden;
-					}
-
-					.spec {
-						font-size: 22upx;
-						background-color: #f3f3f3;
-						color: #a7a7a7;
-						height: 40upx;
-						display: flex;
-						align-items: center;
-						padding: 0 10upx;
-						border-radius: 20upx;
-						margin-bottom: 20vw;
-					}
-
-					.price-number {
-						position: absolute;
-						width: 100%;
-						bottom: 0upx;
-						display: flex;
-						justify-content: space-between;
-						align-items: flex-end;
-						font-size: 28upx;
-						height: 40upx;
-
-						.price {
-							color: #f06c7a;
-						}
-
-						.number {
-							display: flex;
-							justify-content: center;
-							align-items: center;
-
-						}
-					}
-				}
-			}
-		}
+	.tui-box {
+		padding: 20rpx 0 118rpx;
+		box-sizing: border-box;
 	}
 
-	.order {
-		width: 86%;
-		padding: 10upx 3%;
-		margin: 30upx auto 20upx auto;
-		box-shadow: 0upx 5upx 20upx rgba(0, 0, 0, 0.1);
-		border-radius: 20upx;
-
-		.row {
-			margin: 20upx 0;
-			height: 40upx;
-			display: flex;
-
-			.left {
-				font-size: 28upx;
-			}
-
-			.right {
-				margin-left: 40upx;
-				font-size: 26upx;
-				color: #999;
-
-				input {
-					font-size: 26upx;
-					color: #999;
-				}
-			}
-		}
+	.tui-address {
+		min-height: 80rpx;
+		padding: 10rpx 0;
+		box-sizing: border-box;
+		position: relative;
 	}
 
-	.blck {
-		width: 100%;
-		height: 100upx;
+	.tui-userinfo {
+		font-size: 30rpx;
+		font-weight: 500;
+		line-height: 30rpx;
+		padding-bottom: 12rpx;
 	}
 
-	.footer {
-		width: 92%;
-		padding: 0 4%;
-		background-color: #fbfbfb;
-		height: 100upx;
-		display: flex;
-		justify-content: flex-end;
+	.tui-name {
+		padding-right: 40rpx;
+	}
+
+	.tui-addr {
+		font-size: 24rpx;
+		word-break: break-all;
+		padding-right: 25rpx;
+	}
+
+	.tui-addr-tag {
+		padding: 5rpx 8rpx;
+		flex-shrink: 0;
+		background: #EB0909;
+		color: #fff;
+		display: inline-flex;
 		align-items: center;
-		font-size: 28upx;
-		position: fixed;
-		bottom: 0upx;
-		z-index: 5;
-
-		.settlement {
-			width: 80%;
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-
-			.sum {
-				width: 50%;
-				font-size: 28upx;
-				margin-right: 10upx;
-				display: flex;
-				justify-content: flex-end;
-
-				.money {
-					font-weight: 600;
-				}
-			}
-
-			.btn {
-				padding: 0 30upx;
-				height: 60upx;
-				background-color: #f06c7a;
-				color: #fff;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 30upx;
-				border-radius: 40upx;
-			}
-		}
+		justify-content: center;
+		font-size: 25rpx;
+		line-height: 25rpx;
+		transform: scale(0.8);
+		transform-origin: 0 center;
+		border-radius: 6rpx;
 	}
 
-	.detail {
-		width: 86%;
-		padding: 10upx 3%;
-		margin: 30upx auto 20upx auto;
-		box-shadow: 0upx 5upx 20upx rgba(0, 0, 0, 0.1);
-		border-radius: 20upx;
+	.tui-bg-img {
+		position: absolute;
+		width: 100%;
+		height: 8rpx;
+		left: 0;
+		bottom: 0;
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL0AAAAECAMAAADszM6/AAAAOVBMVEUAAAAVqfH/fp//vWH/vWEVqfH/fp8VqfH/fp//vWEVqfH/fp8VqfH/fp//vWH/vWEVqfH/fp//vWHpE7b6AAAAEHRSTlMA6urqqlVVFRUVq6upqVZUDT4vVAAAAEZJREFUKM/t0CcOACAQRFF6r3v/w6IQJGwyDsPT882IQzQE0E3chToByjG5LwMgLZN3TQATmdypCciBya0cgOT3/h//9PgF49kd+6lTSIIAAAAASUVORK5CYII=") repeat;
+	}
 
-		.row {
-			height: 60upx;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+	.tui-top {
+		margin-top: 20rpx;
+		overflow: hidden;
+	}
 
-			.nominal {
-				font-size: 28upx;
-			}
+	.tui-goods-title {
+		font-size: 28rpx;
+		display: flex;
+		align-items: center;
+	}
 
-			.content {
-				font-size: 26upx;
-				color: #f06c7a;
-			}
-		}
+	.tui-padding {
+		box-sizing: border-box;
+	}
+
+	.tui-goods-item {
+		width: 100%;
+		padding: 20rpx 30rpx;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.tui-goods-img {
+		width: 180rpx;
+		height: 180rpx;
+		display: block;
+		flex-shrink: 0;
+	}
+
+	.tui-goods-center {
+		flex: 1;
+		padding: 20rpx 8rpx;
+		box-sizing: border-box;
+	}
+
+	.tui-goods-name {
+		max-width: 310rpx;
+		word-break: break-all;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		font-size: 26rpx;
+		line-height: 32rpx;
+	}
+
+	.tui-goods-attr {
+		font-size: 22rpx;
+		color: #888888;
+		line-height: 32rpx;
+		padding-top: 20rpx;
+		word-break: break-all;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+
+	.tui-price-right {
+		text-align: right;
+		font-size: 24rpx;
+		color: #888888;
+		line-height: 30rpx;
+		padding-top: 20rpx;
+	}
+
+	.tui-flex {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 26rpx;
+	}
+	.tui-total-flex{
+		justify-content: flex-end;
+	}
+
+	.tui-color-red,
+	.tui-invoice-text {
+		color: #E41F19;
+		padding-right: 30rpx;
+	}
+
+	.tui-balance {
+		font-size: 28rpx;
+		font-weight: 500;
+	}
+
+	.tui-black {
+		color: #222;
+		line-height: 30rpx;
+	}
+
+	.tui-gray {
+		color: #888888;
+		font-weight: 400;
+	}
+
+	.tui-light-dark {
+		color: #666;
+	}
+
+	.tui-goods-price {
+		display: flex;
+		align-items: center;
+		padding-top: 20rpx;
+	}
+
+	.tui-size-26 {
+		font-size: 26rpx;
+		line-height: 26rpx;
+	}
+
+	.tui-price-large {
+		font-size: 34rpx;
+		line-height: 32rpx;
+		font-weight: 600;
+	}
+
+	.tui-flex-end {
+		display: flex;
+		align-items: flex-end;
+		padding-right: 0;
+	}
+
+	.tui-phcolor {
+		color: #B3B3B3;
+		font-size: 26rpx;
+	}
+
+	/* #ifndef H5 */
+	.tui-remark-box {
+		padding: 22rpx 30rpx;
+	}
+
+	/* #endif */
+	/* #ifdef H5 */
+	.tui-remark-box {
+		padding: 26rpx 30rpx;
+	}
+
+	/* #endif */
+
+	.tui-remark {
+		flex: 1;
+		font-size: 26rpx;
+		padding-left: 64rpx;
+	}
+
+	.tui-scale-small {
+		transform: scale(0.8);
+		transform-origin: 100% center;
+	}
+
+	.tui-scale-small .wx-switch-input {
+		margin: 0 !important;
+	}
+
+	/* #ifdef H5 */
+	>>>uni-switch .uni-switch-input {
+		margin-right: 0 !important;
+	}
+
+	/* #endif */
+	.tui-tabbar {
+		width: 100%;
+		height: 98rpx;
+		background: #fff;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		font-size: 26rpx;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+		padding-bottom: env(safe-area-inset-bottom);
+		z-index: 999;
+	}
+
+	.tui-pr-30 {
+		padding-right: 30rpx;
+	}
+
+	.tui-pr-20 {
+		padding-right: 20rpx;
+	}
+
+	.tui-none-addr {
+		height: 80rpx;
+		padding-left: 5rpx;
+		display: flex;
+		align-items: center;
+	}
+
+	.tui-addr-img {
+		width: 36rpx;
+		height: 46rpx;
+		display: block;
+		margin-right: 15rpx;
+	}
+
+
+	.tui-pr25 {
+		padding-right: 25rpx;
+	}
+
+	.tui-safe-area {
+		height: 1rpx;
+		padding-bottom: env(safe-area-inset-bottom);
 	}
 </style>

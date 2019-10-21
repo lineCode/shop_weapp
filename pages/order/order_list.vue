@@ -14,38 +14,38 @@
 				<swiper :style="{height:tabHeight+'px'}" :current="swiperCurrentIndex" @change="swiperChange">
 					<swiper-item class="grace-order-item" v-for="(swiper, index) in tabs" :key="index">
 						<!-- 空数据 -->
-						<view style="margin-top:150rpx;" v-if="loadingTypes[index] == 5">
+						<view style="margin-top:150rpx;" v-if="orders.length == 0">
 							<graceEmpty text="暂无订单数据" :iconSize="80" :iconType="4" iconColor="#999999"></graceEmpty>
 						</view>
 						<!-- 订单列表 -->
 						<scroll-view :style="{height:tabHeight+'px'}" scroll-y @scrolltolower="scrollend">
-							<view class="grace-order grace-box-shadow" v-for="(order, orderIndex) in orders[index]" :key="orderIndex">
+							<view class="grace-order grace-box-shadow" v-for="(order, orderIndex) in orders" :key="orderIndex">
 								<view class="grace-space-between grace-flex-center">
-									<text class="grace-order-number">订单号 : {{order.orderNumber}}</text>
-									<view class="grace-icons icon-close"><text class="grace-text" style="margin-left:10rpx;" @tap="removeorder(order.orderNumber)">删除订单</text></view>
+									<text class="grace-order-number">订单号 : {{order.no}}</text>
+									<!-- <view class="grace-icons icon-close"><text class="grace-text" style="margin-left:10rpx;" @tap="removeorder(order.orderNumber)">删除订单</text></view> -->
 								</view>
 								<!-- 以商铺为单位进行循环 -->
-								<block v-for="(shop, indexShop) in order.items" :key="shop.shopId">
+								<block>
 									<view class="grace-title">
-										<text class="title grace-black">{{shop.shopName}}</text>
+										<text class="title grace-black">{{order.store_name}}</text>
 									</view>
 									<!-- 循环订单商品 -->
-									<view class="grace-order-goods" v-for="(goods, indexGoods) in shop.goods" :key="goods.goods_id">
-										<image :src="goods.goods_img" class="grace-order-goods-img" mode="widthFix"></image>
-										<text class="grace-order-goods-name">{{goods.goods_name}}</text>
-										<view class="grace-order-goods-price">￥{{goods.goods_price}}<text class="grace-order-goods-num"> x
-												{{goods.goods_buynum}}</text></view>
+									<view class="grace-order-goods" v-for="(item, indexItem) in order.items" :key="indexItem">
+										<image :src="item.product_thumb" class="grace-order-goods-img" mode="widthFix"></image>
+										<text class="grace-order-goods-name">{{item.product_name}} {{item.title}}</text>
+										<view class="grace-order-goods-price">￥{{item.price}}<text class="grace-order-goods-num"> x
+												{{item.amount}}</text></view>
 									</view>
 								</block>
 								<!-- 订单底部 -->
 								<view class="grace-order-footer grace-nowrap">
-									<text class="grace-order-number">{{order.status}} - {{order.orderDate}}</text>
-									<text class="grace-order-btn">查看发票</text>
-									<text class="grace-order-btn grace-order-btn-red">再次购买</text>
+									<text class="grace-order-number">{{order.state}} - {{order.created_at}}</text>
+									<!-- <text class="grace-order-btn">查看发票</text> -->
+									<text class="grace-order-btn grace-order-btn-red" v-if="order.status == 1" @tap="goOrder(order.id)">去付款</text>
 								</view>
 							</view>
 							<!-- 每个选项卡都有一个自己的加载更多  -->
-							<graceLoading :loadingType="loadingTypes[index]"></graceLoading>
+							<!-- <graceLoading :loadingType="loadingTypes[index]"></graceLoading> -->
 						</scroll-view>
 					</swiper-item>
 				</swiper>
@@ -57,11 +57,11 @@
 </template>
 <script>
 	import CommonHeader from '@/components/layouts/CommonHeader.vue';
-	import graceNav from "../../graceUI/components/graceNavBar.vue";
-	import graceEmpty from '../../graceUI/components/graceEmpty.vue';
-	import graceLoading from "../../graceUI/components/graceLoading.vue";
-	var systemInfo = require('../../graceUI/jsTools/systemInfo.js');
-	var request = require('../../graceUI/jsTools/request.js');
+	import graceNav from "@/graceUI/components/graceNavBar.vue";
+	import graceEmpty from '@/graceUI/components/graceEmpty.vue';
+	import graceLoading from "@/graceUI/components/graceLoading.vue";
+	var systemInfo = require('@/graceUI/jsTools/systemInfo.js');
+	var request = require('@/graceUI/jsTools/request.js');
 
 	export default {
 		data() {
@@ -71,71 +71,64 @@
 				tabs: ['全部', '待付款', '待使用', '未收货', '点评'],
 				tabHeight: 200,
 				// 订单数据  订单数组和订单状态数组元素一致
-				orders: [
-					[],
-					[],
-					[],
-					[],
-					[]
-				],
+				orders: [],
 				// 订单页码
 				pages: [1, 1, 1, 1, 1],
 				// 加载状态
 				loadingTypes: [0, 0, 0, 0, 0]
 			}
 		},
-		onLoad: function() {
+		onLoad: function(e) {
+			let type = e.type ? e.type : 0
 			var system = systemInfo.info();
 			this.tabHeight = system.windowHeight - system.iPhoneXBottomHeightPx - uni.upx2px(110);
-			this.getOrders();
+			this.swiperCurrentIndex = type
+			this.getOrders(type);
 			this.statusBarHeight = system.statusBarHeight + 44
 		},
 		methods: {
+			goOrder(id) {
+				uni.navigateTo({
+					url: '/pages/order/order_info?id='+id
+				})
+			},
 			navChange: function(e) {
 				this.swiperCurrentIndex = e;
+				this.getOrders(this.swiperCurrentIndex);
 			},
 			swiperChange: function(e) {
 				var index = e.detail.current;
 				this.swiperCurrentIndex = index;
-				// 如果切换时尚未读取数据则读取
-				if (this.orders[this.swiperCurrentIndex].length < 1 && this.loadingTypes[this.swiperCurrentIndex] != 5) {
-					this.getOrders();
-				}
+				this.getOrders(this.swiperCurrentIndex);
 			},
 			scrollend: function() {
 				// 避免重复加载
-				if (this.loadingTypes[this.swiperCurrentIndex] == 1 || this.loadingTypes[this.swiperCurrentIndex] == 2) {
-					return;
-				}
-				this.getOrders();
+				// if (this.loadingTypes[this.swiperCurrentIndex] == 1 || this.loadingTypes[this.swiperCurrentIndex] == 2) {
+				// 	return;
+				// }
+				// this.getOrders();
 			},
-			getOrders: function() {
-				console.log('类型 : ' + this.tabs[this.swiperCurrentIndex] + ' 第' + this.pages[this.swiperCurrentIndex] + '页');
-				this.loadingTypes.splice(this.swiperCurrentIndex, 1, 1);
+			getOrders: function(type) {
+				// console.log('类型 : ' + this.tabs[this.swiperCurrentIndex] + ' 第' + this.pages[this.swiperCurrentIndex] + '页');
+				// this.loadingTypes.splice(this.swiperCurrentIndex, 1, 1);
 				// this.tabs[this.swiperCurrentIndex] 代表向 api 接口传递订单要求返回的订单状态
 				// page 代表第几页
 				// 接口地址组合
-				var url = "http://grace.hcoder.net/api/index/orders/" + this.tabs[this.swiperCurrentIndex] + '/' + this.pages[this
-					.swiperCurrentIndex];
-				request.get(url, {}, res => {
-					if (res.status == 'ok') {
-						// 第一页
-						if (this.pages[this.swiperCurrentIndex] == 1) {
-							this.orders.splice(this.swiperCurrentIndex, 1, res.data);
-						}
-						// 之后的加载页
-						else {
-							this.orders[this.swiperCurrentIndex] = this.orders[this.swiperCurrentIndex].concat(res.data);
-						}
-						// 页码增加
-						this.pages[this.swiperCurrentIndex]++;
-						this.loadingTypes.splice(this.swiperCurrentIndex, 1, 6);
-					} else if (res.status == 'empty') {
-						console.log('empty');
-						this.loadingTypes.splice(this.swiperCurrentIndex, 1, 5);
-					} else if (res.status == 'nomore') {
-						console.log('nomore');
-						this.loadingTypes.splice(this.swiperCurrentIndex, 1, 2);
+				uni.request({
+					url: getApp().globalData.api + 'order/index',
+					method: 'GET',
+					data: {
+						open_id: uni.getStorageSync('open_id'),
+						status: type
+					},
+					header: {
+						'content-type': 'application/json' //自定义请求头信息
+					},
+					success: (res) => {
+						this.orders = res.data.data.list
+					},
+					fail: (res) => {
+						this.loading = false
 					}
 				});
 			},

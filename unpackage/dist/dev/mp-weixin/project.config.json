@@ -12,8 +12,6 @@
 	"libVersion": "2.7.0",
 	"appid": "wxfc8d04450af03381",
 	"projectname": "new_shop",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -32,20 +30,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/store/offline_store",
-					"pathName": "pages/store/offline_store",
+					"name": "pages/order/order_info",
+					"pathName": "pages/order/order_info",
 					"query": "id=2",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/product/product_info",
-					"pathName": "pages/product/product_info",
-					"query": "id=1",
 					"scene": null
 				}
 			]
